@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Owners';
+  src: 
+    url('~assets/fonts/Owners-Normal.woff2') format('woff2'),
+    url('~assets/fonts/Owners-Normal.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'Owners';
+  src: 
+    url('~assets/fonts/Owners-Narrow.woff2') format('woff2'),
+    url('~assets/fonts/Owners-Narrow.woff') format('woff');
+  font-weight: 100;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Owners';
+  src: 
+    url('~assets/fonts/Owners-Medium.woff2') format('woff2'),
+    url('~assets/fonts/Owners-Medium.woff') format('woff');
+  font-weight: 200;
+  font-display: swap;
+}
+  
+  html {
+    font-size: 85%;
+  }
+  
+  body {
+    font-family: 'Owners', sans-serif;
+    font-weight: 200;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+  } 
+  
