@@ -6,6 +6,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
+    "deploy": "vercel --legacy-peer-deps",
     "generate": "nuxt generate"
   },
   "dependencies": {
