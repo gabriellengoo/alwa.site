@@ -33,7 +33,7 @@
 "engines": {
   "node": "16.x",
   "npm": "7.x"
-}
+},
   "devDependencies": {
     "autoprefixer": "^10.4.15",
     "nuxt-gsap-module": "^1.5.0",
