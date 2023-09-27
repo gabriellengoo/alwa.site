@@ -79,6 +79,12 @@ export default {
     //     implementation: require('sass'),
     //   },
     // },
+    extend(config, { isDev, isClient }) {
+      // Check if the IGNORE_BUILD_ERRORS environment variable is set to true
+      if (process.env.IGNORE_BUILD_ERRORS === 'true') {
+        // Skip some build steps or perform custom logic here
+      }
+    },
     postcss: {
       postcssOptions: {
         plugins: {
