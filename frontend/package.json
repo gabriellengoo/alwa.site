@@ -30,9 +30,10 @@
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"
   },
-  "engines": {
-  "node": "16.x"
-},
+"engines": {
+  "node": "16.x",
+  "npm": "7.x"
+}
   "devDependencies": {
     "autoprefixer": "^10.4.15",
     "nuxt-gsap-module": "^1.5.0",
