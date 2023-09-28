@@ -72,7 +72,7 @@
                <!-- Image or video rendering code -->
             <!-- Wrap each image with an anchor tag -->
             
-            <a :href="`/archive/${project.archiveSlug}`">
+            <a :href="`/archive/${project.talentSlug}`">
               <MediaImage
                 :src="image.image.asset._ref"
                 v-if="image.image"
@@ -147,9 +147,9 @@ export default {
       this.back = true;
     }
   },
-  // mounted() {
-  //   this.SET_FOOTER(this.project.footer);
-  // },
+  mounted() {
+    this.SET_FOOTER(this.project.footer);
+  },
   methods: {
     openImageModal(imageURL) {
       // Set the selected image URL to the large version
@@ -217,7 +217,7 @@ export default {
         this.mySwiper.slidePrev();
       }
     },
-    // ...mapMutations(["SET_FOOTER"]),
+    ...mapMutations(["SET_FOOTER"]),
   },
 };
 </script>

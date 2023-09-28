@@ -97,6 +97,7 @@
       @click="toggleBlueBox"
     >  
    </div>
+   <div :class="{ active: isBlueBoxActive }" class="white-box bg-[#ffffffd0] z-50 w-screen h-screen"></div>
   </header>
 </template>
 <script>
@@ -164,27 +165,53 @@ export default {
 <style scoped>
 /* Add styles for the blue box */
 .blue-box {
-  position: fixed;
-  top: 0;
+  position: relative;
+  /* top: 0;
   left: 0;
   width: 100%;
-  height: 0;
-  background-color: rgb(14, 14, 53); /* Set the desired blue color */
-  opacity: 0;
-  transition: height 0.5s ease, opacity 0.5s ease; /* Add smooth transitions */
+  height: 0; */
+  top: -9vh;
+    left: -2vw;
+    width: 110%;
+    height: 0; 
+  background-color: #212121; 
+  /* background-color: rgb(14, 14, 53);  */
+  /* opacity: 0; */
+  transition: height 1s ease, opacity .5s ease; /* Add smooth transitions */
   pointer-events: none; /* Disable pointer events when hidden */
+  z-index: 100;
 }
+
+.white-box {
+  position: fixed;
+    /* position: relative; */
+    top: 0;
+    /* left: 0; */
+    width: 100%;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease; /* Add smooth transitions */
+    z-index: -100;
+  }
 
 /* Add styles for the active blue box */
 .blue-box.active {
-  height: 50vh; /* Adjust the height as needed */
+  /* height: 50vh; */
+  height: 50vh;
+  /* opacity: 1; */
+  pointer-events: auto; /* Enable pointer events when visible */
+}
+
+.white-box.active {
+  height: 100vh; /* Adjust the height as needed */
   opacity: 1;
   pointer-events: auto; /* Enable pointer events when visible */
 }
 
 /* Add styles for the content container */
 .content-container {
-  transition: transform 0.5s ease; /* Add smooth transition for content movement */
+  transition: transform 1s ease; /* Add smooth transition for content movement */
   /* font-size: 1.125rem !important; */
 }
 

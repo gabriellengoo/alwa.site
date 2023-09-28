@@ -1,9 +1,9 @@
 <template>
 
- <div class="gap-2 p-2 md:flex">
+ <div class="gap-2 p-2 ">
 
-
-      <div class="gap-2 p-2 md:flex">
+<!-- md:flex -->
+      <div class="gap-2 p-2 ">
         <div class="md:w-9/16">
       
         </div>
