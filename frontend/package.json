@@ -14,7 +14,6 @@
     "@nuxtjs/sanity": "^0.10.0",
     "@sanity/client": "^6.4.11",
     "@studio-freight/lenis": "^1.0.24",
-    "axios": "^1.5.1",
     "core-js": "^3.25.3",
     "hls.js": "^1.4.12",
     "install": "^0.13.0",

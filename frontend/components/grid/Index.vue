@@ -494,7 +494,6 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
 import { mapMutations, mapState } from "vuex";
 
 export default {
@@ -514,37 +513,9 @@ export default {
   },
   mounted() {
     this.redraw();
-    this.fetchData();
   },
   methods: {
     ...mapMutations(["SET_ACTIVE_PROJECT", "SET_ACTIVE_TALENT"]),
-    fetchData() {
-    const apiKey = 'skDk89wGlR73Txma9ZvZnymAOXaS4WBkvplhoAKhQliown97C9X5sNCSc0e8qpH0TZwjWSmD2PQIwZKrMNgFbrAHRJVY6Apc1LE6iSyIbzwfBLZ0HCo8ceXH0edUC4h8kUZtdPEtdnk3wW9jRozzqGcXl2K794RufehRB4Ih8w88CCUMhzbY'; // Replace with your actual API key
-    const apiUrl = 'https://t4wk0gbl.api.sanity.io/v1/data/query/production'; // Replace with your Sanity.io API URL
-
-    // Define your query here
-    const query = {
-      // Your query goes here
-    };
-
-    axios
-      .get(apiUrl, {
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-        },
-        params: {
-          query: JSON.stringify(query),
-        },
-      })
-      .then((response) => {
-        // Handle the response data here
-        console.log('Data:', response.data);
-      })
-      .catch((error) => {
-        // Handle errors here
-        console.error('Error:', error);
-      });
-  },
     redraw() {
       if (typeof this.$redrawVueMasonry === "function") {
         this.$redrawVueMasonry();

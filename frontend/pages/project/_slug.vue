@@ -113,15 +113,10 @@ import { mapMutations } from "vuex";
 
 export default {
   async asyncData({ params, $sanity }) {
-    const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {..., "archiveSlug": archive->slug.current, 
-    slider[] {fullWidth, images[] 
-      {..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}}}, 
-      "talent" : talent->title, "talentSlug" : talent->slug.current,
+    const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {..., "archiveSlug": archive->slug.current, slider[] {fullWidth, images[] {..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}}}, "talent" : talent->title, "talentSlug" : talent->slug.current, "footer" : footer, "talentBio" : talent->shortBio, "nextProject" : nextProject->slug.current,
     "related": *[_type=='project' && references(^.talent._ref) && _id != ^._id]{ _id, title, meta, "slug" : slug.current }
-     } | order(_updatedAt desc)[0] `;
+     } | order(_updatedAt desc)[0]`;
     const project = await $sanity.fetch(query);
-    console.log(params.slug);
-    
     return { project };
   },
   data() {
