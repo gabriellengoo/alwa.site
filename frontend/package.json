@@ -9,6 +9,9 @@
     "deploy": "vercel --legacy-peer-deps",
     "generate": "nuxt generate"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "@nuxt/image": "^0.6.2",
     "@nuxtjs/sanity": "^0.10.0",
