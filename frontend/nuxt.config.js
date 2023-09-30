@@ -1,7 +1,7 @@
 import { defineNuxtConfig } from "nuxt";
 
 export default {
-  // buildDir: 'dist', 
+  buildDir: 'dist', 
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
