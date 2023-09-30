@@ -10,7 +10,7 @@
     "generate": "nuxt generate"
   },
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   },
   "dependencies": {
     "@nuxt/image": "^0.6.2",
