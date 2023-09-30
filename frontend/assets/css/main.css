@@ -8,6 +8,8 @@
 body,
 html {
   height: 100%;
+  background: #f7f7f7;
+    overflow: hidden;
 }
 
 
@@ -18,3 +20,5 @@ html {
 .blurry-image {
   filter: blur(5px); /* Adjust the blur amount as needed */
 }
+
+

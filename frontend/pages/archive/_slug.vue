@@ -166,7 +166,7 @@
           class="absolute bottom-0 left-0 p-5 z-50 w-full flex justify-between text-xs md:flex"
         >
           <!-- title and name -->
-          <div class="pointer-events-none bottom-0 w-[40vw]">
+          <div class="pointer-events-none bottom-0 w-[47vw]">
             <div ref="skew" class="border-t-[1px] border-black">
               <span
                 class="md:flex"
@@ -190,7 +190,7 @@
           <div class="pointer-events-none bottom-0">
             <div
               ref="skew"
-              class="border-t-[1px] border-black justify-items-end w-[40vw]"
+              class="border-t-[1px] border-black justify-items-end w-[47vw]"
             >
               <span
                 class="md:flex"

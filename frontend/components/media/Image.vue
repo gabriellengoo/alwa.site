@@ -7,7 +7,7 @@
     :style="`aspect-ratio: ${aspect}`"
     :width="size ? size.width : ''"
     :height="size ? size.height : ''"
-    :sizes="sizes ? sizes : 'sm:100vw md:100vw lg:3000px'"
+    :sizes="sizes ? sizes : 'sm:10vh md:10vh lg:3000px'"
   />
 </template>
 <script>
