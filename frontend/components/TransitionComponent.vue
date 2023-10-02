@@ -6,9 +6,9 @@
         <transition name="screen-transition" mode="out-in">
       <div v-if="isTransitionActive" class="black-screen"></div>
     </transition>
-    <!-- Text content outside the black-screen div -->
+    <!-- Text content outside the black-screen div text-zinc-700  text-slate-50-->
     <div class="text-content" :class="{ 'active': isTransitionActive }">
-      <div class="flex uppercase w-screen content-center flex-wrap text-slate-50 h-screen text-xl justify-between p-10">
+      <div class="flex uppercase w-screen content-center flex-wrap text-slate-50  h-screen text-xl justify-between p-10">
         <p class="">
           AWLA
         </p>
@@ -31,6 +31,9 @@
   width: 100%;
   height: 100%;
   background-color: rgb(18, 18, 18);
+  /* background-color: rgba(255,255,255,.8); */
+    /* -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); */
   transform: translateY(0); /* Initially hidden, translated down */
   transition: transform 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Use the specified transition */
   z-index: 1000;
@@ -66,6 +69,8 @@
   transform: translate(-50%, -50%); /* Center the text precisely */
   visibility: hidden; /* Initially hidden */
   z-index: 1001; /* Place it above the black-screen */
+  color: rgb(248 250 252 / var(--tw-text-opacity));
+  color: black;
 }
 
 .text-content.active {

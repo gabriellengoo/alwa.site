@@ -16,7 +16,7 @@
 
     <div class="w-1/16 uppercase text-xl">
       <NuxtLink to="/">Back</NuxtLink>
-    </div>
+    </div> 
     <div
       v-show="title"
       class="flex-1 -mt-1 text-4xl leading-none md:text-5xl font-heading"

@@ -1,5 +1,56 @@
 <template>
+
+
+
   <div>
+      <!-- ref -->
+       <!-- non scroll copy -->
+       <div class="scrollable-content">
+     <div 
+              v-for="item in items"
+              :key="item._key"
+            >
+          
+                <NuxtLink
+          
+                  v-if="item.reference.slug"
+                  :to="`/project/${item.reference.slug}`"
+                >
+                
+                
+                      <figcaption
+                      
+                        :class="{ 'text-left ': !displayGrid }"
+                      >
+                        <div :class="size == 'small' ? 'smaller-text' : ''">
+                          {{ item.title ? item.title : item.reference.title }}
+                        </div>
+                      </figcaption>
+                      <MediaImage
+                        ref="scrollContainer"
+                          @mouseenter="handleMouseEnter"
+                          @mouseleave="handleMouseLeave"
+                        :src="item.image.image"
+                        v-if="item.image.image"
+                        class=" scrollcost hover"
+                       
+                        :style="{ opacity: imageOpacity }"
+                      ></MediaImage>
+                      <MediaVideo
+                        :id="item.video.id"
+                        v-if="item.video.id"
+                        class="scrollcost object-contain object-top w-auto h-full"
+                      ></MediaVideo>
+                
+             
+                </NuxtLink>
+
+              </div>  
+      </div>
+      <!-- ref -->
+
+
+
     <!-- Add a button to toggle the layout -->
         <!-- Add buttons to toggle the layout -->
     <div class="button-container">

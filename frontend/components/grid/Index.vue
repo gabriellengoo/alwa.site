@@ -33,11 +33,12 @@
         <!-- Grid layout -->
         <div
           v-if="displayGrid"
-          v-masonry
+    
           class="w-full masonry scrolling-container flex flex-col "
           :class="[size]"
           horizontal-order="true"
         >
+        
           <!-- Masonry content here -->
           <div
             ref="scrollContainer"
@@ -45,66 +46,29 @@
             :class="{ 'fade-in': displayGrid, 'fade-out': !displayGrid }"
           
                 >
-                <div class="imgin"><div
-              v-masonry-tile
-              class="flex-item relative transition-opacity duration-300 "
+                     <!-- scroll part -->
+                <div>
+                  <!-- <vue-marquee-slider
+    id="marquee-slider-reverse"
+  :space="50"
+  :speed="10000"
+  :width="250"
+  reverse
+>
+<div
               v-for="item in items"
               :key="item._key"
-              :class="[
-              item.double ? 'double' : '',
-              item.spacer != 0 ? 'p-2' : '',
-              item.image.image || item.video.id ? '' : 'hidden md:block',
-              activeTalent &&
-              activeTalent != item.reference.talentId &&
-              activeTalent != item.reference
-                ? 'opacity-25'
-                : '',
-              !displayGrid ? 'list-layout-item' : '', // Add list layout class
-            ]"
             >
-              <figure
-                class="flex  flex-col"
-                  :class="[
-              item.spacer
-                ? `h-space-${item.spacer + 1}  md:h-space-${item.spacer}`
-                : item.image.aspect >= 1
-                ? item.double
-                  ? 'h-space-5 md:h-space-3 2xl:h-space-4'
-                  : 'h-space-5 md:h-space-3 2xl:h-space-2'
-                : item.double
-                ? 'h-space-18 md:h-space-12 2xl:h-space-8'
-                : 'h-space-12 md:h-space-6 2xl:h-space-4',
-              size == 'small' ? 'mb-6' : '',
-            ]"
-              >
+          
                 <NuxtLink
-                :class="[
-                  containerClass,
-                  item.image.position == 'right'
-                    ? 'items-end'
-                    : item.image.position == 'center'
-                    ? 'items-center'
-                    : 'items-start',
-                ]"
+          
                   v-if="item.reference.slug"
                   :to="`/project/${item.reference.slug}`"
                 >
-                  <span
-                  class="flex  flex-col items-start h-full max-w-full"
-                  :class="size == 'small' ? 'w-full' : 'w-auto'"
-                  >
-                    <figure
-
-                    :class="size == 'small' ? 'block w-full' : 'h-full w-auto'"
-                      :style="
-                        item.video && item.video.aspect && size == 'small'
-                          ? `aspect-ratio: ${item.video.aspect.replace(':', '/')}`
-                          : ''
-                      "
-                    >
+                
+                
                       <figcaption
-                        class="block py-2 mr-auto uppercase text-2xl"
-                        v-if="size == 'small'"
+                      
                         :class="{ 'text-left ': !displayGrid }"
                       >
                         <div :class="size == 'small' ? 'smaller-text' : ''">
@@ -114,123 +78,80 @@
                       <MediaImage
                         ref="scrollContainer"
                           @mouseenter="handleMouseEnter"
-            @mouseleave="handleMouseLeave"
-                        :size="item.image.size"
-                        :aspect="item.image.aspect"
+                          @mouseleave="handleMouseLeave"
                         :src="item.image.image"
                         v-if="item.image.image"
-                        class="hover"
-                        :sizes="
-                        size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
-                      "
+                        class=" scrollcost hover"
+                       
                         :style="{ opacity: imageOpacity }"
                       ></MediaImage>
                       <MediaVideo
                         :id="item.video.id"
-                        :style="`aspect-ratio: ${item.video.aspect.replace(
-                          ':',
-                          '/'
-                        )}`"
                         v-if="item.video.id"
-                        class="object-contain object-top w-auto h-full"
+                        class="scrollcost object-contain object-top w-auto h-full"
                       ></MediaVideo>
-                    </figure>
-                  </span>
+                
+             
                 </NuxtLink>
-  
-                <a
-                  v-else-if="item.link"
-                  :href="item.link"
-                  target="_blank"
-                  :class="[
-                  containerClass,
-                  item.image.position == 'right'
-                    ? 'items-end'
-                    : item.image.position == 'center'
-                    ? 'items-center'
-                    : 'items-start',
-                ]"
+
+            </div>
+     </vue-marquee-slider> -->
+
+
+
+     <!-- non scroll copy -->
+
+     <div  class="scroll-container" @wheel="handleScroll">
+      <!-- <vue-marquee-slider
+    id="marquee-slider-reverse"
+  :speed="10000"
+  :width="350"
+  reverse
+> -->
+     <div 
+              v-for="item in items"
+              :key="item._key"
+            >
+          
+                <NuxtLink
+                class="ani"
+                  v-if="item.reference.slug"
+                  :to="`/project/${item.reference.slug}`"
                 >
-                  <span
-                    class="flex flex-col items-start w-auto h-full max-w-full"
-                  >
-                    <figcaption
-                      class="block py-2 mr-auto uppercase text-2xl"
-                      v-if="size == 'small'"
-                    >
-                      <div >
-                        {{ item.title ? item.title : item.reference.title }}
-                      </div>
-                    </figcaption>
-                    <div class="image-grid">
-                    <div class="row">
-                    <MediaImage
-                      :size="item.image.size"
-                      :aspect="item.image.aspect"
-                      :src="item.image.image"
-                      v-if="item.image.image"
-                      class="hover"
+                
+                
+                      <figcaption
                       
-                    ></MediaImage>
-                    <MediaVideo
-                      :id="item.video.id"
-                      :style="`aspect-ratio: ${item.video.aspect.replace(
-                        ':',
-                        '/'
-                      )}`"
-                      v-if="item.video.id"
-                      class="object-contain object-top w-auto h-full"
-                    ></MediaVideo>
-                    </div>
-                    </div>
-                  </span>
-                </a>
-                <figure
-                  v-else
-                  :class="[
-                  containerClass,
-                  item.image.position == 'right'
-                    ? 'items-end'
-                    : item.image.position == 'center'
-                    ? 'items-center'
-                    : 'items-start',
-                ]"
-                >
-                  <span
-                    class="flex flex-col items-start w-auto h-full max-w-full"
-                  >
-                    <figcaption
-                      class="block py-2 mr-auto uppercase text-2xl"
-                      v-if="size == 'small'"
-                    >
-                      <div >
-                        {{ item.title ? item.title : item.reference.title }}
-                      </div>
-                    </figcaption>
-                    <MediaImage
-                      :size="item.image.size"
-                      :aspect="item.image.aspect"
-                      :src="item.image.image"
-                      v-if="item.image.image"
-                      :class="imageClass"
-                    :sizes="
-                      size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
-                    "
-                    ></MediaImage>
-                    <MediaVideo
-                      :id="item.video.id"
-                      :style="`aspect-ratio: ${item.video.aspect.replace(
-                        ':',
-                        '/'
-                      )}`"
-                      v-if="item.video.id"
-                      class="object-contain object-top w-auto h-full"
-                    ></MediaVideo>
-                  </span>
-                </figure>
-              </figure>
-            </div></div>
-            
+                        :class="{ 'text-left ': !displayGrid }"
+                      >
+                        <div :class="size == 'small' ? 'smaller-text' : ''">
+                          {{ item.title ? item.title : item.reference.title }}
+                        </div>
+                      </figcaption>
+                      <MediaImage
+                        ref="scrollContainer"
+                          @mouseenter="handleMouseEnter"
+                          @mouseleave="handleMouseLeave"
+                        :src="item.image.image"
+                        v-if="item.image.image"
+                        class=" scrollcost hover"
+                       
+                        :style="{ opacity: imageOpacity }"
+                      ></MediaImage>
+                      <MediaVideo
+                        :id="item.video.id"
+                        v-if="item.video.id"
+                        class="scrollcost object-contain object-top w-auto h-full"
+                      ></MediaVideo>
+                
+             
+                </NuxtLink>
+
+              </div>  
+            <!-- </vue-marquee-slider> -->
+      </div>
+      
+          </div>
           </div>
         </div>
   
@@ -242,7 +163,7 @@
         >
           <!-- List layout content here -->
           <div
-            class="list-container"
+            class="list-container "
             :class="[
               // !displayGrid ? 'list-layout-item' : '',
               size == 'small' ? 'mb-0 md:mb-1 2xl:mb-2' : '',
@@ -256,7 +177,7 @@
               <div> </div>
             </div>
             <div
-              class="relative transition-opacity duration-300 item "
+              class="liststuff relative transition-opacity duration-300 item "
               v-for="item in items"
               :key="item._key"
               :class="[
@@ -519,12 +440,18 @@
   </template>
   <script>
   import { mapMutations, mapState } from "vuex";
-  
+ import Vue from 'vue'
+import VueMarqueeSlider from 'vue-marquee-slider';
+// import LocomotiveScroll from 'locomotive-scroll';
+
+Vue.use(VueMarqueeSlider)
+
   export default {
     props: ["items", "size"],
     data() {
       return {
         project: false,
+        scrollLeft: 0,
         containerClass: "flex flex-col w-full h-full",
         imageClass: "contain-image",
         imageOpacity: 1, // Add this property
@@ -551,6 +478,14 @@
       this.resumeScrollAnimation();
     },
 
+    handleScroll(event) {
+    // Check if scrolling up (event.deltaX < 0)
+    if (event.deltaX < 0) {
+      // Scroll left
+      this.scrollLeft += 50; // Adjust the scroll speed as needed
+      this.$refs.scrollContainer.scrollLeft = this.scrollLeft;
+    }
+  },
     // Helper functions to control the animation
     pauseScrollAnimation() {
       const scrollContainer = this.$refs.scrollContainer;
@@ -604,6 +539,55 @@
   </script>
   
   <style scoped>
+    .scrollcost{
+    height: 40vh;
+
+  }
+
+  /* .ani{
+    animation-name: src-components-animation-2PZg;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 10000ms;
+    animation-direction: reverse;
+    animation-play-state: running;
+  } */
+
+  /* .src-components-marqueeSliderContainer-1UFI div{
+    margin-right: 0px !important;
+    min-width: 0px !important;
+  } */
+
+
+  /* makes it hotizontal if you ad this as a div around it */
+  .scroll-container {
+  /* width: 100%;  */
+
+      width: 100vw;
+    overflow-x: scroll !important;
+    white-space: nowrap;
+}
+
+@keyframes src-components-animation-2PZg {
+  0% {
+    transform: translateX(0);
+}
+100% {
+    transform: translateX(-100%);
+}
+}
+  .scroll-container div{
+padding-right: 1vw;
+
+}
+
+.scroll-container > * {
+  
+  display: inline-block; /* Display content in a horizontal line */
+}
+/* makes it hotizontal if you ad this as a div around it */
+
+
   /* img{
     opacity: 1;
     transition: opacity .35s ease;
@@ -622,50 +606,58 @@
   /* .item {
     width: 33.3333%; 
   } */
-  
+
 
   .scrolling-container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
+    /* overflow: hidden; */
+    /* position: relative;
+    width: 100vw; */
+    /* animation: scroll 30s linear infinite !important; */
 }
 
 
 .imgin{
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: hidden; 
     white-space: nowrap;
-    width: max-content;
-    animation: scroll 30s linear infinite !important; /* Adjust duration as needed */
+    width: max-content; */
+    /* width: 100vw; */
+    /* animation: scroll 30s linear infinite !important;  */
 }
 
 @keyframes scroll {
     0% {
-        transform: translateX(98%); /* Start off-screen to the right */
+        transform: translateX(-98%); /* Start off-screen to the right */
     }
     100% {
-        transform: translateX(-98%); /* Scroll to the left */
+        transform: translateX(198%); /* Scroll to the left */
     }
 }
 
 .masonry .flex-item {
-  display: flex;
-  flex-direction: row;
+  /* display: flex; */
+  /* flex-direction: row;    */
+   /* margin-right: 20px !important; */
+   /* margin: auto !important; */
+   /* margin-right: auto  !important; 
+  min-width: auto !important; */
+  margin-right: 200px !important;
+  min-width: 350px !important;
   /* Add other flex properties as needed */
 }
 .masonry .flex-item img {
-  display: flex;
-  flex-direction: row;
+  /* display: flex; */
+  /* flex-direction: row; */
   max-height: 30vw;
   /* Add other flex properties as needed */
 }
 
 figure{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* flex-wrap: wrap; */
 }
 
 
@@ -696,7 +688,43 @@ figure{
   .list-layout-item  .contain-image{
     display: none;
     width: 40vh;
+    transition: none  !important;
+    transition-duration: 0s !important;
+    animation: none !important;
+    
   }
+
+ .list-layout-item:nth-child(2) .contain-image{
+    display:contents;
+    /* position: fixed; */
+    position: absolute;
+    top: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vh;
+    transition: none  !important;
+    transition-duration: 0s !important;
+    animation: none !important;
+    /* color: red; */
+    transform: scale(12);
+  }
+  .list-layout-item:nth-child(2):hover .contain-image{
+    display:contents;
+    /* position: fixed; */
+    top: 6.3vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: none  !important;
+    transition-duration: 0s !important;
+    animation: none !important;
+  }
+
+  /* .list-layout-item:nth-child(2) .contain-image img{
+    width: 40vh;
+  } */
   
   /* Show the images on hover */
   .list-layout-item:hover .contain-image {
@@ -706,6 +734,10 @@ figure{
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: none  !important;
+    transition-duration: 0s !important;
+    animation: none !important;
+
   }
   
   /* Media query for screens with a maximum width of 768px (mobile devices) */
@@ -730,6 +762,13 @@ figure{
     display: flex;
     width: 100% !important;
     position: relative;
+}
+
+.masonry .flex-item img {
+    /* display: flex; */
+    /* flex-direction: row; */
+    max-height: 65vw !important;
+    max-height: 95vw !important;
 }
 }
 

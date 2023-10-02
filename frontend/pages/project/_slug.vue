@@ -1,24 +1,19 @@
 <template>
-  <div class="relative min-h-screen md:h-screen p-5 md:overflow-hidden">
-    
- 
-    <section>
+  
+  <div class="relative   md:h-screen md:p-5  md:overflow-hidden">
+    <!-- <Header /> p-5 h-[100vh !important] max-h-[100vh] min-h-screen-->
+  <LenisComponent />
+    <section >
       
-  
-  
-  <div
-    class="relative w-full h-auto flex "
-  >
-    <!-- Existing gallery code goes here -->
-    <div class="relative  pt-80 w-full h-auto flex flex-col ">
-
-      <!-- titles -->
-        <div v-if="project"
+     <!-- titles -->
+     <div  v-if="project"
               class="
+              pt-[9rem]
                 ml-auto
-                text-xl
+               text-lg
                 uppercase
                 lg:text-xl 
+                md:text-xl 
                 font-heading
             w-full
             flex
@@ -30,7 +25,7 @@
             w-full
                 flex
                 items-end
-                
+                mobiletitle
               ">
                 <div> {{ project.title }} </div>
 
@@ -44,59 +39,36 @@
           </div>
 
 
-      <!-- images -->
-      <div class="relative p-5  w-full h-auto flex ">
-        <div
-          v-for="(slide, index) in project.slider"
+      <div class="scroll-container">
+     <div 
+     v-for="(slide, index) in project.slider"
           :key="slide._key"
-          class="flex justify-end  w-3/12 h-3/12 transition-opacity  "
-          :class="realIndex == 0 ? 'opacity-95' : ''"
-        >
-          <div class="flex justify-end float-right h-3/12 p-2 pb-0 w-13/16">
-            
+          class="gallmobile "
+
+            >
             <figure
                 v-for="image in slide.images"
                 :key="image._key"
-                class="flex flex-col flex-1 "
-                :class="
-                  image.padding
-                    ? image.padding == 'medium'
-                      ? 'p-12 pr-10'
-                      : image.padding == 'large'
-                      ? 'p-20 pr-18'
-                      : 'p-8 pr-6'
-                    : ''
-                "
                 
               >
-               <!-- Image or video rendering code -->
-            <!-- Wrap each image with an anchor tag -->
-            
-            <a :href="`/archive/${project.talentSlug}`">
-              <MediaImage
+              <NuxtLink :to="`/archive/${project.talentSlug}`">
+                <MediaImage
                 :src="image.image.asset._ref"
                 v-if="image.image"
-                class=" list-layout"
-                :class="
-                  image.padding ? 'object-contain' : 'object-contain max-w-full'
-                "
-                :sizes="'sm:200vw md:150vw lg:200vw'"
+             
               ></MediaImage>
               <MediaVideoPlay
                 :id="image.video.id"
                 :active="realIndex == index ? true : false"
                 v-else-if="image.video.id"
                 :thumbTime="image.video.thumbTime"
-                class="list-layout relative object-cover object-center  p-4 my-auto"
-              ></MediaVideoPlay>
-          </a>
-            </figure>
-          </div>
-        </div>
+             ></MediaVideoPlay>
+             </NuxtLink>
+         
+                    </figure>
+              </div>  
       </div>
-
-      </div>
-  </div>
+  
 
 
 
@@ -109,9 +81,13 @@
 <script>
 import { groq } from "@nuxtjs/sanity";
 import { mapMutations } from "vuex";
-
+import Header from '~/components/layout/Header.vue'
+import Lenis from '@studio-freight/lenis'; 
 
 export default {
+  components: {
+    Header,
+  },
   async asyncData({ params, $sanity }) {
     const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {..., "archiveSlug": archive->slug.current, slider[] {fullWidth, images[] {..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}}}, "talent" : talent->title, "talentSlug" : talent->slug.current, "footer" : footer, "talentBio" : talent->shortBio, "nextProject" : nextProject->slug.current,
     "related": *[_type=='project' && references(^.talent._ref) && _id != ^._id]{ _id, title, meta, "slug" : slug.current }
@@ -147,8 +123,29 @@ export default {
       this.back = true;
     }
   },
-  mounted() {
-    this.SET_FOOTER(this.project.footer);
+  // mounted() {
+  //   this.SET_FOOTER(this.project.footer);
+  // },
+    mounted() {
+    // Create a new instance of Lenis
+    const lenis = new Lenis();
+
+    // Set up a scroll event listener
+    lenis.on('scroll', (e) => {
+      // Handle scroll events here
+      console.log(e);
+
+      // You can access scroll-related properties from the 'e' object
+      // For example, you can use e.scrollTop to get the current scroll position.
+    });
+        // Create a requestAnimationFrame function to keep the scroll listener active
+        function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    // Start the requestAnimationFrame loop
+    requestAnimationFrame(raf);
   },
   methods: {
     openImageModal(imageURL) {
@@ -223,6 +220,24 @@ export default {
 </script>
 
 <style scoped>
+  .scroll-container {
+  /* width: 100%;  */
+      width: 100vw;
+    overflow-x: scroll !important;
+    white-space: nowrap;
+}
+
+  .scroll-container div img{
+padding-right: 1vw;
+height: 56vh;
+}
+
+.scroll-container > * {
+  display: inline-block; /* Display content in a horizontal line */
+}
+/* img{
+  object-fit: cover;
+} */
 .list-layout {
   /* opacity: 1;  */
   margin-top: 2px;
@@ -238,5 +253,27 @@ export default {
 .slider {
   height: calc(80% - 0.5rem);
 }
+
+@media (max-width: 768px) {
+.gallmobile{
+      flex-direction: column;
+}
+
+.list-layout {
+  /* opacity: 1;  */
+  margin-top: 0px;
+  transition: margin 0.3s ease; /* Add a smooth transition effect */
+}
+
+.mobiletitle{
+  position: fixed;
+  top: 12vw;
+  background: #f7f7f7;
+  height: fit-content;
+    z-index: 1;
+    padding: 3vw;
+}
+}
+
 
 </style>

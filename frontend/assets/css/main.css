@@ -3,13 +3,25 @@
 @tailwind utilities;
 
 
+/* Hide vertical scrollbar */
+::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Hide horizontal scrollbar */
+::-webkit-scrollbar {
+  height: 0;
+}
+
 #__nuxt,
 #__layout,
 body,
 html {
-  height: 100%;
+  height: auto;
+  min-height: 100vh !important;
   background: #f7f7f7;
-    overflow: hidden;
+  /* overflow: hidden; */
+  overflow-x: hidden;
 }
 
 
@@ -20,5 +32,38 @@ html {
 .blurry-image {
   filter: blur(5px); /* Adjust the blur amount as needed */
 }
+
+html.lenis {
+  height: auto;
+}
+
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* @media (min-width: 768px)
+ {
+  .md\:overflow-hidden {
+    overflow: hidden;
+    overflow: scroll !important;
+}
+    overflow: scroll !important;
+    min-height: 100vh !important;
+} */
+
+
 
 

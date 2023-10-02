@@ -57,6 +57,10 @@ export default {
       name: "grid",
       type: "grid",
     },
+    {
+      name: "grid2",
+      type: "grid2",
+    },
   ],
   preview: {
     select: {

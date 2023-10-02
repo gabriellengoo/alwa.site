@@ -149,7 +149,12 @@
 
                   <div v-else>
                   <p>Select Image...</p>
-                  
+                  <MediaImage
+                        :src="selectedImageURL"
+                        v-if="isImageModalOpen && selectedImageURL"
+                        class=" w-auto h-5/6 object-contain  max-w-full "
+                        :sizes="'sm:200vw md:150vw lg:200vw'"
+                      ></MediaImage>
                   </div>
 
                 </figure>
