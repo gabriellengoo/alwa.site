@@ -2,8 +2,9 @@
 
 <template>
     <div>
-        
+         
         <transition name="screen-transition" mode="out-in">
+          <!-- <div v-if="isTransitionActive" class="white-screen"></div> -->
       <div v-if="isTransitionActive" class="black-screen"></div>
     </transition>
     <!-- Text content outside the black-screen div text-zinc-700  text-slate-50-->
@@ -30,15 +31,24 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(18, 18, 18);
-  /* background-color: rgba(255,255,255,.8); */
+  /* background-color: rgb(18, 18, 18); */
+  background-color: #11ff00;
     /* -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px); */
   transform: translateY(0); /* Initially hidden, translated down */
   transition: transform 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Use the specified transition */
-  z-index: 1000;
+  z-index: 100002;
 }
 
+.white-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  z-index: 100000;
+}
 .blacksText{
     transition: none !important;
     transform: none !important;
@@ -68,9 +78,9 @@
   left: 50%; /* Horizontally center the text */
   transform: translate(-50%, -50%); /* Center the text precisely */
   visibility: hidden; /* Initially hidden */
-  z-index: 1001; /* Place it above the black-screen */
   color: rgb(248 250 252 / var(--tw-text-opacity));
   color: black;
+  z-index: 100003;
 }
 
 .text-content.active {

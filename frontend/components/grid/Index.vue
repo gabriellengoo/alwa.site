@@ -4,9 +4,9 @@
         <button @click="switchToList">List</button>
         <button @click="switchToGrid">Grid</button>
       :class="{ 'active-button': displayGrid }"
-      </div> -->
-  
-      <div class="button-container">
+      </div> bottom-div-->
+  <div class=" pt-[9rem]">
+      <!-- <div class="button-container  ">
         <button
           class=""
           @click="switchToList"
@@ -27,14 +27,21 @@
         >
           Grid
         </button>
-      </div>
+      </div> -->
+
+      <div class="button-container ">
+      <button class=" uppercase" @click="toggleListView">
+        <!-- {{ displayGrid ? "List" : "Grid" }} -->
+        {{ displayGrid ? "overview" : "overview" }}
+      </button>
+    </div>
   
       <client-only>
         <!-- Grid layout -->
         <div
           v-if="displayGrid"
     
-          class="w-full masonry scrolling-container flex flex-col "
+          class="w-full  masonry scrolling-container flex flex-col "
           :class="[size]"
           horizontal-order="true"
         >
@@ -114,7 +121,7 @@
             >
           
                 <NuxtLink
-                class="ani"
+                class="ani uppercase"
                   v-if="item.reference.slug"
                   :to="`/project/${item.reference.slug}`"
                 >
@@ -188,9 +195,14 @@
                 activeTalent != item.reference.talentId &&
                 activeTalent != item.reference &&
                 activeTalent != item.image.image || item.video.id
-                  ? 'opacity-25'
+                  ? 'text-opacity-25'
                   : '',
                 !displayGrid ? 'list-layout-item' : '', // Add list layout class
+                // activeTalent &&
+                // activeTalent != item.image.image || item.video.id
+                //   ? 'opacity-0'
+                //   : '',
+                // !displayGrid ? 'list-layout-item' : '',
               ]"
               @mouseenter="hoveredItem = item; lastHoveredItem = item"
               @mouseleave="hoveredItem = null"
@@ -279,6 +291,7 @@
                         :sizes="
                           size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
                         "
+                         :class="{ 'image-opacity-0': !hoveredItem }"
                       ></MediaImage>
                   
                       <MediaVideo
@@ -288,6 +301,7 @@
                           '/'
                         )}`"
                         v-if="item.video.id"
+                        :class="{ 'image-opacity-0': !hoveredItem }"
                         class="contain-image object-contain object-top w-auto h-full"
                       ></MediaVideo>
                     </figure>
@@ -437,6 +451,7 @@
         </div>
       </client-only>
     </div>
+  </div>
   </template>
   <script>
   import { mapMutations, mapState } from "vuex";
@@ -456,7 +471,7 @@ Vue.use(VueMarqueeSlider)
         imageClass: "contain-image",
         imageOpacity: 1, // Add this property
         displayGrid: true, // Use displayGrid to track the layout state
-        isListView: true, // Initially set to true for list view
+        // isListView: true, 
       };
     },
     computed: {
@@ -468,6 +483,10 @@ Vue.use(VueMarqueeSlider)
     methods: {
       ...mapMutations(["SET_ACTIVE_PROJECT", "SET_ACTIVE_TALENT"]),
      
+      toggleListView() {
+      this.displayGrid = !this.displayGrid;
+      // You can also add logic to redraw the layout here if needed
+    },
       // Add these methods to control the scroll animation
       handleMouseEnter() {
       // Pause the animation on hover
@@ -539,9 +558,31 @@ Vue.use(VueMarqueeSlider)
   </script>
   
   <style scoped>
+  .text-opacity-25 {
+  opacity: 0.25;
+}
+
+.image-opacity-0 {
+  opacity: 0 !important;
+}
     .scrollcost{
     height: 40vh;
+  }
 
+   
+  .gallmobile {
+    transform: scale(10.01) !important;
+  }
+  .gallmobile :hover{
+    transform: scale(10.01) !important;
+  }
+
+  .bottom-div {
+    position: fixed; /* Fixed position so it stays at the bottom even when scrolling */
+    bottom: 0; /* Distance from the bottom edge of the viewport */
+    left: 0; /* Distance from the left edge of the viewport */
+    width: 100%; /* Full width of the viewport */
+    padding: 10px; /* Add some padding for better appearance */
   }
 
   /* .ani{
@@ -577,7 +618,7 @@ Vue.use(VueMarqueeSlider)
 }
 }
   .scroll-container div{
-padding-right: 1vw;
+padding-right: vw;
 
 }
 
@@ -698,7 +739,7 @@ figure{
     display:contents;
     /* position: fixed; */
     position: absolute;
-    top: 8vh;
+    top:-1vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -712,7 +753,7 @@ figure{
   .list-layout-item:nth-child(2):hover .contain-image{
     display:contents;
     /* position: fixed; */
-    top: 6.3vh;
+    top: -3.3vh;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -763,6 +804,10 @@ figure{
     width: 100% !important;
     position: relative;
 }
+
+.list-layout-item:nth-child(2) .contain-image{
+    display:none;
+  }
 
 .masonry .flex-item img {
     /* display: flex; */
@@ -815,6 +860,8 @@ figure{
     text-transform: uppercase;
     font-size: 1.25rem /* 20px */;
     line-height: 1.75rem;
+    z-index: 10;
+    position: relative;
     /* margin-bottom: 100px;  */
   }
   

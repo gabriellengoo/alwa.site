@@ -1,15 +1,17 @@
 <template>
   <!-- sticky -->
+  <!-- <div class="  z-[100000] sticky  top-0">      width: 90vw; -->
   <header
-    class=" sticky top-0 left-0 z-20 w-full p-0 pt-0 text-lg leading-snug uppercase bg-[#f7f7f7] md:pb-2 md:pt-2 "
+    class="sticky  top-0 left-0 z-20  p-0 pt-0 text-lg leading-snug uppercase bg-[#f7f7f7] md:pb-2 md:pt-2 "
   >
 
     <!-- desk -->
+    <div class="headposition resize-animation ">
     <div
-      class="content-container hidden p-5 md:flex justify-between"
+      class="content-container hidden border-[.9px] border-stone-900 md:flex justify-between"
       :style="contentContainerStyle"
     >
-      <nav class="flex-row hidden w-1/16 md:flex">
+      <nav class="flex-row  top-0 hidden w-1/16 md:flex">
         <!-- <NuxtLogo/> -->
         <!-- <div>
     <div v-for="about in abouts" :key="about._id">
@@ -18,8 +20,8 @@
   </div> -->
 
         <!-- Add an SVG icon here -->
-        <div class="w-[97vw] flex justify-between">
-          <NuxtLink class="w-[4vw] h-auto" to="/">
+        <div class="navele flex justify-between">
+          <NuxtLink class="buttonlogo w-[4vw] h-auto" to="/">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
@@ -31,7 +33,9 @@
             </svg>
           </NuxtLink>
 
-          <button class="pl-2 uppercase" @click="toggleBlueBox">
+          <!-- <span class="date text-xs font-light inline-block" >EST. 0000</span> -->
+
+          <button class="button pl-2 uppercase" @click="toggleBlueBox">
             About
             <span
               class="inline-block px-4 text-midGray"
@@ -40,6 +44,7 @@
               >/</span
             >
             Contact
+            <!-- <span class="circle inline-block" speechify-initial-font-family="neue-haas-unica, sans-serif" speechify-initial-font-size="14px"></span> -->
           </button>
         </div>
         <!-- <button class="underline pl-2 uppercase" @click="toggleBlueBox" >Contact</button> -->
@@ -47,14 +52,14 @@
         <!-- <button><NuxtLink :style="{ textDecoration: activeStyle }" class="underline pl-2 uppercase" to="/">Instagram</NuxtLink></button> -->
       </nav>
     </div>
-
+  </div>
 
     <!-- mobile -->
     <div
-      class="content-container  p-5 "
+      class="content-container hidden md:contents  p-5 "
       :style="contentContainerStyle"
     >
-      <nav class="flex-row w-1/16 md:hidden">
+      <nav class="navelemb flex-row w-1/16 md:hidden">
 
 
         <!-- Add an SVG icon here -->
@@ -71,16 +76,17 @@
             </svg>
           </NuxtLink>
 
-          <button class="pl-2 uppercase" @click="toggleBlueBox">
-            About
-            <span
-              class="inline-block px-4 text-midGray"
-              speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
-              speechify-initial-font-size="16px"
-              >/</span
-            >
-            Contact
-          </button>
+          
+          <button class="pl-2 uppercase " @click="toggleBlueBox">
+    About
+    <span
+      class="inline-block px-4 text-midGray"
+      speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+      speechify-initial-font-size="16px"
+      >/</span
+    >
+    Contact
+  </button>
         </div>
         <!-- <button class="underline pl-2 uppercase" @click="toggleBlueBox" >Contact</button> -->
         <!-- <button><NuxtLink :style="{ textDecoration: activeStyle }" class="underline pl-2 uppercase" to="/">Work</NuxtLink></button> -->
@@ -89,7 +95,7 @@
     </div>
 
     <!-- Add a div for the blue box  @click="toggleBlueBox" -->
-    <div class="blue-box" :class="{ active: isBlueBoxActive } ">
+    <div class="blue-box z-[100002] " :class="{ active: isBlueBoxActive } ">
       <div class="p-16 w-screen max-w-screen">
         <!-- <div  class="blue-box"> -->
         <!-- <about-page :abouts="abouts"></about-page> -->
@@ -258,9 +264,10 @@
 
     <div
       :class="{ active: isBlueBoxActive } "  @click="toggleBlueBox"
-      class="white-box z-50 w-screen h-screen "
+      class="white-box z-[100001]  w-screen h-screen "
     ></div>
   </header>
+<!-- </div> -->
 </template>
 <script>
 import { groq } from "@nuxtjs/sanity";
@@ -344,6 +351,93 @@ export default {
   animation: 1.5s ease-out 0s 1 slideInFromLeft;
 } */
 
+.date{
+  display: flex;
+    align-items: center;
+    font-family: Helvetica,Arial,sans-serif !important;
+}
+
+.content-container{
+  width: 90vw !important;
+}
+
+.resize-animation {
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out !important;
+}
+
+.headposition{
+     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100vw !important;
+    justify-content: center;
+        padding-top: 1vh;
+}
+
+.navele{
+   display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+        width: 90vw !important;
+    justify-content: space-between;}
+
+.button{
+  border-left: .8px solid #000;
+   padding: .5vw;
+    /* border-width: 3.9px;
+    border-right: black;
+    border-left: black; */
+}
+
+.buttonlogo{
+    padding: .5vw;
+    border-right: .8px solid #000;
+    /* border-width: 0.9px;
+    border-color: rgba(28, 25, 23, var(--tw-border-opacity));
+    padding: 10.899999999999999px; */
+  }
+
+.content-container{
+      display: flex;
+    justify-content: center;
+}
+
+
+
+
+button .circle:hover {
+  transform: translate3d(0,-50%,0) scale(1.5);
+}
+
+.circle {
+    /* position: absolute; */
+    top: 50%;
+    right: 15px;
+    -webkit-transform: translate3d(0,-50%,0) scale(.5);
+    transform: translate3d(0,-50%,0) scale(.5);
+    width: 16px;
+    height: 16px;
+    line-height: 30px;
+    border-radius: 50%;
+    background-color: #000;
+    transition: -webkit-transform 200ms cubic-bezier(.54,.57,0,.96);
+    transition: transform 200ms cubic-bezier(.54,.57,0,.96);
+    transition: transform 200ms cubic-bezier(.54,.57,0,.96), -webkit-transform 200ms cubic-bezier(.54,.57,0,.96);
+
+    position: relative;
+    top: 50%;
+    right: 0%;
+    transform: translate3d(0,-50%,0) scale(.5);
+    width: 16px;
+    height: 16px;
+    /* line-height: 30px; */
+    border-radius: 50%;
+    background-color: #000;
+    transition: transform 200ms cubic-bezier(.54,.57,0,.96);
+}
+
+
+
 @keyframes slideInFromLeft {
   0% {
     transform: translateY(-100%);
@@ -352,12 +446,7 @@ export default {
     transform: translateY(0);
   }
 }
-.text {
-  color:  #f7f7f7;
-  font-size: 1.125rem;
-  line-height: 1.375rem;
-  transition: height 1s ease, opacity 0.5s ease; /* Add smooth transitions */
-}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity 10.5s;
   transition: height 1s ease, opacity 0.5s ease; /* Add smooth transitions */
@@ -397,23 +486,36 @@ export default {
   left: -2vw;
   width: 110%;
   height: 0;
-  background-color: #212121;
+  /* background-color: #212121; */
+      background-color: #d2d2d2;
+      /* border: 0.5px solid #212121; */
+  /* #d2d2d2; */
+  /* border: 1.5px solid #11ff00; */
   /* background-color: rgb(14, 14, 53);  */
   /* opacity: 0; */
   transition: height 1s ease, opacity 0.5s ease; /* Add smooth transitions */
   pointer-events: none; /* Disable pointer events when hidden */
-  z-index: 100;
+  /* z-index: 100; */
+  z-index: 100002;
 }
 
 .blue-box div {
   position: relative;
   transition: height 1s ease, opacity 0.5s ease; /* Add smooth transitions */
   pointer-events: none; /* Disable pointer events when hidden */
-  z-index: 100;
+  /* z-index: 100; */
   font-size: 1.125rem;
+  z-index: 100002;
   line-height: 1.375rem;
 }
 
+.text {
+  color:  #f7f7f7;
+  /* color:  #212121; */
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  transition: height 1s ease, opacity 0.5s ease; /* Add smooth transitions */
+}
 .white-box {
   /* position: fixed; */
   /* position: relative; */
@@ -447,12 +549,36 @@ export default {
   min-height: fit-content;
   /* height: fit-content; */
   /* opacity: 1; */
+  background-color: #d2d2d2;
+    border: 0.5px solid #212121;
+  z-index: 100002;
   pointer-events: auto; /* Enable pointer events when visible */
 }
 
 @media (max-width: 768px) {
+
+  .content-container{
+    position: fixed;
+    width: 100vw !important;
+    background-color: #f7f7f7;
+    border: 0.8px solid #000;
+    /* border-top: 1px solid #11ff00; */
+  }
   .blue-box.active {
   height: fit-content;
+  height: 100vh;
+  height: 103vh;
+}
+
+.blue-box {
+    position: fixed;
+}
+
+.white-box {
+  position: fixed;
+}
+.headposition {
+    padding-top: 0vh;
 }
 
 .blue-box {
@@ -460,19 +586,28 @@ export default {
   left: -2vw;
   width: 110%;
   height: 0;
-  background-color: #212121;
+  /* background-color: #212121; */
+
 }
+
+.navelemb{
+padding: 1vw;
+width: 100vw;
+}
+
 
 }
 
 /* For iPads in Portrait Mode */
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+
   .blue-box {
   top: -12vh;
   left: -2vw;
   width: 110%;
   height: 0;
-  background-color: #212121;
+  /* background-color: #212121; */
 }
 }
 
@@ -483,7 +618,7 @@ export default {
   left: -2vw;
   width: 110%;
   height: 0;
-  background-color: #212121;
+  /* background-color: #212121; */
 }
 }
 
@@ -494,7 +629,7 @@ export default {
   left: -2vw;
   width: 110%;
   height: 0;
-  background-color: #212121;
+  /* background-color: #212121; */
 }
 }
 
@@ -505,7 +640,7 @@ export default {
   left: -2vw;
   width: 110%;
   height: 0;
-  background-color: #212121;
+  /* background-color: #212121; */
 }}
 
 .white-box.active {
