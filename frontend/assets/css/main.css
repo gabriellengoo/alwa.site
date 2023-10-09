@@ -23,7 +23,9 @@ html {
   /* overflow: hidden; */
   overflow-x: hidden;
   cursor: crosshair;
+  font-size: 15.3px;
 }
+
 
 
 .content-container {
@@ -55,15 +57,18 @@ html.lenis {
   pointer-events: none;
 }
 
-/* @media (min-width: 768px)
+@media (min-width: 768px)
  {
-  .md\:overflow-hidden {
+  /* .md\:overflow-hidden {
     overflow: hidden;
     overflow: scroll !important;
-}
-    overflow: scroll !important;
-    min-height: 100vh !important;
 } */
+    /* overflow: scroll !important;
+    min-height: 100vh !important; */
+    /* pr-6 {
+    padding-right: 0rem;
+} */
+}
 
 
 

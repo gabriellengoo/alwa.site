@@ -5,7 +5,7 @@
         <button @click="switchToGrid">Grid</button>
       :class="{ 'active-button': displayGrid }"
       </div> bottom-div-->
-  <div class=" pt-[9rem]">
+  <div class=" pt-[2rem]">
       <!-- <div class="button-container  ">
         <button
           class=""
@@ -29,7 +29,7 @@
         </button>
       </div> -->
 
-      <div class="button-container ">
+      <div class="button-container pt-4  ">
       <button class=" uppercase" @click="toggleListView">
         <!-- {{ displayGrid ? "List" : "Grid" }} -->
         {{ displayGrid ? "overview" : "overview" }}
@@ -38,129 +38,227 @@
   
       <client-only>
         <!-- Grid layout -->
-        <div
+
+
+        <!-- <div
           v-if="displayGrid"
     
           class="w-full  masonry scrolling-container flex flex-col "
           :class="[size]"
           horizontal-order="true"
         >
-        
-          <!-- Masonry content here -->
-          <div
-            ref="scrollContainer"
-            class="image-cont overflow-scroll flex flex-col fade-in-out"
-            :class="{ 'fade-in': displayGrid, 'fade-out': !displayGrid }"
-          
-                >
-                     <!-- scroll part -->
-                <div>
-                  <!-- <vue-marquee-slider
-    id="marquee-slider-reverse"
-  :space="50"
-  :speed="10000"
-  :width="250"
-  reverse
->
-<div
-              v-for="item in items"
-              :key="item._key"
+         -->
+        <div
+        v-if="displayGrid"
+        v-masonry
+        column-width=".item"
+        item-selector=".item"
+        class="w-full masonry flex flex-col "
+        :class="[size]"
+        horizontal-order="true"
+      >
+        <!-- Masonry content here -->
+        <div
+          class="flex flex-col fade-in-out"
+          :class="{ 'fade-in': displayGrid, 'fade-out': !displayGrid }"
+        >
+        <div
+            v-masonry-tile
+            class="relative transition-opacity duration-300 item"
+            v-for="item in items"
+            :key="item._key"
+            :class="[
+              item.double ? 'double' : '',
+              item.spacer != 0 ? 'p-2' : '',
+              item.image.image || item.video.id ? '' : 'hidden md:block',
+              activeTalent &&
+              activeTalent != item.reference.talentId &&
+              activeTalent != item.reference
+                ? 'opacity-100'
+                : '',
+              !displayGrid ? 'list-layout-item' : '', // Add list layout class
+            ]"
+            @mouseenter="hoveredItem = item"
+            @mouseleave="hoveredItem = null"
+           
+          >
+            <figure
+              class="flex flex-col"
+              :class="[
+                item.spacer
+                  ? `h-space-${item.spacer + 1}  md:h-space-${item.spacer}`
+                  : item.image.aspect >= 1
+                  ? item.double
+                    ? 'h-space-5 md:h-space-3 2xl:h-space-4'
+                    : 'h-space-5 md:h-space-3 2xl:h-space-2'
+                  : item.double
+                  ? 'h-space-18 md:h-space-12 2xl:h-space-8'
+                  : 'h-space-12 md:h-space-6 2xl:h-space-4',
+                size == 'small' ? 'mb-0 md:mb-1 2xl:mb-2 ' : '',
+              ]"
             >
-          
-                <NuxtLink
-          
-                  v-if="item.reference.slug"
-                  :to="`/project/${item.reference.slug}`"
+              <NuxtLink
+                :class="[
+                  containerClass,
+                  item.image.position == 'right'
+                    ? 'items-end'
+                    : item.image.position == 'center'
+                    ? 'items-center'
+                    : 'items-start',
+                ]"
+                v-if="item.reference.slug"
+                :to="`/project/${item.reference.slug}`"
+                @mouseenter.native="hover(item)"
+                @mouseleave.native="leave()"
+              >
+                <span
+                  class="flex flex-col items-start h-full max-w-full"
+                  :class="size == 'small' ? 'w-full' : 'w-auto'"
                 >
-                
-                
-                      <figcaption
+                  <figure
+                    :class="size == 'small' ? 'block w-full' : 'h-full w-auto'"
+                    :style="
+                      item.video && item.video.aspect && size == 'small'
+                        ? `aspect-ratio: ${item.video.aspect.replace(':', '/')}`
+                        : ''
+                    "
+                  >
+                    <figcaption
+                      class="block py-2 mr-auto uppercase "
+                      v-if="size == 'small'"
+                      :class="{ 'text-left ': !displayGrid }"
+                      @mouseenter="hoveredItem = item"
+                      @mouseleave="hoveredItem = null"
+                    >
+                    <div :class="size == 'small' ? 'smaller-text' : ''">
+                      {{ item.title ? item.title : item.reference.title }}
+                    </div>
+                    </figcaption>
+                    <MediaImage
+                      :size="item.image.size"
+                      :aspect="item.image.aspect"
+                      :src="item.image.image"
+                      v-if="item.image.image"
+                      class="hover contain-image"
+                      :sizes="
+                        size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
+                      "
+                       :style="{ opacity: imageOpacity }"
+                    ></MediaImage>
+                    <MediaVideo
+                      :id="item.video.id"
+                      :style="`aspect-ratio: ${item.video.aspect.replace(
+                        ':',
+                        '/'
+                      )}`"
+                      v-if="item.video.id"
                       
-                        :class="{ 'text-left ': !displayGrid }"
-                      >
-                        <div :class="size == 'small' ? 'smaller-text' : ''">
-                          {{ item.title ? item.title : item.reference.title }}
-                        </div>
-                      </figcaption>
-                      <MediaImage
-                        ref="scrollContainer"
-                          @mouseenter="handleMouseEnter"
-                          @mouseleave="handleMouseLeave"
-                        :src="item.image.image"
-                        v-if="item.image.image"
-                        class=" scrollcost hover"
-                       
-                        :style="{ opacity: imageOpacity }"
-                      ></MediaImage>
-                      <MediaVideo
-                        :id="item.video.id"
-                        v-if="item.video.id"
-                        class="scrollcost object-contain object-top w-auto h-full"
-                      ></MediaVideo>
-                
-             
-                </NuxtLink>
+                      class="object-contain object-top w-auto h-full"
+                    ></MediaVideo>
+                  </figure>
+                </span>
+              </NuxtLink>
 
-            </div>
-     </vue-marquee-slider> -->
-
-
-
-     <!-- non scroll copy -->
-
-     <div  class="scroll-container" @wheel="handleScroll">
-      <!-- <vue-marquee-slider
-    id="marquee-slider-reverse"
-  :speed="10000"
-  :width="350"
-  reverse
-> -->
-     <div 
-              v-for="item in items"
-              :key="item._key"
-            >
-          
-                <NuxtLink
-                class="ani uppercase"
-                  v-if="item.reference.slug"
-                  :to="`/project/${item.reference.slug}`"
+              <a
+                v-else-if="item.link"
+                :href="item.link"
+                target="_blank"
+                :class="[
+                  containerClass,
+                  item.image.position == 'right'
+                    ? 'items-end'
+                    : item.image.position == 'center'
+                    ? 'items-center'
+                    : 'items-start',
+                ]"
+                @mouseenter="
+                  item.reference.title
+                    ? SET_ACTIVE_PROJECT(item.reference)
+                    : SET_ACTIVE_PROJECT(item._key)
+                "
+                @mouseleave="SET_ACTIVE_PROJECT(false)"
+              >
+                <span
+                  class="flex flex-col items-start w-auto h-full max-w-full"
                 >
-                
-                
-                      <figcaption
-                      
-                        :class="{ 'text-left ': !displayGrid }"
-                      >
-                        <div :class="size == 'small' ? 'smaller-text' : ''">
-                          {{ item.title ? item.title : item.reference.title }}
-                        </div>
-                      </figcaption>
-                      <MediaImage
-                        ref="scrollContainer"
-                          @mouseenter="handleMouseEnter"
-                          @mouseleave="handleMouseLeave"
-                        :src="item.image.image"
-                        v-if="item.image.image"
-                        class=" scrollcost hover"
-                       
-                        :style="{ opacity: imageOpacity }"
-                      ></MediaImage>
-                      <MediaVideo
-                        :id="item.video.id"
-                        v-if="item.video.id"
-                        class="scrollcost object-contain object-top w-auto h-full"
-                      ></MediaVideo>
-                
-             
-                </NuxtLink>
-
-              </div>  
-            <!-- </vue-marquee-slider> -->
-      </div>
-      
-          </div>
+                  <figcaption
+                    class="block py-2 mr-auto uppercase text-2xl"
+                    v-if="size == 'small'"
+                  >
+                      <div :class="size == 'small' ? 'smaller-text' : ''">
+      {{ item.title ? item.title : item.reference.title }}
+    </div>
+                  </figcaption>
+                  <MediaImage
+                    :size="item.image.size"
+                    :aspect="item.image.aspect"
+                    :src="item.image.image"
+                    v-if="item.image.image"
+                    class="hover contain-image"
+                    :sizes="
+                      size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
+                    "
+                  ></MediaImage>
+                  <MediaVideo
+                    :id="item.video.id"
+                    :style="`aspect-ratio: ${item.video.aspect.replace(
+                      ':',
+                      '/'
+                    )}`"
+                    v-if="item.video.id"
+                    class="object-contain object-top w-auto h-full"
+                  ></MediaVideo>
+                </span>
+              </a>
+              <figure
+                v-else
+                :class="[
+                  containerClass,
+                  item.image.position == 'right'
+                    ? 'items-end'
+                    : item.image.position == 'center'
+                    ? 'items-center'
+                    : 'items-start',
+                ]"
+              >
+                <span
+                  class="flex flex-col items-start w-auto h-full max-w-full"
+                >
+                  <figcaption
+                    class="block py-2 mr-auto uppercase text-2xl"
+                    v-if="size == 'small'"
+                  >
+                      <div :class="size == 'small' ? 'smaller-text' : ''">
+                      {{ item.title ? item.title : item.reference.title }}
+                    </div>
+                  </figcaption>
+                  <MediaImage
+                    :size="item.image.size"
+                    :aspect="item.image.aspect"
+                    :src="item.image.image"
+                    v-if="item.image.image"
+                    :class="imageClass"
+                    :sizes="
+                      size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
+                    "
+                  ></MediaImage>
+                  <MediaVideo
+                    :id="item.video.id"
+                    :style="`aspect-ratio: ${item.video.aspect.replace(
+                      ':',
+                      '/'
+                    )}`"
+                    v-if="item.video.id"
+                    class="object-contain object-top w-auto h-full"
+                  ></MediaVideo>
+                </span>
+              </figure>
+            </figure>
           </div>
         </div>
+      </div>
+
+
   
         <!-- List layout -->
         <div
@@ -558,6 +656,107 @@ Vue.use(VueMarqueeSlider)
   </script>
   
   <style scoped>
+
+.masonry .item img {
+    width: auto;
+    height: 55vh;
+    object-fit: cover;
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); /* Adjust the number of columns as needed */
+  gap: 10px; /* Adjust the gap between items as needed */
+}
+
+  /* Grid layout item width */
+/* .item {
+  width: 33.3333%; 
+} */
+
+.masonry{
+  width: 100%;
+}
+
+.masonry .item {
+    width: 24.888%;
+}
+/* Define styles for the list layout */
+.list-layout {
+  display: flex;
+  /* opacity: 0.3;  */
+  margin-top: 2px;
+  transition: margin 0.3s ease; /* Add a smooth transition effect */
+}
+.list-layout .item {
+  width: 10%; /* List layout item width (full width) */
+}
+
+.list-layout:hover {
+  /* opacity: 1;  */
+  margin-top: 20px; /* Adjust margin as needed for spacing */
+  transition: margin 0.3s ease; /* Add a smooth transition effect */
+}
+
+/* Hide the images by default */
+.list-layout-item .contain-image {
+  display: none;
+  width: 40vh;
+}
+
+/* Show the images on hover */
+.list-layout-item:hover .contain-image {
+  /* display: block; */
+  position: fixed;
+  top: 0vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Add styles for the horizontal title list */
+.horizontal-title-list-right {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-end; /* Align the content to the right */
+  margin-right: 25%;
+}
+
+.horizontal-title-item {
+  width: calc(33.33% - 10px);
+  margin-right: 10px;
+  white-space: nowrap;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2px; /* Adjust margin as needed for spacing */
+  transition: margin 0.3s ease; /* Add a smooth transition effect */
+}
+
+.horizontal-title-item:hover {
+  margin-top: 20px; /* Adjust margin as needed for spacing */
+  transition: margin 0.3s ease; /* Add a smooth transition effect */
+}
+
+
+
+
+
+
+
+
   .text-opacity-25 {
   opacity: 0.25;
 }
@@ -618,8 +817,8 @@ Vue.use(VueMarqueeSlider)
 }
 }
   .scroll-container div{
-padding-right: vw;
-
+/* padding-right: 0vw; */
+padding-right: .5vw;
 }
 
 .scroll-container > * {
@@ -740,6 +939,7 @@ figure{
     /* position: fixed; */
     position: absolute;
     top:-1vh;
+    top: 26vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -748,12 +948,13 @@ figure{
     transition-duration: 0s !important;
     animation: none !important;
     /* color: red; */
-    transform: scale(12);
+    transform: scale(15);
   }
   .list-layout-item:nth-child(2):hover .contain-image{
     display:contents;
     /* position: fixed; */
     top: -3.3vh;
+    top: 29.3vh;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -856,10 +1057,10 @@ figure{
   .button-container {
     display: flex;
     justify-content: flex-end; /* Align buttons to the top right */
-    margin-top: 100px;
+    /* margin-top: 100px; */
     text-transform: uppercase;
-    font-size: 1.25rem /* 20px */;
-    line-height: 1.75rem;
+    /* font-size: 1.25rem ; */
+    /* line-height: 1.75rem; */
     z-index: 10;
     position: relative;
     /* margin-bottom: 100px;  */
@@ -867,16 +1068,16 @@ figure{
   
   @media (min-width: 768px) {
     .button-container {
-      font-size: 1.25rem /* 20px */;
-      line-height: 1.75rem /* Adjust the font size for larger screens */;
+      /* font-size: 1.25rem ; */
+      /* line-height: 1.75rem ; */
     }
   }
   
   /* Media query for screens with a minimum width of 1024px */
   @media (min-width: 1024px) {
     .button-container {
-      font-size: 1.25rem /* 20px */;
-      line-height: 1.75rem /* Adjust the font size for even larger screens */;
+      /* font-size: 1.25rem ; */
+      /* line-height: 1.75rem ; */
     }
   }
   
@@ -930,44 +1131,44 @@ figure{
   }
   /* Default font size for smaller screens */
   .custom-text-size {
-    font-size: 1.25rem /* 20px */;
-    line-height: 1.75rem;
+    /* font-size: 1.25rem ; */
+    /* line-height: 1.75rem; */
   }
   
   /* Media query for screens with a minimum width of 768px */
   @media (min-width: 768px) {
     .custom-text-size {
-      font-size: 1.25rem /* 20px */;
-      line-height: 1.75rem; /* Adjust the font size for larger screens */
+      /* font-size: 1.25rem ; */
+      /* line-height: 1.75rem; */
     }
   }
   
   /* Media query for screens with a minimum width of 1024px */
   @media (min-width: 1024px) {
     .custom-text-size {
-      font-size: 1.25rem /* 20px */;
-      line-height: 1.75rem; /* Adjust the font size for even larger screens */
+      /* font-size: 1.25rem ; */
+      /* line-height: 1.75rem; */
     }
   }
   
   .smaller-text {
-    font-size: 1.25rem /* 20px */;
-    line-height: 1.75rem; /* Adjust the font size as needed */
+    /* font-size: 1.25rem ; */
+    /* line-height: 1.75rem;  */
   }
   
   /* Media query for screens with a minimum width of 768px */
   @media (min-width: 768px) {
     .smaller-text {
-      font-size: 1.25rem /* 20px */;
-      line-height: 1.75rem; /* Adjust the font size for larger screens */
+      /* font-size: 1.25rem; */
+      /* line-height: 1.75rem;  */
     }
   }
   
   /* Media query for screens with a minimum width of 1024px */
   @media (min-width: 1024px) {
     .smaller-text {
-      font-size: 1.25rem /* 20px */;
-      line-height: 1.75rem; /* Adjust the font size for even larger screens */
+      /* font-size: 1.25rem ; */
+      /* line-height: 1.75rem;  */
     }
   }
   

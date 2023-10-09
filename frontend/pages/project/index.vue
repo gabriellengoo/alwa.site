@@ -405,6 +405,9 @@
   </script>
   
   <style scoped>
+  /* .item {
+  width: 33.3333%;
+} */
   .list-layout {
     opacity: 0.3; /* You can adjust the opacity value as needed */
     transition: opacity 0.3s ease; /* Add a smooth transition effect */

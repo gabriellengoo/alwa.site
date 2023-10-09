@@ -1,17 +1,17 @@
 <template>
   <!-- sticky -->
-  <!-- <div class="  z-[100000] sticky  top-0">      width: 90vw; -->
+  <!-- <div class="  z-[100000] sticky  top-0">     bg-[#f7f7f7]  width: 90vw; -->
   <header
-    class="sticky  top-0 left-0 z-20  p-0 pt-0 text-lg leading-snug uppercase bg-[#f7f7f7] md:pb-2 md:pt-2 "
+    class="sticky  top-0 left-0 z-20  p-0 pt-2 text-lg leading-snug uppercase  md:pb-2 md:pt-2 "
   >
 
     <!-- desk -->
-    <div class="headposition resize-animation ">
+    <div class="headposition  resize-animation ">
     <div
-      class="content-container hidden border-[.9px] border-stone-900 md:flex justify-between"
+      class="content-container hidden md:flex w-screen justify-between"
       :style="contentContainerStyle"
     >
-      <nav class="flex-row  top-0 hidden w-1/16 md:flex">
+      <nav class="flex-row md:justify-center  top-0 hidden w-1/16 md:flex">
         <!-- <NuxtLogo/> -->
         <!-- <div>
     <div v-for="about in abouts" :key="about._id">
@@ -20,8 +20,8 @@
   </div> -->
 
         <!-- Add an SVG icon here -->
-        <div class="navele flex justify-between">
-          <NuxtLink class="buttonlogo w-[4vw] h-auto" to="/">
+        <div class="navele flex justify-between border-b-[.9px] border-stone-900  ">
+          <NuxtLink class="buttonlogo w-[5vw] h-auto" to="/">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
@@ -56,14 +56,14 @@
 
     <!-- mobile -->
     <div
-      class="content-container hidden md:contents  p-5 "
+      class="content-container mobile lg:hidden sm:contents md:contents  "
       :style="contentContainerStyle"
     >
-      <nav class="navelemb flex-row w-1/16 md:hidden">
+      <nav class="navelemb mobile flex-row w-1/16 ">
 
 
         <!-- Add an SVG icon here -->
-        <div class="flex justify-between">
+        <div class="flex justify-between mobilemenu">
           <NuxtLink class="w-[11vw] h-auto" to="/">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
@@ -96,7 +96,7 @@
 
     <!-- Add a div for the blue box  @click="toggleBlueBox" -->
     <div class="blue-box z-[100002] " :class="{ active: isBlueBoxActive } ">
-      <div class="p-16 w-screen max-w-screen">
+      <div class=" lg:p-16 sm:p-1 w-screen max-w-screen">
         <!-- <div  class="blue-box"> -->
         <!-- <about-page :abouts="abouts"></about-page> -->
         <!-- </div> -->
@@ -107,7 +107,7 @@
   :style="{ transform: isBlueBoxActive ? 'translateY(0vh)' : 'translateY(50)' }"
         >
           <div
-            class="text flex flex-1 flex-col justify-between lg:flex-row"
+            class="text flex p-[10px] flex-1 flex-col justify-between lg:flex-row"
             speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
             speechify-initial-font-size="16px"
           >
@@ -126,7 +126,7 @@
                   class="pr-8 "
                   speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                   speechify-initial-font-size="16px"
-                  >[</span
+                  >/</span
                 ><span
                   speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                   speechify-initial-font-size="16px"
@@ -140,7 +140,7 @@
                   class="pl-8"
                   speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                   speechify-initial-font-size="16px"
-                  >]</span
+                  > </span
                 ></span
               >
             </button>
@@ -153,7 +153,7 @@
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
               >
-              <span class="icon baseline h-auto">
+              <span class="icon baseline h-auto sm:pt-5">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
@@ -164,19 +164,62 @@
               </g>
             </svg>
           </span> is a production and casting company based in London active worldwide
-              </p>
-            </div>
-            <div
-              class="flex flex-col justify-between pb-20 lg:w-[40%] lg:flex-row lg:pb-0"
-              speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
-              speechify-initial-font-size="16px"
-            >
-              <div
-                class="portable-text"
+               
+                <div
+                class="portable-text lg:hidden md:hidden sm:pt-5"
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
               >
-                <p
+               <a
+                    href="mailto:joana@alwa.co.uk"
+                    speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                    speechify-initial-font-size="16px"
+                    >joana@alwa.co.uk</a
+                  >
+              
+               
+                 <br
+                    speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                    speechify-initial-font-size="16px"
+                  /><a
+                    href="mailto:madi@alwa.co.uk"
+                    speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                    speechify-initial-font-size="16px"
+                    >madi@alwa.co.uk</a
+                  >
+           
+               <br
+                    speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                    speechify-initial-font-size="16px"
+                  /><a
+                    href="mailto:kataraztna@alwa.co.uk"
+                    speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                    speechify-initial-font-size="16px"
+                    >kataraztna@alwa.co.uk</a
+                  ><br
+                    speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                    speechify-initial-font-size="16px"
+                  /><br
+                    speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                    speechify-initial-font-size="16px"
+                  />
+                  <a
+                    class='pt-9'
+                    href="mailto:+4473028635221342"
+                    speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                    speechify-initial-font-size="16px"
+                    >+4473028635221342</a
+                  ><br
+                    speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                    speechify-initial-font-size="16px"
+                  />
+                  <a
+                    href="mailto:StudioRentals@sameold.com"
+                    speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                    speechify-initial-font-size="16px"
+                    >@alwaproduction</a
+                  >
+                  <p class='pt-9'
                   speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                   speechify-initial-font-size="16px"
                 >
@@ -189,7 +232,37 @@
                   />
                 </p>
               </div>
+ 
+              </p>
+              
+            </div>
+            <div
+              class="flex flex-col justify-between pb-20 lg:w-[40%] lg:flex-row lg:pb-0"
+              speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+              speechify-initial-font-size="16px"
+            >
               <div
+                class="portable-text"
+                speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                speechify-initial-font-size="16px"
+              >
+              
+              </div>
+              <div
+                class="portable-text"
+                speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                speechify-initial-font-size="16px"
+              >
+              
+              </div>
+              <button
+                title="Close Information Drawer"
+                class="hidden uppercase lg:flex text-left"
+                speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                speechify-initial-font-size="16px"
+              >
+               
+                <div
                 class="portable-text"
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
@@ -228,6 +301,7 @@
                     speechify-initial-font-size="16px"
                   />
                   <a
+                    class='pt-9'
                     href="mailto:+4473028635221342"
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
@@ -242,18 +316,19 @@
                     speechify-initial-font-size="16px"
                     >@alwaproduction</a
                   >
-              </div>
-              <button
-                title="Close Information Drawer"
-                class="hidden uppercase lg:flex"
-                speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
-                speechify-initial-font-size="16px"
-              >
-                <span
+                  <p class='pt-9'
                   speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
-                  speechify-initial-font-size="16px"  class=" pointer-events-auto" @click="toggleBlueBox"
-                  >[ CLOSE ]</span
+                  speechify-initial-font-size="16px"
                 >
+                unit 2, 65 Dalston lane<br
+                    speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                    speechify-initial-font-size="16px"
+                  />e82ng, london uk<br
+                    speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
+                    speechify-initial-font-size="16px"
+                  />
+                </p>
+              </div>
               </button>
             </div>
           </div>
@@ -300,7 +375,7 @@ export default {
     updateContentContainerPosition() {
       const isMobile = window.innerWidth <= 768;
       // Calculate the offset based on blue box height
-      const offset = isMobile ? (this.isBlueBoxActive ? "90vh" : "0") : (this.isBlueBoxActive ? "45vh" : "0");
+      const offset = isMobile ? (this.isBlueBoxActive ? "100vh" : "0") : (this.isBlueBoxActive ? "365px" : "0");
 
       // Calculate the offset based on whether it's a mobile screen or not
 
@@ -358,7 +433,7 @@ export default {
 }
 
 .content-container{
-  width: 90vw !important;
+  width: 100vw !important;
 }
 
 .resize-animation {
@@ -371,18 +446,22 @@ export default {
     flex-wrap: wrap;
     width: 100vw !important;
     justify-content: center;
-        padding-top: 1vh;
+        /* padding-top: 1vh; */
+    position: fixed;
+    position: absolute;
 }
 
 .navele{
    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-        width: 90vw !important;
-    justify-content: space-between;}
+        width: 98vw !important;
+    justify-content: space-between;
+
+  }
 
 .button{
-  border-left: .8px solid #000;
+  /* border-left: .8px solid #000; */
    padding: .5vw;
     /* border-width: 3.9px;
     border-right: black;
@@ -391,15 +470,17 @@ export default {
 
 .buttonlogo{
     padding: .5vw;
-    border-right: .8px solid #000;
+    /* border-right: .8px solid #000; */
     /* border-width: 0.9px;
     border-color: rgba(28, 25, 23, var(--tw-border-opacity));
     padding: 10.899999999999999px; */
   }
 
 .content-container{
-      display: flex;
-    justify-content: center;
+      justify-content: center;
+      /* display: flex;
+    justify-content: center; */
+    /* background: #f7f7f7; */
 }
 
 
@@ -482,8 +563,8 @@ button .circle:hover {
   left: 0;
   width: 100%;
   height: 0; */
-  top: -14vh;
-  left: -2vw;
+  top: -2vh;
+  /* left: -2vw; */
   width: 110%;
   height: 0;
   /* background-color: #212121; */
@@ -497,6 +578,7 @@ button .circle:hover {
   pointer-events: none; /* Disable pointer events when hidden */
   /* z-index: 100; */
   z-index: 100002;
+  overflow: hidden;
 }
 
 .blue-box div {
@@ -504,14 +586,21 @@ button .circle:hover {
   transition: height 1s ease, opacity 0.5s ease; /* Add smooth transitions */
   pointer-events: none; /* Disable pointer events when hidden */
   /* z-index: 100; */
+   /* font-size: 0.925rem; */
+  /* font-weight: initial; */
+  /* line-height: 1.175rem; */
   font-size: 1.125rem;
   z-index: 100002;
   line-height: 1.375rem;
+  height: 365px;
+  will-change: auto;
+  min-height: 365px;
+  /* height: fit-content; */
 }
 
 .text {
-  color:  #f7f7f7;
-  /* color:  #212121; */
+  /* color:  #f7f7f7; */
+  color:  #212121;
   font-size: 1.125rem;
   line-height: 1.375rem;
   transition: height 1s ease, opacity 0.5s ease; /* Add smooth transitions */
@@ -533,7 +622,7 @@ button .circle:hover {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: opacity 1s ease; /* Add smooth transitions */
-  z-index: -100;
+  z-index: -10;
 }
 
 /* .blue-box.active::after {
@@ -544,24 +633,40 @@ button .circle:hover {
 
 /* Add styles for the active blue box */
 .blue-box.active {
-  /* height: 50vh; */
-  height: 45vh;
+  height: 365px;
+  /* height: fit-content; */
   min-height: fit-content;
   /* height: fit-content; */
   /* opacity: 1; */
   background-color: #d2d2d2;
-    border: 0.5px solid #212121;
+    /* border-bottom: 0.5px solid #212121; */
   z-index: 100002;
   pointer-events: auto; /* Enable pointer events when visible */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+        font-size: 1.1vw;
+        will-change: auto;
+      overflow: hidden;
+      /* min-height: 365px; */
+      width: 100vw;
+      max-width: 100vw;
 }
 
+ .mobile{
+    display: none;
+  }
+
 @media (max-width: 768px) {
+  .mobile{
+    display:contents;
+  }
 
   .content-container{
     position: fixed;
     width: 100vw !important;
     background-color: #f7f7f7;
-    border: 0.8px solid #000;
+    border-bottom: 0.8px solid #000;
     /* border-top: 1px solid #11ff00; */
   }
   .blue-box.active {
@@ -582,19 +687,31 @@ button .circle:hover {
 }
 
 .blue-box {
-  top: -13vh;
-  left: -2vw;
+  top: 0vh;
+  /* left: -2vw; */
   width: 110%;
   height: 0;
+  /* transition: none; */
   /* background-color: #212121; */
 
 }
 
+.blue-box div {
+  height:100vh;
+  /* padding: 10px; */
+  /* padding-top: 0vh; */
+}
+
 .navelemb{
-padding: 1vw;
+/* padding: 1vw; */
+padding: 1.25rem;
 width: 100vw;
 }
 
+.mobilemenu{
+  padding: 1.25rem;
+  border-bottom: 0.8px solid #000;
+}
 
 }
 
@@ -614,10 +731,10 @@ width: 100vw;
 /* For iPads in Landscape Mode */
 @media only screen and (min-width: 1024px) {
   .blue-box {
-  top: -14vh;
+  /* top: -14vh;
   left: -2vw;
   width: 110%;
-  height: 0;
+  height: 0; */
   /* background-color: #212121; */
 }
 }
@@ -625,11 +742,22 @@ width: 100vw;
 /* For 12.9-inch iPad Pro in Portrait Mode */
 @media only screen and (min-width: 1024px) and (max-width: 1366px) {
   .blue-box {
-  top: -7vh;
+  /* top: -7vh;
   left: -2vw;
   width: 110%;
-  height: 0;
+  height: 0; */
   /* background-color: #212121; */
+}
+.blue-box {
+  top: -13vh;
+  /* width: 110%; */
+  height: 0;
+      top: -7vh;
+    /* left: -2vw; */
+    width: 100vw;
+  /* transition: none; */
+  /* background-color: #212121; */
+
 }
 }
 
