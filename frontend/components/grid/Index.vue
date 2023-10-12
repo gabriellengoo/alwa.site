@@ -64,7 +64,7 @@
         >
         <div
             v-masonry-tile
-            class="relative transition-opacity duration-300 item"
+            class="relative transition-opacity duration-300 item h-fit"
             v-for="item in items"
             :key="item._key"
             :class="[
@@ -685,10 +685,12 @@ figure {
 
 .masonry{
   width: 100%;
+  height: fit-content !important;
 }
 
 .masonry .item {
     width: 24.888%;
+    width: 350px;
 }
 /* Define styles for the list layout */
 .list-layout {
@@ -1014,7 +1016,34 @@ figure{
     /* display: flex; */
     /* flex-direction: row; */
     max-height: 65vw !important;
-    max-height: 95vw !important;
+    max-height: 150px !important;
+}
+
+.masonry .item {
+    /* width: 24.888%;
+    width: 150px;
+    height: 150px; */
+    /* width: 24.888%; */
+    width: 150px;
+}
+
+.masonry .item img {
+    width: auto;
+    height: 150px;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.masonry .item figure {
+  width: 150px;
+  height: fit-content;
+  width: 150px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 1vw;
+    padding-bottom: 2vw;
 }
 }
 
