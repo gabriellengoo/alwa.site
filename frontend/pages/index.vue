@@ -71,7 +71,7 @@ export default {
       grid[] {_key, spacer, "video" : 
                     {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
                       "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
-                    title, photographer,year, link, 
+                    title, photographer,year, link, production,
                       "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
                       | order(_updatedAt desc)[0]
                       `

@@ -1,7 +1,10 @@
 import React from "react";
 import S from "@sanity/desk-tool/structure-builder";
+// import { structure } from "@sanity/desk-tool/structure-builder";
 import Emoji from "a11y-react-emoji";
 const Home = () => <Emoji style={{ fontSize: "2rem" }} symbol="🏠" />;
+const Project = () => <Emoji style={{ fontSize: "2rem" }} symbol="🛠️" />;
+
 
 
 const url = "https://alwa.co.uk/";
@@ -33,6 +36,19 @@ export default () =>
             .schemaType("home")
             .documentId("home")
             .title("Home")
+            .views([
+              S.view.form(),
+              S.view.component(WebPreview).title("Web Preview"),
+            ])
+        ),
+        S.listItem()
+        .title("Project")
+        .icon(Project)
+        .child(
+          S.document()
+            .schemaType("project")
+            .documentId("project")
+            .title("Project")
             .views([
               S.view.form(),
               S.view.component(WebPreview).title("Web Preview"),

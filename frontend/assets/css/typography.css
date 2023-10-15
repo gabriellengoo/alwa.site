@@ -26,14 +26,17 @@
 }
   
   html {
-    font-size: 85%;
+    font-size: 65%;
   }
   
   body {
-    font-family: 'Owners', sans-serif;
-    font-weight: 200;
+    /* font-family: 'Owners', sans-serif; */
+    font-family: arial;
+    letter-spacing: -1px;
+    font-weight: 300;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.5;
+    /* font-size: 10.3px; */
   } 
   

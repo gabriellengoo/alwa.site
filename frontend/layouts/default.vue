@@ -55,7 +55,7 @@ export default {
   mounted() {
     // Create a new instance of Lenis
     const lenis = new Lenis({
-    duration: 1.2,
+    duration: 1,
     easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
     direction: "vertical",
     gestureDirection: "vertical",

@@ -8,7 +8,7 @@
   <LenisComponent />
     <section >
       
-      <div class="bottom-div">
+      <div class="bottom-div pt-20">
      <!-- titles -->
      <div  v-if="project"
               class="
@@ -31,48 +31,78 @@
                 items-end
                 mobiletitle
               ">
-                <div> {{ project.title }} </div>
+                <!-- <div> {{ project.title }} </div> -->
 
-                <div>
-                      <div v-if="project.related" class="flex flex-col items-end" v-for="meta in project.meta">
-                          {{ meta.title }} :
+                <div class='pb-5 fixed top-[0vh] z-[10] pt-28 text-[14.21px]'>
+                  <div class='pb-5'> {{ project.title }} </div>
+                      <div v-if="project.related" class="flex flex-col leading-5" v-for="meta in project.meta">
+                          {{ meta.title }} 
                           {{ meta.content }} 
                       </div>
+                      <button v-if="isGalleryExpanded" @click="closeImageModal" class="close-button leading-5">
+                      [  Close Gallery ]
+                      </button> 
                 </div>
+
             </div>
           </div>
 
+              <div class='fixed bottom-0 z-[10] pb-14 uppercase w-[98vw] p-1 text-[11.84px]'>
+                <div class="  p-[.05vw] pl-[.3vw] border-[.95px] border-black " v-if="project.production">
+                          {{ project.production }}
+                </div>
+              </div>
 
-      <div class="scroll-container">
-     <div 
-     v-for="(slide, index) in project.slider"
-          :key="slide._key"
-          class="gallmobile "
+    
+    
+    
+    
+    
+    
+   <!-- non scroll copy -->
 
-            >
-            <figure
-                v-for="image in slide.images"
-                :key="image._key"
-                @click="openImageModal(index)"
-                style="cursor: pointer;"
-              >
-                <MediaImage
-                :src="image.image.asset._ref"
-                v-if="image.image"
-                class=""
-              ></MediaImage>
-              <MediaVideoPlay
-                :id="image.video.id"
-                :active="realIndex == index ? true : false"
-                v-else-if="image.video.id"
-                :thumbTime="image.video.thumbTime"
-                class=""
-                style="cursor: pointer;"
-             ></MediaVideoPlay>
-         
-                    </figure>
-              </div>  
-      </div>
+   <div  class="scroll-container pt-48">
+  
+  <div 
+  v-for="(slide, index) in project.slider"
+         :key="slide._key"
+         class="gallmobile insidescrollcont"
+
+         >
+         <figure
+               v-for="image in slide.images"
+               :key="image._key"
+               @click="openImageModal(index)"
+               style="cursor: pointer;"
+             >
+                
+                   <MediaImage
+                     ref="scrollContainer"
+                       @mouseenter="handleMouseEnter"
+                       @mouseleave="handleMouseLeave"
+                       :src="image.image.asset._ref"
+               v-if="image.image"
+                     class=" scrollcost "
+                    
+                     :style="{ opacity: imageOpacity }"
+                   >
+                 </MediaImage>
+                   <MediaVideo
+                   :id="image.video.id"
+               :active="realIndex == index ? true : false"
+               v-else-if="image.video.id"
+               :thumbTime="image.video.thumbTime"
+                     class="scrollcost object-contain object-top w-auto h-full"
+                   ></MediaVideo>
+                 </figure>
+           </div>  
+         <!-- </vue-marquee-slider> -->
+   </div>
+    
+    
+    
+    
+   
     </div>
 
 
@@ -82,9 +112,9 @@
     <div v-if="isGalleryExpanded" class="overlay-gallery "   ref="overlayGallery"    @mouseenter="showGalleryOnHover"
     @mouseleave="hideGalleryOnLeave">
         <div class="gallery-content">
-          <button @click="closeImageModal" class="close-button">
+          <!-- <button @click="closeImageModal" class="close-button">
           [  Close Gallery ]
-          </button>
+          </button> -->
       
 
           <div class="gallery-images">
@@ -120,7 +150,7 @@
          
 
             <section
-        class="absolute top-0 left-0 hidden w-full md:block slider"
+        class=" top-0 left-0 hidden w-full    cursor-grab md:block slider"
         v-swiper:mySwiper="swiperOptions"
         @slideChange="onSlideChange"
         ref="slider"
@@ -146,36 +176,47 @@
           ref="prev"
           aria-label="Previous"
         ></button> -->
-        <button
+        <!-- <button
           class="absolute top-0 right-0 z-30 w-screen h-full next"
           @click="next"
           aria-label="Next"
-        ></button>
+        ></button> -->
+        <!-- <button
+    class="absolute top-0 left-0 z-30 w-1/2 text-xl previous"
+    @click="prev"
+    ref="prev"
+    aria-label="Previous"
+  >
+    <
+  </button> -->
+ 
 
         <div
-          class="relative z-40 w-full h-full pointer-events-none swiper-wrapper " 
+          class="relative    z-40 w-full h-full  swiper-wrapper " 
         >
           <div
             v-for="(slide, index) in project.slider"
             :key="slide._key"
             class="
               flex
-             
+              justify-center
               w-full
               h-full
               transition-opacity
               duration-300
               swiper-slide
+              
+            
             "
             :class="realIndex == 0 ? 'opacity-95' : ''"
           >
-          <div class="image-number">[ {{ index + 1 }} ]</div>
+          <!-- <div class="image-number">[ {{ index + 1 }} ]</div> -->
       
-          <div class="flex  float-right h-full p-2 pb-0 w-13/16">
+          <div class="flex h-full p-2 pb-0 w-13/16 ">
               <figure
                 v-for="image in slide.images"
                 :key="image._key"
-                class="flex flex-col flex-1 w-full h-full"
+                class="flex flex-col flex-1 w-full h-full "
                 :class="
                   image.padding
                     ? image.padding == 'medium'
@@ -189,7 +230,7 @@
                 <MediaImage
                   :src="image.image.asset._ref"
                   v-if="image.image"
-                  class="gallery-image w-auto h-full"
+                  class="gallery-image w-auto h-full "
              
                   :class="
                     image.padding
@@ -213,11 +254,35 @@
                     my-auto
                   "
                 ></MediaVideoPlay>
+           
               </figure>
+            
+            
             </div>
+            
           </div>
         </div>
-    
+        <div class=" absolute arrow z-[100000] w-1/2 text-black next text-4xl ">
+                <button
+    class=" z-[100000] pointer-events-auto w-1/2 h-1/6 text-black next text-4xl "
+    @click="next"
+    aria-label="Next"
+  >
+   >
+  </button>
+
+              </div>
+              
+              <!-- <div  class="relative z-40 w-full h-full pointer-events-none swiper-wrapper " >
+                <button
+    class="backbtn z-[100000] pointer-events-auto w-1/2 h-1/6 text-black next text-4xl previous"
+    @click="prev"
+    ref="prev"
+    aria-label="Previous"
+  >
+    <
+  </button>
+</div> -->
            </section>
 
 
@@ -241,10 +306,11 @@ import Lenis from '@studio-freight/lenis';
 export default {
   components: {
     Header,
+    
   },
   async asyncData({ params, $sanity }) {
     const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {..., "archiveSlug": archive->slug.current, slider[] {fullWidth, images[] {..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}}}, "talent" : talent->title, "talentSlug" : talent->slug.current, "footer" : footer, "talentBio" : talent->shortBio, "nextProject" : nextProject->slug.current,
-    "related": *[_type=='project' && references(^.talent._ref) && _id != ^._id]{ _id, title, meta, "slug" : slug.current }
+    "related": *[_type=='project' && references(^.talent._ref) && _id != ^._id]{ _id, title, production, meta, "slug" : slug.current }
      } | order(_updatedAt desc)[0]`;
     const project = await $sanity.fetch(query);
     return { project };
@@ -396,6 +462,71 @@ export default {
 <style scoped>
 
 
+figure{
+  /* height: 45vh; */
+}
+
+
+/* makes it hotizontal if you ad this as a div around it */
+.scroll-container {
+/* width: 100%;  */
+
+    width: 100vw;
+  overflow-x: scroll !important;
+  white-space: nowrap;
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+
+}
+
+.insidescrollcont{
+  padding-bottom: 3vh !important;
+}
+
+@keyframes src-components-animation-2PZg {
+0% {
+  transform: translateX(0);
+}
+100% {
+  transform: translateX(-100%);
+}
+}
+.scroll-container div{
+padding: .2vw;
+}
+
+.scroll-container > * {
+display: inline-block; /* Display content in a horizontal line */
+}
+/* makes it hotizontal if you ad this as a div around it */
+.scrollcost{
+    /* flex: 0 0 calc(33.33% - 20px); */
+     /* 33.33% for three images in a row, adjust spacing as needed */
+  height: 55vh;
+  /* height: 15%; */
+  
+}
+
+.masonry .flex-item {
+/* display: flex; */
+/* flex-direction: row;    */
+ /* margin-right: 20px !important; */
+ /* margin: auto !important; */
+ /* margin-right: auto  !important; 
+min-width: auto !important; */
+margin-right: 200px !important;
+min-width: 350px !important;
+/* Add other flex properties as needed */
+}
+.masonry .flex-item img {
+/* display: flex; */
+/* flex-direction: row; */
+max-height: 30vw;
+/* Add other flex properties as needed */
+}
 
 .overlay-gallery {
   opacity: 0; /* Initially hidden */
@@ -427,13 +558,21 @@ export default {
 }
 
 .swiper-wrapper {
-    transition-property: none;
+    /* transition-property: none; */
 }
 
 .swiper-container {
-  cursor: url('https://pngimg.com/uploads/dot/dot_PNG3.png'), auto  !important;
+  /* cursor: url('https://pngimg.com/uploads/dot/dot_PNG3.png'), auto  !important; */
   }
 
+  .swiper-wrapper {
+    align-items: center;
+}
+
+.arrow{
+    top: inherit;
+    left: 95vw;
+}
 
   .overlay-gallery {
   position: fixed;
@@ -447,7 +586,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
+  z-index: 9;
+  cursor: crosshair;
+}
+
+.backbtn{
+    left: 37vw;
 }
 
 .gallery-content {
@@ -458,33 +602,48 @@ export default {
 .close-button {
   background: none;
   border: none;
-  color: rgb(0, 0, 0);
-  font-size: 1.2rem;
-  /* margin-bottom: 20px; */
-  position: fixed;
-    right: 0;
-    top: 0;
-    padding: 20px;
+    color: rgb(0, 0, 0);
+    font-size: 1.2rem;
     text-transform: uppercase;
     cursor: pointer;
     z-index: 99999;
+    padding-left: 0vw !important;
+     height: inherit !important;
+         font-size: 14.21px !important;
+    padding-top: 4vh;
+      letter-spacing: -1px;
+          /* position: inherit;
+    bottom: 0vh;
+    padding-bottom: 14vh; */
 }
 
 button{
-  cursor: url('data:image/svg+xml;utf8,<svg height="15" width="15" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>') 15 15,alias
+  /* cursor: url('data:image/svg+xml;utf8,<svg height="15" width="15" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>') 15 15,alias; */
+      cursor: crosshair;
+    padding-left: 5vw;
+    position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 80vh;
+    width: fit-content;
 }
+
 .gallery-images {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+
 }
 
 .gallery-image {
-  max-width: 100%;
-  max-height: 90vh;
+  max-width: 45vw;
+  max-height: 85vh;
+  width: 45vw;
   margin: 0px;
-  /* cursor: pointer; */
+  padding-bottom: 2vh;
+
+  cursor: grab !important;
 }
 
 
@@ -504,28 +663,9 @@ button{
 
 
   .bottom-div {
-    position: fixed; /* Fixed position so it stays at the bottom even when scrolling */
-    bottom: 0; /* Distance from the bottom edge of the viewport */
-    left: 0; /* Distance from the left edge of the viewport */
-    width: 100%; /* Full width of the viewport */
-    padding: 10px; /* Add some padding for better appearance */
+  
   }
-  .scroll-container {
-  /* width: 100%;  */
-      width: 100vw;
-    overflow-x: scroll !important;
-    white-space: nowrap;
-}
 
-  .scroll-container div img{
-padding-right: 1vw;
-height: 56vh;
-}
-
-
-.scroll-container > * {
-  display: inline-block; /* Display content in a horizontal line */
-}
 /* img{
   object-fit: cover;
 } */

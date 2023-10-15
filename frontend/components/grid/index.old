@@ -64,7 +64,7 @@
         >
         <div
             v-masonry-tile
-            class="imgconta relative transition-opacity duration-300 item"
+            class="relative transition-opacity duration-300 item h-fit"
             v-for="item in items"
             :key="item._key"
             :class="[
@@ -134,7 +134,6 @@
                       {{ item.title ? item.title : item.reference.title }}
                     </div>
                     </figcaption>
-                    <div class='imgcont'>
                     <MediaImage
                       :size="item.image.size"
                       :aspect="item.image.aspect"
@@ -156,7 +155,6 @@
                       
                       class="object-contain object-top w-auto h-full"
                     ></MediaVideo>
-                      </div>
                   </figure>
                 </span>
               </NuxtLink>
@@ -191,7 +189,6 @@
       {{ item.title ? item.title : item.reference.title }}
     </div>
                   </figcaption>
-                  <div class='imgcont'>
                   <MediaImage
                     :size="item.image.size"
                     :aspect="item.image.aspect"
@@ -211,7 +208,6 @@
                     v-if="item.video.id"
                     class="object-contain object-top w-auto h-full"
                   ></MediaVideo>
-                    </div>
                 </span>
               </a>
               <figure
@@ -236,7 +232,6 @@
                       {{ item.title ? item.title : item.reference.title }}
                     </div>
                   </figcaption>
-                  <div class='imgcont'>
                   <MediaImage
                     :size="item.image.size"
                     :aspect="item.image.aspect"
@@ -249,14 +244,10 @@
                   ></MediaImage>
                   <MediaVideo
                     :id="item.video.id"
-                    :style="`aspect-ratio: ${item.video.aspect.replace(
-                      ':',
-                      '/'
-                    )}`"
+                  
                     v-if="item.video.id"
                     class="object-contain object-top w-auto h-full"
                   ></MediaVideo>
-                    </div>
                 </span>
               </figure>
             </figure>
@@ -346,11 +337,7 @@
                   >
                     <figure
                       :class="size == 'small' ? 'block w-full' : 'h-full w-auto'"
-                      :style="
-                        item.video && item.video.aspect && size == 'small'
-                          ? `aspect-ratio: ${item.video.aspect.replace(':', '/')}`
-                          : ''
-                      "
+                   
                     >
                       <figcaption
                         class="listText relative flex w-full cursor-pointer pl-[35vw] leading-[17px] duration-300 hover:!text-black focus:!text-black group-hover:text-midGray"
@@ -395,17 +382,14 @@
                         :sizes="
                           size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
                         "
-                         :class="{ 'image-opacity-0': !hoveredItem }"
+                      
                       ></MediaImage>
                   
                       <MediaVideo
                         :id="item.video.id"
-                        :style="`aspect-ratio: ${item.video.aspect.replace(
-                          ':',
-                          '/'
-                        )}`"
+                      
                         v-if="item.video.id"
-                        :class="{ 'image-opacity-0': !hoveredItem }"
+                    
                         class="contain-image object-contain object-top w-auto h-full"
                       ></MediaVideo>
                     </figure>
@@ -474,12 +458,9 @@
                     ></MediaImage>
                     <MediaVideo
                       :id="item.video.id"
-                      :style="`aspect-ratio: ${item.video.aspect.replace(
-                        ':',
-                        '/'
-                      )}`"
+                    
                       v-if="item.video.id"
-                      class="hover contain-image object-contain object-top w-auto h-full"
+                      class="hover contain-image "
                     ></MediaVideo>
                   </span>
                 </a>
@@ -527,7 +508,7 @@
                         <div class="year" v-if="item.year">{{ item.year }}</div>
                       </div>
                     </figcaption>
-
+  
                     <MediaImage
                       :size="item.image.size"
                       :aspect="item.image.aspect"
@@ -540,12 +521,10 @@
                     ></MediaImage>
                     <MediaVideo
                       :id="item.video.id"
-                      :style="`aspect-ratio: ${item.video.aspect.replace(
-                        ':',
-                        '/'
-                      )}`"
+                   
                       v-if="item.video.id"
-                      class="object-contain object-top w-auto h-full"
+                      :class="imageClass"
+                      class="object-contain object-top "
                     ></MediaVideo>
                   </span>
                 </figure>
@@ -663,28 +642,24 @@ Vue.use(VueMarqueeSlider)
   
   <style scoped>
 
-  .imgcont{
-    height: 100%;
-  overflow: hidden;
-  position: relative;
-  }
-
 .masonry .item img {
-    /* width: 100%;
-    height: 100%; */
-    /* height: auto; */
-    /* scale: 1.5;
-    object-fit: cover; */
-    display: block;
-    min-width: 100%;
-    min-height: 100%;
-    margin: auto;
-    /* position: absolute; */
-    top: -100%;
-    right: -100%;
-    bottom: -100%;
-    left: -100%;
+    width: auto;
+    height: 40vh;
+    /* object-fit: cover; */
 }
+
+.masonry .item video {
+    width: auto;
+    height: 40vh;
+    /* object-fit: cover; */
+    margin-top: 2px; /* Adjust margin as needed for spacing */
+    transition: margin 0.3s ease;
+}
+
+.masonry .item video:hover {
+    margin-top: 20px !important; /* Adjust margin as needed for spacing */
+    transition: margin 0.3s ease; /* Add a smooth transition effect */
+  }
 
 figure {
     display: flex;
@@ -708,26 +683,12 @@ figure {
 
 .masonry{
   width: 100%;
+  /* height: fit-content !important; */
 }
 
 .masonry .item {
-    /* width: 44vw;
-    height: 44vh; 
-     width: 40vw;
-  height: 40vh;*/
-
-}
-
-.imgconta{
-  overflow: hidden;
-  width: 350px;
-  height: 330px;
-}
-
-.masonry .item figure {
-    /* width: 44vw;
-    height: 44vh;
-    display: block; */
+    /* width: 24.888%;
+    width: 350px; */
 }
 /* Define styles for the list layout */
 .list-layout {
@@ -748,7 +709,7 @@ figure {
 
 /* Hide the images by default */
 .list-layout-item .contain-image {
-  display: none;
+  /* display: none; */
   width: 40vh;
 }
 
@@ -760,6 +721,17 @@ figure {
   display: flex;
   justify-content: center;
   align-items: center;
+  aspect-ratio: auto !important;
+}
+
+.list-layout-item .contain-image {
+  /* display: none; */
+  width: 40vh;
+  aspect-ratio: auto !important;
+}
+
+figure{
+  aspect-ratio: auto !important;
 }
 
 
@@ -1053,14 +1025,45 @@ figure{
     /* display: flex; */
     /* flex-direction: row; */
     max-height: 65vw !important;
-    max-height: 95vw !important;
+    max-height: 150px !important;
 }
 
-.imgconta{
-  overflow: hidden;
-  width: 230px;
-  height: 230px;
+.masonry .item {
+    /* width: 24.888%;
+    width: 150px;
+    height: 150px; */
+    /* width: 24.888%; */
+    width: 150px;
 }
+
+.masonry .item img {
+    width: auto;
+    height: 150px;
+    /* -o-object-fit: cover;
+    object-fit: cover; */
+}
+
+.masonry .item video {
+    width: auto;
+    height: 150px;
+    /* object-fit: cover; */
+}
+
+.masonry .item figure {
+  width: 150px;
+  height: fit-content;
+  width: 150px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 1vw;
+    padding-bottom: 2vw;
+}
+}
+
+.masonry .item figure {
+  aspect-ratio: auto !important;
 }
 
   /* Add styles for the horizontal title list */

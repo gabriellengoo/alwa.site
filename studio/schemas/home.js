@@ -1,71 +1,29 @@
-
-// import grid from './components/grid'
-
-// schemas/pet.js
-// export default {
-//   name: 'home',
-//   type: 'document',
-// 	title: 'Home',
-//   fields: [
-//     {
-//       name: "grid",
-//       type: "grid",
-//     },
-//   ],
-// }
-
-
-
-
-
+import { A11yEmoji } from 'a11y-react-emoji';
 
 export default {
-  name: "home",
-  title: "Home",
-  type: "document",
+  name: 'home',
+  title: 'Home',
+  type: 'document',
   fields: [
     {
-      name: "sections",
-      title: "Sections",
-      type: "array", 
-      of: [
-        {
-          name: "section",
-          title: "Section",
-          type: "object",
-          fields: [
-            {
-              name: "title",
-              title: "Title",
-              type: "string",
-            },
-            {
-              name: "subtitle",
-              title: "Subtitle",
-              type: "string",
-            },
-            {
-              name: "content",
-              title: "Content",
-              type: "blockContent",
-            },
-          ],
-        },
-      ],
+      name: 'title',
+      title: 'Title',
+      type: 'string',
     },
     {
-      name: "grid",
-      type: "grid",
-    },
-    {
-      name: "grid2",
-      type: "grid2",
+      name: 'grid',
+      type: 'grid',
     },
   ],
   preview: {
     select: {
-      title: "title",
-      subtitle: "subtitle",
+      title: 'title',
     },
+    // prepare(selection) {
+    //   const { title } = selection;
+    //   return {
+    //     title: `📽️ ${title}`,
+    //   };
+    // },
   },
 };

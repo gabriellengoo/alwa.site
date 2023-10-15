@@ -24,54 +24,54 @@ export default {
       type: "slug",
       options: { source: "title" },
     },
-    {
-      name: "artistSlug",
-      title: "Artist Slug",
-      type: "slug",
-      options: { source: "title" },
-    },
+    // {
+    //   name: "artistSlug",
+    //   title: "Artist Slug",
+    //   type: "slug",
+    //   options: { source: "title" },
+    // },
     // {
     //   name: "client",
     //   title: "Client",
     //   type: "tags",
     // },
-      {
-      name: "archiveSlug", // Add this field for storing the archive slug
-      title: "Archive Slug",
-      type: "slug",
-      options: { source: "title" }, // You can change the source field as needed
-    },
-    {
-      name: "talent",
-      title: "Talent",
-      type: "reference",
-      to: [
-        {
-          type: "talent",
-        },
-      ],
-    },
-    {
-      name: "nextProject",
-      title: "Next Project",
-      type: "reference",
-      to: [
-        {
-          type: "project",
-        },
-      ],
-      options: {
-        filter: ({ document }) => {
-          return {
-            filter: "talent._ref == $talentId && _id != $id",
-            params: {
-              talentId: document.talent._ref,
-              id: document._id,
-            },
-          };
-        },
-      },
-    },
+    //   {
+    //   name: "archiveSlug", // Add this field for storing the archive slug
+    //   title: "Archive Slug",
+    //   type: "slug",
+    //   options: { source: "title" }, // You can change the source field as needed
+    // },
+    // {
+    //   name: "talent",
+    //   title: "Talent",
+    //   type: "reference",
+    //   to: [
+    //     {
+    //       type: "talent",
+    //     },
+    //   ],
+    // },
+    // {
+    //   name: "nextProject", 
+    //   title: "Next Project",
+    //   type: "reference",
+    //   to: [
+    //     {
+    //       type: "project",
+    //     },
+    //   ],
+    //   options: {
+    //     filter: ({ document }) => {
+    //       return {
+    //         filter: "talent._ref == $talentId && _id != $id",
+    //         params: {
+    //           talentId: document.talent._ref,
+    //           id: document._id,
+    //         },
+    //       };
+    //     },
+    //   },
+    // },
     {
       name: "meta",
       title: "Meta",
@@ -106,6 +106,11 @@ export default {
       ], 
     },
     {
+      name: "production",
+      title: "Production or Casting",
+      type: "string",
+    },
+    {
       name: "slider",
       title: "Slider",
       type: "array",
@@ -118,12 +123,12 @@ export default {
           title: "Slide",
           type: "object",
           fields: [
-            {
-              name: "fullWidth",
-              title: "Full Width",
-              type: "boolean",
-              description: "Make full width on mobile",
-            },
+            // {
+            //   name: "fullWidth",
+            //   title: "Full Width",
+            //   type: "boolean",
+            //   description: "Make full width on mobile",
+            // },
             {
               name: "images",
               title: "Images",
@@ -152,19 +157,19 @@ export default {
                         (!value && parent?.spacer) || (!value && parent?.image),
                     },
 
-                    {
-                      name: "padding",
-                      title: "Padding",
-                      type: "string",
-                      options: {
-                        list: [
-                          { title: "Large", value: "large" },
-                          { title: "Medium", value: "medium" },
-                          { title: "Small", value: "small" },
-                        ],
-                        layout: "dropdown",
-                      },
-                    },
+                    // {
+                    //   name: "padding",
+                    //   title: "Padding",
+                    //   type: "string",
+                    //   options: {
+                    //     list: [
+                    //       { title: "Large", value: "large" },
+                    //       { title: "Medium", value: "medium" },
+                    //       { title: "Small", value: "small" },
+                    //     ],
+                    //     layout: "dropdown",
+                    //   },
+                    // },
                   ],
                   preview: {
                     select: {
@@ -237,34 +242,34 @@ export default {
         },
       ],
     },
-    {
-      name: "footer",
-      title: "Footer",
-      type: "array",
-      of: [
-        {
-          name: "button",
-          title: "Button",
-          type: "object",
-          fields: [
-            {
-              name: "title",
-              title: "Title",
-              type: "string",
-            },
-            {
-              name: "link",
-              title: "Link",
-              type: "url",
-              validation: (Rule) =>
-                Rule.uri({
-                  scheme: ["http", "https", "mailto", "tel"],
-                }),
-            },
-          ],
-        },
-      ],
-    },
+    // {
+    //   name: "footer",
+    //   title: "Footer",
+    //   type: "array",
+    //   of: [
+    //     {
+    //       name: "button",
+    //       title: "Button",
+    //       type: "object",
+    //       fields: [
+    //         {
+    //           name: "title",
+    //           title: "Title",
+    //           type: "string",
+    //         },
+    //         {
+    //           name: "link",
+    //           title: "Link",
+    //           type: "url",
+    //           validation: (Rule) =>
+    //             Rule.uri({
+    //               scheme: ["http", "https", "mailto", "tel"],
+    //             }),
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
   ],
   preview: {
     select: {

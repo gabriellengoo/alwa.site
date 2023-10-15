@@ -23,7 +23,7 @@
     loop
     playsinline
     :autoplay="mobile"
-    :src="`https://stream.mux.com/${this.id}.m3u8`"
+    :src="`https://stream.mux.com/${this.id}-low.m3u8`"
   ></video>
 </template>
 <script>
