@@ -122,7 +122,7 @@ reverse
           >
         
               <NuxtLink
-              class=" ani uppercase"
+              class="ani uppercase"
                 v-if="item.reference.slug"
                 :to="`/project/${item.reference.slug}`"
               >
@@ -160,7 +160,7 @@ reverse
                       :style="{ opacity: imageOpacity }"
                       class="scrollcost "
                     ></MediaVideo>
-                    <span class=" scrollcost " v-if="item.production">
+                    <span class=" pl-[.2vw] scrollcost " v-if="item.production">
                           {{ item.production }}
                         </span>
                       </div>  
@@ -208,15 +208,10 @@ reverse
               activeTalent &&
               activeTalent != item.reference.talentId &&
               activeTalent != item.reference &&
-              activeTalent != item.image.image || item.video.id
+              activeTalent != item.video.id
                 ? 'text-opacity-25'
                 : '',
               !displayGrid ? 'list-layout-item' : '', // Add list layout class
-              // activeTalent &&
-              // activeTalent != item.image.image || item.video.id
-              //   ? 'opacity-0'
-              //   : '',
-              // !displayGrid ? 'list-layout-item' : '',
             ]"
             @mouseenter="hoveredItem = item; lastHoveredItem = item"
             @mouseleave="hoveredItem = null"
@@ -296,169 +291,42 @@ reverse
                       </div>
                     </figcaption>
               
-                    <MediaImage
+                  <!-- was here -->
+                  </figure>
+                </span>
+              </NuxtLink>
+
+
+              <div class='sticky contain-image'>
+                <span class="imgcont">
+                <MediaImage
                       :size="item.image.size"
                       :aspect="item.image.aspect"
                       :src="item.image.image"
                       v-if="item.image.image"
-                      class="hover  contain-image"
+                      class="borderlist  hover "
                       :sizes="
                         size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
                       "
                        :class="{ 'image-opacity-0': !hoveredItem }"
                     ></MediaImage>
-                
+                </span>
+                <span class="videocont">
                     <MediaVideo
                       :id="item.video.id"
-                      :style="`aspect-ratio: ${item.video.aspect.replace(
-                        ':',
-                        '/'
-                      )}`"
+                      :src="item.video.id"
                       v-if="item.video.id"
+                      :sizes="
+                        size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
+                      "
                       :class="{ 'image-opacity-0': !hoveredItem }"
-                      class="contain-image hover videocont"
+                      class="borderlist  hover "
                     ></MediaVideo>
-                  </figure>
                 </span>
-              </NuxtLink>
+              </div>
+         
 
-              <a
-                v-else-if="item.link"
-                :href="item.link"
-                target="_blank"
-                :class="[
-                  containerClass,
-                  item.image.position == 'right'
-                    ? 'items-end'
-                    : item.image.position == 'center'
-                    ? 'items-center'
-                    : 'items-start',
-                ]"
-                @mouseenter="
-                  item.reference.title
-                    ? SET_ACTIVE_PROJECT(item.reference)
-                    : SET_ACTIVE_PROJECT(item._key)
-                "
-                @mouseleave="SET_ACTIVE_PROJECT(false)"
-              >
-                <span
-                  class="flex flex-col items-start w-auto h-full max-w-full"
-                >
-                  <figcaption
-                    class="listText relative flex w-full cursor-pointer pl-[35vw] leading-[17px] duration-300 hover:!text-black focus:!text-black group-hover:text-midGray"
-                    v-if="size == 'small'"
-                  >
-                    <div class="listTextInner">
-                      <div :class="size == 'small' ? 'smaller-text' : ''">
-                        {{ item.title ? item.title : item.reference.title }}
-                      </div>
-                    </div>
-                    <div class="listTextInner">
-                      <div
-                        :class="size == 'small' ? 'smaller-text' : ''"
-                        class="photographer-container"
-                      >
-                        <div class="photographer" v-if="item.photographer">
-                          {{ item.photographer }}
-                        </div>
-                      </div>
-                    </div>
-                    <div class="listTextInner">
-                      <div
-                        :class="size == 'small' ? 'smaller-text' : ''"
-                        class="year-container"
-                      >
-                        <div class="year" v-if="item.year">{{ item.year }}</div>
-                      </div>
-                    </div>
-                  </figcaption>
-                  <MediaImage
-                    :size="item.image.size"
-                    :aspect="item.image.aspect"
-                    :src="item.image.image"
-                    v-if="item.image.image"
-                    class="hover contain-image"
-                    :sizes="
-                      size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
-                    "
-                  ></MediaImage>
-                  <MediaVideo
-                    :id="item.video.id"
-                    :style="`aspect-ratio: ${item.video.aspect.replace(
-                      ':',
-                      '/'
-                    )}`"
-                    v-if="item.video.id"
-                    class="hover contain-image object-contain object-top w-auto h-full"
-                  ></MediaVideo>
-                </span>
-              </a>
-
-              <figure
-                v-else
-                :class="[
-                  containerClass,
-                  item.image.position == 'right'
-                    ? 'items-end'
-                    : item.image.position == 'center'
-                    ? 'items-center'
-                    : 'items-start',
-                ]"
-              >
-                <span
-                  class="flex flex-col items-start w-auto h-full max-w-full"
-                >
-                  <figcaption
-                    class="listText relative flex w-full cursor-pointer pl-[35vw] leading-[17px] duration-300 hover:!text-black focus:!text-black group-hover:text-midGray"
-                    v-if="size == 'small'"
-                  >
-                    <div class="listTextInner">
-                      <div :class="size == 'small' ? 'smaller-text' : ''">
-                        {{ item.title ? item.title : item.reference.title }}
-                      </div>
-                    </div>
-
-                    <div class="listTextInner">
-                      <div
-                        :class="size == 'small' ? 'smaller-text' : ''"
-                        class="photographer-container"
-                      ></div>
-
-                      <div class="listTextInner">
-                        <div class="photographer" v-if="item.photographer">
-                          {{ item.photographer }}
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      :class="size == 'small' ? 'smaller-text' : ''"
-                      class="year-container"
-                    >
-                      <div class="year" v-if="item.year">{{ item.year }}</div>
-                    </div>
-                  </figcaption>
-
-                  <MediaImage
-                    :size="item.image.size"
-                    :aspect="item.image.aspect"
-                    :src="item.image.image"
-                    v-if="item.image.image"
-                    :class="imageClass"
-                    :sizes="
-                      size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
-                    "
-                  ></MediaImage>
-                  <MediaVideo
-                    :id="item.video.id"
-                    :style="`aspect-ratio: ${item.video.aspect.replace(
-                      ':',
-                      '/'
-                    )}`"
-                    v-if="item.video.id"
-                    class="object-contain object-top w-auto h-full"
-                  ></MediaVideo>
-                </span>
-              </figure>
+          
             </figure>
           </div>
         </div>
@@ -515,7 +383,7 @@ export default {
   // Check if scrolling up (event.deltaX < 0)
   if (event.deltaX < 0) {
     // Scroll left
-    this.scrollLeft += 50; // Adjust the scroll speed as needed
+    this.scrollLeft += 10; // Adjust the scroll speed as needed
     this.$refs.scrollContainer.scrollLeft = this.scrollLeft;
   }
 },
@@ -625,7 +493,6 @@ opacity: 0 !important;
 /* makes it hotizontal if you ad this as a div around it */
 .scroll-container {
 /* width: 100%;  */
-
     width: 100vw;
   overflow-x: scroll !important;
   white-space: nowrap;
@@ -726,6 +593,13 @@ max-height: 30vw;
 /* Add other flex properties as needed */
 }
 
+.masonry .flex-item video {
+/* display: flex; */
+/* flex-direction: row; */
+max-height: 30vw;
+/* Add other flex properties as needed */
+}
+
 figure{
   /* display: flex; */
   /* flex-direction: column; */
@@ -755,25 +629,23 @@ figure{
 /* Hide the images by default */
 
 
-
-
 .list-layout-item  .contain-image{
   display: none;
-  width: 40vh;
-  padding-left: 7vw;
+  width: 60vh;
+  padding-left: 3vw;
   transition: none  !important;
   transition-duration: 0s !important;
   animation: none !important;
-  
 }
 
 .list-layout-item  .contain-image{
   display: none;
-  width: 40vh;
-  padding-left: 7vw;
+  width: 60vh;
+  padding-left: 3vw;
   transition: none  !important;
   transition-duration: 0s !important;
   animation: none !important;
+ 
   
 }
 
@@ -784,34 +656,7 @@ figure{
 figure {
   aspect-ratio: unset !important;
 }
-/* .list-layout-item:nth-child(2) .contain-image{
-  display:contents;
-  position: absolute;
-  top:-1vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40vh;
-  transition: none  !important;
-  transition-duration: 0s !important;
-  animation: none !important;
-  transform: scale(12);
-}
-.list-layout-item:nth-child(2):hover .contain-image{
-  display:contents;
-  top: -3.3vh;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: none  !important;
-  transition-duration: 0s !important;
-  animation: none !important;
-} */
 
-/* .list-layout-item:nth-child(2) .contain-image img{
-  width: 40vh;
-} */
 
 /* Show the images on hover */
 .list-layout-item:hover .contain-image {
@@ -824,7 +669,19 @@ figure {
   transition: none  !important;
   transition-duration: 0s !important;
   animation: none !important;
+}
 
+.borderlist{
+  border: 1px black solid;
+  width: 60vh;
+}
+
+.videocont{
+  padding-top: 10vw;
+}
+
+.imgcont{
+  padding-top: 10vw;
 }
 
 /* Media query for screens with a maximum width of 768px (mobile devices) */
@@ -861,7 +718,15 @@ figure {
   max-height: 65vw !important;
   max-height: 95vw !important;
 }
+
+.masonry .flex-item video {
+  /* display: flex; */
+  /* flex-direction: row; */
+  max-height: 65vw !important;
+  max-height: 95vw !important;
 }
+}
+
 
 /* Add styles for the horizontal title list */
 .horizontal-title-list-right {

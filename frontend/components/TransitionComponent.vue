@@ -13,7 +13,7 @@
         <!-- <p class="">
           AWLA
         </p> -->
-        <div class="w-[5vw] h-auto">
+        <div class="svgcontainer reveal w-[7vw] h-auto">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
@@ -35,6 +35,42 @@
   </template>
   
   <style scoped>
+  /* .svgcontainer{
+    animation: reveal .5s cubic-bezier(0.177, 0, 0.175, 1) 0.5s;
+}
+
+@keyframes reveal {
+  0% {
+    transform: translate(0,100%);
+  }
+  100% {
+    transform: translate(0,0);
+  }
+} */
+/* .reveal {
+  color: #0000;
+  background: 
+    linear-gradient(red 0 0) no-repeat,
+    linear-gradient(red 0 0) no-repeat;
+  background-size: 0% 100%;
+  -webkit-background-clip: padding-box,text;
+          background-clip: padding-box,text;
+  animation: 
+    t 1.2s .5s both,
+    b 1.2s 1.3s both;
+}
+.clone {
+  -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+}
+@keyframes t{
+  to {background-size: 150% 100%}
+}
+
+@keyframes b {
+  to {background-position:-200% 0,0 0} 
+} */
+
   /* Styles for the black screen transition */
   .black-screen {
   position: fixed;
@@ -118,6 +154,10 @@
       }, 1500); // Adjust the duration as needed for the total animation time
     },
     },
+    created() {
+    // Call toggleTransition when the component is created to start the transition
+    this.toggleTransition();
+  },
   };
   </script>
   
