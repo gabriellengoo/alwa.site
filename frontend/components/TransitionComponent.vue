@@ -13,8 +13,8 @@
         <!-- <p class="">
           AWLA
         </p> -->
-        <div class="svgcontainer reveal w-[7vw] h-auto">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
+        <div class="svgcontainer reveal  h-auto">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
                   <path
@@ -22,8 +22,16 @@
                   />
                 </g>
               </g>
-            </svg>
+            </svg> -->
+            <img
+                      class=" w-[15vw]  p-0"
+                      src="COPYRIOGHT.png"
+                      width="50%"
+                      height="50%"
+                      alt="COPYRIOGHT"
+                    />
           </div>
+
         <!-- <p class="">
           Copyright ©2023, all rights reserved
         </p> -->

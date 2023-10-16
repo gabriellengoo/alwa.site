@@ -47,7 +47,7 @@
             </div>
           </div>
 
-              <div class='fixed bottom-0 z-[10] pb-14 uppercase w-[98vw] p-1 text-[11.84px]'>
+              <div class='fixed bottom-0 z-[10] pb-14 uppercase w-[98vw]  text-[11.84px]'>
                 <div class="  p-[.05vw] pl-[.3vw] border-[.95px] border-black " v-if="project.production">
                           {{ project.production }}
                 </div>
@@ -495,7 +495,7 @@ figure{
 }
 }
 .scroll-container div{
-padding: .2vw;
+padding-right: .2vw;
 }
 
 .scroll-container > * {

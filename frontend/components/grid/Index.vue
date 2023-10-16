@@ -638,16 +638,7 @@ figure{
   animation: none !important;
 }
 
-.list-layout-item  .contain-image{
-  display: none;
-  width: 60vh;
-  padding-left: 3vw;
-  transition: none  !important;
-  transition-duration: 0s !important;
-  animation: none !important;
- 
-  
-}
+
 
 .videocont{
   aspect-ratio: unset !important;

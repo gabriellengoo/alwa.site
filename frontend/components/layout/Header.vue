@@ -22,7 +22,7 @@
         <!-- Add an SVG icon here -->
         <div class="navele flex justify-between border-b-[.95px] border-stone-900  ">
           <NuxtLink class="buttonlogo w-[5vw] h-auto" :to="isBlueBoxActive ? $route.path : '/'">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
                   <path
@@ -30,7 +30,14 @@
                   />
                 </g>
               </g>
-            </svg>
+            </svg> -->
+            <!-- <img
+                      class=" w-[5vw]  p-0"
+                      src="logo.png"
+                      width="50%"
+                      height="50%"
+                      alt="logo"
+                    /> -->
           </NuxtLink>
 
           <!-- <span class="date text-xs font-light inline-block" >EST. 0000</span> -->
@@ -154,7 +161,7 @@
                 speechify-initial-font-size="16px"
               >
               <span class="icon baseline h-auto sm:pt-5">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
                   <path
@@ -162,7 +169,14 @@
                   />
                 </g>
               </g>
-            </svg>
+            </svg> -->
+            <img
+                      class=" w-[25vw]  p-0"
+                      src="logo.png"
+                      width="50%"
+                      height="50%"
+                      alt="logo"
+                    />
           </span> is a production and casting company based in London active worldwide
                
                 <div
@@ -543,13 +557,15 @@ button .circle:hover {
 }
 
 .icon svg, .icon img {
-    height: 1em;
-    width: 2em;
+  height: 7em;
+    width: 7em;
     fill: currentColor;
 }
 
 .icon.baseline svg, .icon img {
     top: .125em;
+    top: 0.9rem;
+    top: 2.9000000000000004rem;
     position: relative;
 }
 /* header{
