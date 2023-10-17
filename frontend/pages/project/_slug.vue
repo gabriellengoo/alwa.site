@@ -33,13 +33,13 @@
               ">
                 <!-- <div> {{ project.title }} </div> -->
 
-                <div class='pb-5 fixed top-[0vh] z-[10] pt-28 text-[14.21px]'>
+                <div class='pb-5 fixed top-[0vh] z-[10] pt-28 text-[14.21px] projecttextmb'>
                   <div class='pb-5'> {{ project.title }} </div>
                       <div v-if="project.related" class="flex flex-col leading-5" v-for="meta in project.meta">
                           {{ meta.title }} 
                           {{ meta.content }} 
                       </div>
-                      <button v-if="isGalleryExpanded" @click="closeImageModal" class="close-button leading-5">
+                      <button v-if="isGalleryExpanded" @click="closeImageModal" class="block close-button leading-5">
                       [  Close Gallery ]
                       </button> 
                 </div>
@@ -47,8 +47,8 @@
             </div>
           </div>
 
-              <div class='fixed bottom-0 z-[10] pb-14 uppercase w-[98vw]  text-[11.84px]'>
-                <div class="  p-[.05vw] pl-[.3vw] border-[.95px] border-black " v-if="project.production">
+              <div class='bottomtextprmb  fixed bottom-0 z-[10] pb-14 uppercase w-[98vw]  text-[11.84px]'>
+                <div class="bottomtextprmbinn  p-[.05vw] pl-[.3vw] border-[.95px] border-black " v-if="project.production">
                           {{ project.production }}
                 </div>
               </div>
@@ -109,7 +109,7 @@
 
      <!-- Image Overlay Gallery -->
   <div class="block">
-    <div v-if="isGalleryExpanded" class="overlay-gallery "   ref="overlayGallery"    @mouseenter="showGalleryOnHover"
+    <div v-if="isGalleryExpanded" class="overlay-gallery"   ref="overlayGallery"    @mouseenter="showGalleryOnHover"
     @mouseleave="hideGalleryOnLeave">
         <div class="gallery-content">
           <!-- <button @click="closeImageModal" class="close-button">
@@ -150,7 +150,7 @@
          
 
             <section
-        class=" top-0 left-0 hidden w-full    cursor-grab md:block slider"
+        class=" top-0 left-0 hidden w-full  md:block  cursor-grab  slider"
         v-swiper:mySwiper="swiperOptions"
         @slideChange="onSlideChange"
         ref="slider"
@@ -471,19 +471,30 @@ figure{
 .scroll-container {
 /* width: 100%;  */
 
-    width: 100vw;
+    /* width: 100vw;
   overflow-x: scroll !important;
   white-space: nowrap;
   display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: flex-start;
+    justify-content: flex-start; */
+
+    width: 98vw;
+    /* width: 100vw; */
+    /* width: 98vw !important; */
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
 
 }
 
 .insidescrollcont{
-  padding-bottom: 3vh !important;
+  /* padding-bottom: 3vh !important; */
+  padding-bottom: 10px!important;
 }
 
 @keyframes src-components-animation-2PZg {
@@ -495,7 +506,7 @@ figure{
 }
 }
 .scroll-container div{
-padding-right: .2vw;
+/* padding-right: .2vw; */
 }
 
 .scroll-container > * {
@@ -506,6 +517,7 @@ display: inline-block; /* Display content in a horizontal line */
     /* flex: 0 0 calc(33.33% - 20px); */
      /* 33.33% for three images in a row, adjust spacing as needed */
   height: 55vh;
+  height: calc(30.33vw - -4px);
   /* height: 15%; */
   
 }
@@ -686,9 +698,67 @@ button{
 }
 
 @media (max-width: 768px) {
+    .overlay-gallery {
+    z-index: 0;
+}
+
+/*   display: block;
+    position: absolute; */
+
+
+
+  .scroll-container div img:hover{
+  /* transition: opacity .35s ease; */
+  /* transition: border-radius 0.5s ease, filter 2s ease; */
+  transform: 0 ;
+  overflow: hidden;
+}
+
+  .bottomtextprmb{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  }
+
+  .bottomtextprmbinn{
+    width: 92vw;
+  }
+
+  .projecttextmb{
+   padding-top: 9rem;
+   padding-left: 1vw;
+  }
+
+  .scroll-container div img {
+    padding: 0vw;
+    width: 92vw !important;
+    padding-right: 0vw;
+    height: 56vh;
+    overflow-x: hidden;
+    align-content: center;
+}
+
+.scroll-container div img {
+      /* display: block; */
+    /* position: absolute; */
+    /* z-index: 2; */
+}
+
+figure {
+    width: 100vw;
+    display: flex;
+    padding-right: 0vw;
+    height: 56vh;
+    overflow-x: hidden;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
   .block{
   display: none;
 }
+
 .gallmobile{
       flex-direction: column;
 }
@@ -713,13 +783,13 @@ button{
 
 .mobiletitle{
   position: fixed;
-  top: 12vw;
-  background: #f7f7f7;
+  top: 17vw;
+  background: 0;
   height: fit-content;
     z-index: 1;
     padding: 3vw;
-    padding-top: 6vh;
-    border-bottom: 0.8px solid #000;
+    padding-top: 20vh;
+    border-bottom: 0px;
 }
 
 .mobiletitle{

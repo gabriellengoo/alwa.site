@@ -99,7 +99,7 @@ export default {
         },
         {
           name: "year",
-          title: "Year",
+          title: "Alwa Role",
           type: "string",
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),

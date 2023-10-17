@@ -24,8 +24,8 @@
               </g>
             </svg> -->
             <img
-                      class=" w-[15vw]  p-0"
-                      src="COPYRIOGHT.png"
+                      class="copyr md:w-[20vw] sm:w-[55vw] p-0"
+                      src="https://i.ibb.co/XxMDw8n/COPYRIOGHT-MOCKUP-V3.png"
                       width="50%"
                       height="50%"
                       alt="COPYRIOGHT"
@@ -78,6 +78,12 @@
 @keyframes b {
   to {background-position:-200% 0,0 0} 
 } */
+@media (max-width: 768px) {
+.copyr{
+  width: 70vw;
+}
+}
+
 
   /* Styles for the black screen transition */
   .black-screen {

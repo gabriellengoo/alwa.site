@@ -25,7 +25,14 @@ html {
   cursor: crosshair;
 }
 
-
+@media (min-width: 768px) {
+  .pr-6 {
+    padding-right: 0rem !important;
+  }
+  pr-6 {
+    padding-right: 0rem;
+}
+}
 
 .content-container {
   transition: transform 0.5s ease; /* Add smooth transition for content movement */

@@ -22,7 +22,7 @@
         <!-- Add an SVG icon here -->
         <div class="navele flex justify-between border-b-[.95px] border-stone-900  ">
           <NuxtLink class="buttonlogo w-[5vw] h-auto" :to="isBlueBoxActive ? $route.path : '/'">
-            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
                   <path
@@ -30,7 +30,7 @@
                   />
                 </g>
               </g>
-            </svg> -->
+            </svg>
             <!-- <img
                       class=" w-[5vw]  p-0"
                       src="logo.png"
@@ -103,7 +103,7 @@
 
     <!-- Add a div for the blue box  @click="toggleBlueBox" -->
     <div class="blue-box z-[100002] " :class="{ active: isBlueBoxActive } ">
-      <div class=" lg:p-16 sm:p-1 w-screen max-w-screen">
+      <div class=" lg:p-12 sm:p-1 lg:pt-8  w-screen max-w-screen">
         <!-- <div  class="blue-box"> -->
         <!-- <about-page :abouts="abouts"></about-page> -->
         <!-- </div> -->
@@ -160,7 +160,9 @@
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
               >
-              <span class="icon baseline h-auto sm:pt-5">
+              
+              <!-- <span class="icon baseline h-auto sm:pt-5"> -->
+                <span class="icon baseline h-auto sm:pt-5">
             <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
@@ -171,8 +173,8 @@
               </g>
             </svg> -->
             <img
-                      class=" w-[25vw]  p-0"
-                      src="logo.png"
+                      class="   p-0"
+                      src="https://i.ibb.co/CBZLqc2/Asset-1-4x.png"
                       width="50%"
                       height="50%"
                       alt="logo"
@@ -551,7 +553,7 @@ button .circle:hover {
   transition: height 1s ease, opacity 0.5s ease; /* Add smooth transitions */
 }
 
-.icon {
+/* .icon {
     display: inline-flex;
     align-self: center;
 }
@@ -566,6 +568,29 @@ button .circle:hover {
     top: .125em;
     top: 0.9rem;
     top: 2.9000000000000004rem;
+    position: relative;
+} */
+
+.icon {
+    display: inline-flex;
+    align-self: center;
+    top: 1vh;
+    position: relative;
+}
+
+.icon svg, .icon img {
+    height: 2em;
+    width: 6em;
+    fill: currentColor;
+}
+
+.icon.baseline svg, .icon img {
+    top: .125em;
+    top: 0.9rem;
+    top: 2.9000000000000004rem;
+   top: -0.9em;
+    /* top: 2.9000000000000004rem; */
+    /* top: 0; */
     position: relative;
 }
 /* header{
@@ -729,6 +754,12 @@ width: 100vw;
   border-bottom: 0.8px solid #000;
 }
 
+header{
+  position: fixed;
+  width: 100vw;
+  background-color: #f7f7f7;
+}
+
 }
 
 /* For iPads in Portrait Mode */
@@ -769,6 +800,27 @@ width: 100vw;
   /* width: 110%; */
   height: 0;
       top: -7vh;
+    /* left: -2vw; */
+    width: 100vw;
+  /* transition: none; */
+  /* background-color: #212121; */
+
+}
+}
+
+@media (max-width: 1366px) {
+  .blue-box {
+  /* top: -7vh;
+  left: -2vw;
+  width: 110%;
+  height: 0; */
+  /* background-color: #212121; */
+}
+.blue-box {
+  top: -1vh;
+  /* width: 110%; */
+  height: 0;
+      /* top: -7vh; */
     /* left: -2vw; */
     width: 100vw;
   /* transition: none; */

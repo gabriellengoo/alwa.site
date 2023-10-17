@@ -5,7 +5,7 @@
       <button @click="switchToGrid">Grid</button>
     :class="{ 'active-button': displayGrid }"
     </div> bottom-div-->
-<div class=" pt-[3rem]">
+<div class=" pt-[6rem]">
     <!-- <div class="button-container  ">
       <button
         class=""
@@ -49,7 +49,7 @@
         <!-- Masonry content here -->
         <div
           ref="scrollContainer"
-          class="image-cont  flex flex-col fade-in-out"
+          class="image-cont w-[98vw]  flex flex-col fade-in-out"
           :class="{ 'fade-in': displayGrid, 'fade-out': !displayGrid }"
         
               >
@@ -121,8 +121,8 @@ reverse
             class='insidescrollcont'
           >
         
-              <NuxtLink
-              class="ani uppercase"
+              <NuxtLink 
+              class="ani uppercase  hover"
                 v-if="item.reference.slug"
                 :to="`/project/${item.reference.slug}`"
               >
@@ -141,7 +141,7 @@ reverse
                       
                     </figcaption>
                     
-                    <div class=" bordercont hover">
+                    <div class=" bordercont ">
                     <MediaImage
                       ref="scrollContainer"
                         @mouseenter="handleMouseEnter"
@@ -193,8 +193,15 @@ reverse
           <div
             class="list-header uppercase h-space-12 md:h-space-6 2xl:h-space-4 custom-text-size"
           >
-            <div>Project</div>
-            <div>Photographer</div>
+            <div class='projectmobile'>Project</div>
+            <div class='projectmobileyes flex' >
+              <div @click="toggleRoleView" class='pr-3' :class="{ 'text-opacity-100': !displayRole, 'text-opacity-25': displayRole }">Project</div> /
+              <button class="uppercase pl-3" @click="toggleRoleView"  :class="{ 'text-opacity-25': !displayRole, 'text-opacity-100': displayRole }">
+                {{ displayRole ? " role" : " role" }}
+              </button>
+            </div>
+            <!-- <div>Photographer</div> -->
+            <div> </div>
             <div> </div>
           </div>
           <div
@@ -269,25 +276,53 @@ reverse
                           {{ item.title ? item.title : item.reference.title }}
                         </div>
                       </div>
-                      <div class="listTextInner">
+
+                       <!-- desk shot by -->
+                      <div class="listTextInner photomobile nomobile">
                         <div
+                       
                           :class="size == 'small' ? 'smaller-text' : ''"
-                          class="photographer-container"
+                          class="photographer-container nomobile"
+                        >
+                          <div class="photographer " v-if="item.photographer">
+                            {{ item.photographer }}
+                          </div>
+                        </div>
+                      </div>
+
+                       <!-- mobile year and shot by -->
+                      <div class="listTextInner yearmobile nodesk " >
+                        <div
+                          v-if="!displayRole"
+                          :class="size == 'small' ? 'smaller-text' : ''"
+                          class="photographer-container nodesk"
                         >
                           <div class="photographer" v-if="item.photographer">
                             {{ item.photographer }}
                           </div>
                         </div>
-                      </div>
-                      <div class="listTextInner">
                         <div
+                          v-if="displayRole"
                           :class="size == 'small' ? 'smaller-text' : ''"
-                          class="year-container"
+                          class="year-container yearmobile"
                         >
-                          <div class="year" v-if="item.year">
+                          <div class=" year yearmobile">
                             {{ item.year }}
                           </div>
-                        </div>
+                      </div>
+                      </div>
+
+                      <!-- desk year -->
+                      <div class="listTextInner yearmobile nomobile desk" >
+                        <div
+                          :class="size == 'small' ? 'smaller-text' : ''"
+                          class="year-container yearmobile"
+                        >
+                          <div class=" year yearmobile">
+                            {{ item.year }}
+                          </div>
+                      </div>
+
                       </div>
                     </figcaption>
               
@@ -304,7 +339,7 @@ reverse
                       :aspect="item.image.aspect"
                       :src="item.image.image"
                       v-if="item.image.image"
-                      class="borderlist  hover "
+                      class="borderlist  "
                       :sizes="
                         size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
                       "
@@ -320,7 +355,7 @@ reverse
                         size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
                       "
                       :class="{ 'image-opacity-0': !hoveredItem }"
-                      class="borderlist  hover "
+                      class="borderlist   "
                     ></MediaVideo>
                 </span>
               </div>
@@ -351,6 +386,7 @@ export default {
       scrollLeft: 0,
       containerClass: "flex flex-col w-full h-full",
       imageClass: "contain-image",
+      displayRole: true, // Initialize displayRole
       imageOpacity: 1, // Add this property
       displayGrid: true, // Use displayGrid to track the layout state
       // isListView: true, 
@@ -358,6 +394,9 @@ export default {
   },
   computed: {
     ...mapState(["activeProject", "activeTalent"]),
+    isMobile() {
+      return window.innerWidth <= 768; // Adjust the width threshold as needed
+    },
   },
   mounted() {
     this.redraw();
@@ -369,6 +408,13 @@ export default {
     this.displayGrid = !this.displayGrid;
     // You can also add logic to redraw the layout here if needed
   },
+
+  toggleRoleView() {
+      if (this.isMobile) {
+        this.displayRole = !this.displayRole;
+        // You can also add logic to redraw the layout here if needed
+      }
+    },
     // Add these methods to control the scroll animation
     handleMouseEnter() {
     // Pause the animation on hover
@@ -440,6 +486,13 @@ export default {
 </script>
 
 <style scoped>
+@media (min-width: 768px) {
+ pr-6 {
+    padding-right: 0rem !important;
+}
+}
+
+
 .text-opacity-25 {
 opacity: 0.25;
 }
@@ -450,6 +503,7 @@ opacity: 0 !important;
   .scrollcost{
     flex: 0 0 calc(33.33% - 20px); /* 33.33% for three images in a row, adjust spacing as needed */
   height: 60vh;
+  height: calc(33.33vw - 15px);
   /* height: 15%; */
   
 }
@@ -493,19 +547,30 @@ opacity: 0 !important;
 /* makes it hotizontal if you ad this as a div around it */
 .scroll-container {
 /* width: 100%;  */
-    width: 100vw;
+    /* width: 100vw;
   overflow-x: scroll !important;
   white-space: nowrap;
   display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: flex-start;
+    justify-content: flex-start; */
+    width: 98vw;
+    /* width: 100vw; */
+    /* width: 98vw !important; */
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
+
+
 
 }
 
 .insidescrollcont{
-  padding-bottom: 3vh !important;
+  padding-bottom: 25px !important;
 }
 
 @keyframes src-components-animation-2PZg {
@@ -517,7 +582,29 @@ opacity: 0 !important;
 }
 }
 .scroll-container div{
-padding: .4vw;
+  /* position: relative; */
+  /* top: 0vh !important; 
+  transition: top 0.3s ease; */
+/* padding: .4vw; */
+/* padding-right: 15px; */
+}
+
+.scroll-container div:hover {
+  /* top: .5vh !important; 
+  transition: top 0.3s ease; */
+}
+
+.bordercont{
+  position: relative;
+  top: 0vh !important; 
+  transition: top 0.3s ease;
+/* padding: .4vw; */
+/* padding-right: 15px; */
+}
+
+.bordercont:hover {
+  top: .8vh !important; 
+  transition: top 0.3s ease;
 }
 
 .scroll-container > * {
@@ -548,6 +635,9 @@ display: inline-block; /* Display content in a horizontal line */
 
 
 .scrolling-container {
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
   /* overflow: hidden; */
   /* position: relative;
   width: 100vw; */
@@ -631,12 +721,38 @@ figure{
 
 .list-layout-item  .contain-image{
   display: none;
-  width: 60vh;
-  padding-left: 3vw;
+  /* width: 60vh; */
+  width: 40vh;
+  /* padding-left: 3vw; */
+  left: 3.5vw;
+  /* left: calc(5vw - 20px); */
+  padding-left: calc(5vw - 20px);
+  padding-right: calc(5vw - 20px);
   transition: none  !important;
   transition-duration: 0s !important;
   animation: none !important;
 }
+
+
+.list-layout-item  .contain-image img{
+  width: calc(27.33vw - 20px);
+}
+
+.list-layout-item  .contain-image video{
+  width: calc(27.33vw - 20px) !important;
+}
+
+/* calc(33.33% - 10px); */
+/* .list-layout-item  .contain-image video{
+  display: none;
+  width: 60vh;
+  width: 40vh;
+  padding-left: 3vw;
+  padding-left: 13vw;
+  transition: none  !important;
+  transition-duration: 0s !important;
+  animation: none !important;
+} */
 
 
 
@@ -699,9 +815,9 @@ figure {
   position: relative;
 }
 
-.list-layout-item:nth-child(2) .contain-image{
+/* .list-layout-item:nth-child(2) .contain-image{
   display:none;
-}
+} */
 
 .masonry .flex-item img {
   /* display: flex; */
@@ -746,16 +862,21 @@ figure {
 }
 
 .hover {
-  margin-top: 2px; /* Adjust margin as needed for spacing */
-  transition: margin 0.3s ease; /* Add a smooth transition effect */
+  top: 0vh;
+  /* margin-top: 2px; */
+  /* transition: margin 0.3s ease;  */
+  /* transition: top 0.3s ease; */
 }
 
 .hover:hover {
-  margin-top: 10px !important; /* Adjust margin as needed for spacing */
-  transition: margin 0.3s ease; /* Add a smooth transition effect */
+  /* margin-top: 10px !important;  */
+  /* top: 3vh !important;  */
+  /* transition: margin 0.3s ease; */
+  /* transition: top 0.3s ease; */
 }
 
 .button-container {
+  /* width: 100vw; */
   display: flex;
   justify-content: flex-end; /* Align buttons to the top right */
   margin-top: 0px;
@@ -765,6 +886,15 @@ figure {
   z-index: 10;
   position: relative;
   margin-bottom: 20px; 
+  display: flex;
+  justify-content: center;
+}
+
+.button-container button{
+  display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    width: 98vw;
 }
 
 @media (min-width: 768px) {
@@ -823,6 +953,7 @@ figure {
   cursor: pointer;
   display: flex;
   width: 29vw;
+  width: 24vw;
   /* width: 100%; */
   position: relative;
 }
@@ -842,6 +973,105 @@ figure {
     font-size: 1.25rem /* 20px */;
     line-height: 1.75rem; /* Adjust the font size for larger screens */
   }
+
+
+
+
+}
+
+
+
+
+@media (max-width: 768px) {
+  /* Your CSS rules for mobile devices here */
+  .scroll-container {
+    /* width: 100%; */
+    width: auto;
+    /* width: 98vw !important; */
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.scrollcost {
+    /* flex: 0 0 calc(33.33% - 20px); */
+    height: unset;
+    width: calc(99.33vw - 15px);
+}
+
+.button-container {
+    width:  unset;
+   
+}
+
+.yearmobile{
+  justify-content: flex-end !important;
+  /* display: none  !important; */
+}
+
+.list-header div {
+    width: auto;
+}
+
+.listText div {
+    /* justify-content: space-between; */
+    /* width: 100vw; */
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    flex-direction: row;
+}
+
+.photographer{
+  justify-content: flex-end !important;
+}
+
+.projectmobile{
+  display: none  !important;
+}
+
+.projectmobileyes{
+  display: flex  !important;
+  padding-bottom: 3vh;
+}
+
+.photomobile{
+  display: none  !important;
+}
+
+.list-header {
+    display: unset;
+}
+
+.nodesk{
+  display: contents;
+}
+
+.nomobile{
+  display: none  !important;
+}
+
+}
+
+.projectmobileyes {
+  display: none ;
+}
+
+.photomobile{
+  display: contents  !important;
+}
+
+.desk{
+  display: contents;
 }
 
 /* Media query for screens with a minimum width of 1024px */

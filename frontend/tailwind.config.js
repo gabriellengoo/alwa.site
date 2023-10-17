@@ -8,7 +8,16 @@ module.exports = {
     "./nuxt.config.{js,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        '6': '0rem', // Define the padding size
+      },
+    },
+  },
+  extend: {
+    spacing: {
+      '6': '0rem', // Define the padding size
+    },
   },
   plugins: [],
 }
