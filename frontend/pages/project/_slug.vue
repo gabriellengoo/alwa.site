@@ -42,7 +42,7 @@
                       <button v-if="isGalleryExpanded" @click="closeImageModal" class="block close-button leading-5">
                       [  Close Gallery ]
                       </button> 
-                </div>
+                </div> 
 
             </div>
           </div>
