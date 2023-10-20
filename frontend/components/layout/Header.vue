@@ -21,7 +21,7 @@
 
         <!-- Add an SVG icon here -->
         <div class="navele flex justify-between border-b-[.95px] border-stone-900  ">
-          <NuxtLink class="buttonlogo w-[5vw] h-auto" :to="isBlueBoxActive ? $route.path : '/'">
+          <NuxtLink class="buttonlogo w-[10vw] h-auto" :to="isBlueBoxActive ? $route.path : '/'">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
@@ -42,7 +42,7 @@
 
           <!-- <span class="date text-xs font-light inline-block" >EST. 0000</span> -->
 
-          <button class="button pl-2 uppercase" @click="toggleBlueBox">
+          <button class="button flex items-end pl-2 uppercase" @click="toggleBlueBox">
             About
             <span
               class="inline-block px-4 text-midGray"
@@ -84,7 +84,7 @@
           </NuxtLink>
 
           
-          <button class="pl-2 uppercase " @click="toggleBlueBox">
+          <button class="pl-2 uppercase flex items-end " @click="toggleBlueBox">
     About
     <span
       class="inline-block px-4 text-midGray"
@@ -680,6 +680,7 @@ button .circle:hover {
   /* height: fit-content; */
   /* opacity: 1; */
   background-color: #d2d2d2;
+  /* background-color: blue; */
     /* border-bottom: 0.5px solid #212121; */
   z-index: 100002;
   pointer-events: auto; /* Enable pointer events when visible */

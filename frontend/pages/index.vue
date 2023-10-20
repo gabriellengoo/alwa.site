@@ -20,10 +20,10 @@
         >
           <header class="flex gap-4 text-xs md:w-2/9" v-if="section.content">
             <span class="w-1/2 uppercase">{{ section.title }}</span>
-            <span class="w-1/2 uppercase">{{ section.photographer }}</span>
-            <span class="w-1/2">{{ section.subtitle }}</span>
           </header>
-          <div class="flex-1">
+          <div class="flex-1 lowercase">
+            <span class="w-1/2">{{ section.subtitle }}</span>
+            <span class="w-1/2">{{ section.photographer }}</span>
             <Richtext :blocks="section.content" v-if="section.content"></Richtext>
           </div>
         </section>
@@ -37,7 +37,17 @@
         <Grid2 size="small" :items="home.grid2"></Grid2>
       </div> -->
 
-
+      <div class="bottom-0 left-0 w-full">
+    <div class="flex justify-center text-3xl md:text-5xl  w-9/16">
+      <img
+                      class="copyr w-[45vw] md:w-[15vw] sm:w-[50vw] p-0"
+                      src="COPYRIOGHT.png"
+                      width="50%"
+                      height="20%"
+                      alt="COPYRIOGHT"
+                    />
+    </div>
+  </div>
 
 
 </div>
@@ -71,7 +81,7 @@ export default {
       grid[] {_key, spacer, "video" : 
                     {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
                       "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
-                    title, photographer,year, link, production,
+                    title, photographer,year,hair,styleing, link, production,
                       "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
                       | order(_updatedAt desc)[0]
                       `

@@ -98,6 +98,20 @@ export default {
           !value && (parent?.spacer || parent?.reference),
         },
         {
+          name: "styleing",
+          title: "Styleing",
+          type: "string",
+          hidden: ({ parent, value }) =>
+          !value && (parent?.spacer || parent?.reference),
+        },
+        {
+          name: "hair",
+          title: "Hair",
+          type: "string",
+          hidden: ({ parent, value }) =>
+          !value && (parent?.spacer || parent?.reference),
+        },
+        {
           name: "year",
           title: "Alwa Role",
           type: "string",

@@ -8,8 +8,15 @@
         :key="link._key"
         class="w-full p-2"
       >
-        {{ link.title }}
+       gggg
       </a>
+      <img
+                      class="copyr md:w-[20vw] sm:w-[55vw] p-0"
+                      src="COPYRIOGHT.png"
+                      width="50%"
+                      height="50%"
+                      alt="COPYRIOGHT"
+                    />
     </div>
   </footer>
 </template>

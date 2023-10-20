@@ -30,7 +30,7 @@
       "
     ></LayoutHeaderMin>
     <Nuxt />
-    <!-- <LayoutFooter
+    <LayoutFooter
       class="fixed"
       v-if="
         $nuxt.$route.name != 'index' &&
@@ -38,7 +38,7 @@
         $nuxt.$route.name == 'archive-slug' &&
         $nuxt.$route.name != 'slug'
       "
-    ></LayoutFooter> -->
+    ></LayoutFooter>
   </main>
 </template>
 <script>

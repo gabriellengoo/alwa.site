@@ -132,16 +132,15 @@ reverse
                     
                       :class="{ 'text-left ': !displayGrid }"
                     >
-                      <div :class="size == 'small' ? 'smaller-text' : ''" class='flex flex-col p-[.2vw]'>
+                      <div :class="size == 'small' ? 'smaller-text' : ''" class='flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw]'>
                         {{ item.title ? item.title : item.reference.title }}
-                        <span v-if="item.photographer">
-                          {{ item.photographer }}
-                        </span>
+                       
                       </div>
                       
                     </figcaption>
                     
-                    <div class=" bordercont ">
+                    <!-- bordercont -->
+                    <div class="  ">
                     <MediaImage
                       ref="scrollContainer"
                         @mouseenter="handleMouseEnter"
@@ -160,12 +159,22 @@ reverse
                       :style="{ opacity: imageOpacity }"
                       class="scrollcost "
                     ></MediaVideo>
-                    <span class=" pl-[.2vw] scrollcost " v-if="item.production">
-                          {{ item.production }}
-                        </span>
-                      </div>  
-              
-           
+                    
+                    </div>
+                    <div class=' leading-[1.2] md:leading-[1] pt-5 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap pl-[.2vw] normal-case font-medium '>
+                    <p v-if="item.photographer">
+                          {{ item.photographer }},
+                    </p>
+                    <p v-if="item.production">
+                          {{ item.production }},
+                    </p>
+                    <p v-if="item.styleing">
+                          {{ item.styleing }},
+                    </p>
+                    <p v-if="item.hair">
+                          {{ item.hair }}
+                    </p>
+                      </div> 
               </NuxtLink>
 
             </div>  
@@ -360,6 +369,8 @@ reverse
                 </span>
               </div>
          
+
+
 
           
             </figure>
@@ -779,7 +790,7 @@ figure {
 }
 
 .borderlist{
-  border: 1px black solid;
+  /* border: 1px black solid; */
   width: 60vh;
 }
 

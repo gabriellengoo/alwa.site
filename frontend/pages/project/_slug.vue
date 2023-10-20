@@ -8,7 +8,7 @@
   <LenisComponent />
     <section >
       
-      <div class="bottom-div pt-20">
+      <div class="bottom-div pt-28">
      <!-- titles -->
      <div  v-if="project"
               class="
@@ -33,9 +33,9 @@
               ">
                 <!-- <div> {{ project.title }} </div> -->
 
-                <div class='pb-5 fixed top-[0vh] z-[10] pt-28 text-[14.21px] projecttextmb'>
+                <div class='pb-5  fixed top-[0vh] z-[10] pt-36 text-[14.21px] projecttextmb'>
                   <div class='pb-5'> {{ project.title }} </div>
-                      <div v-if="project.related" class="flex flex-col leading-5" v-for="meta in project.meta">
+                      <div v-if="project.related" class="flex flex-col leading-5 normal-case " v-for="meta in project.meta">
                           {{ meta.title }} 
                           {{ meta.content }} 
                       </div>
@@ -47,9 +47,10 @@
             </div>
           </div>
 
-              <div class='bottomtextprmb  fixed bottom-0 z-[10] pb-14 uppercase w-[98vw]  text-[11.84px]'>
-                <div class="bottomtextprmbinn  p-[.05vw] pl-[.3vw] border-[.95px] border-black " v-if="project.production">
-                          {{ project.production }}
+              <div class='bottomtextprmb  fixed bottom-0 z-[10] pb-14 uppercase w-[98vw] border-t-[.95px] border-black  text-[11.84px]'>
+                <!-- <div class="bottomtextprmbinn  p-[.05vw] pl-[.3vw] border-[.95px] border-black " v-if="project.production"> -->
+                  <div class="bottomtextprmbinn  p-[.05vw] pl-[.3vw] " v-if="project.production"> 
+                  {{ project.production }}
                 </div>
               </div>
 
@@ -466,6 +467,9 @@ figure{
   /* height: 45vh; */
 }
 
+/* .normal-case {
+    text-transform: none !important;
+} */
 
 /* makes it hotizontal if you ad this as a div around it */
 .scroll-container {

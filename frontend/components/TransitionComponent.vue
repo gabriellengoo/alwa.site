@@ -25,12 +25,12 @@
             </svg> -->
             <img
                       class="copyr md:w-[20vw] sm:w-[55vw] p-0"
-                      src="https://i.ibb.co/XxMDw8n/COPYRIOGHT-MOCKUP-V3.png"
+                      src="logo.png"
                       width="50%"
                       height="50%"
                       alt="COPYRIOGHT"
                     />
-          </div>
+          </div> 
 
         <!-- <p class="">
           Copyright ©2023, all rights reserved
