@@ -8,10 +8,10 @@
     <!-- desk -->
     <div class="headposition  resize-animation ">
     <div
-      class="content-container hidden md:flex w-screen justify-between"
+      class="content-container hidden border-b-[.95px] border-stone-900 md:flex w-screen justify-between"
       :style="contentContainerStyle"
     >
-      <nav class="flex-row md:justify-center  top-0 hidden w-1/16 md:flex">
+      <nav class="flex-row md:justify-center   top-0 hidden w-1/16 md:flex">
         <!-- <NuxtLogo/> -->
         <!-- <div>
     <div v-for="about in abouts" :key="about._id">
@@ -20,7 +20,7 @@
   </div> -->
 
         <!-- Add an SVG icon here -->
-        <div class="navele flex justify-between border-b-[.95px] border-stone-900  ">
+        <div class="navele flex justify-between   ">
           <NuxtLink class="buttonlogo w-[10vw] h-auto" :to="isBlueBoxActive ? $route.path : '/'">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
@@ -472,6 +472,7 @@ export default {
     flex-direction: row;
     flex-wrap: wrap;
         width: 98vw !important;
+        /* width: 100vw !important; */
     justify-content: space-between;
 
   }
@@ -479,6 +480,7 @@ export default {
 .button{
   /* border-left: .8px solid #000; */
    padding: .5vw;
+   font-size: 1.25rem ;
     /* border-width: 3.9px;
     border-right: black;
     border-left: black; */

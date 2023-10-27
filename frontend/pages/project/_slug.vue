@@ -1,10 +1,7 @@
 <template>
   <!-- md:h-screen -->
-  <div class="relative md:min-h-fit md:p-5  md:overflow-hidden">
-    <!-- <div class=" fixed top-0">
-      <Header class=" sticky top-0 sticky-header" />
-    </div> -->
-    <!-- <Header /> p-5 h-[100vh !important] max-h-[100vh] min-h-screen-->
+  <div class="relative md:min-h-fit   md:overflow-hidden">
+
   <LenisComponent />
     <section >
       
@@ -31,9 +28,8 @@
                 items-end
                 mobiletitle
               ">
-                <!-- <div> {{ project.title }} </div> -->
 
-                <div class='pb-5  fixed top-[0vh] z-[10] pt-36 text-[14.21px] projecttextmb'>
+                <div class='md:pl-5 pb-5  fixed top-[0vh] z-[10] pt-36 text-[14.21px] projecttextmb'>
                   <div class='pb-5'> {{ project.title }} </div>
                       <div v-if="project.related" class="flex flex-col leading-5 normal-case " v-for="meta in project.meta">
                           {{ meta.title }} 
@@ -47,8 +43,7 @@
             </div>
           </div>
 
-              <div class='bottomtextprmb  fixed bottom-0 z-[10] pb-14 uppercase w-[98vw] border-t-[.95px] border-black  text-[11.84px]'>
-                <!-- <div class="bottomtextprmbinn  p-[.05vw] pl-[.3vw] border-[.95px] border-black " v-if="project.production"> -->
+              <div class='bottomtextprmb w-screen fixed bottom-0 z-[10] pb-14 uppercase border-t-[.95px] border-black  text-[11.84px]'>
                   <div class="bottomtextprmbinn  p-[.05vw] pl-[.3vw] " v-if="project.production"> 
                   {{ project.production }}
                 </div>
@@ -62,12 +57,12 @@
     
    <!-- non scroll copy -->
 
-   <div  class="scroll-container pt-48">
+   <div  class="scroll-container  pt-48">
   
   <div 
   v-for="(slide, index) in project.slider"
          :key="slide._key"
-         class="gallmobile insidescrollcont"
+         class="gallmobile insidescrollcont md:p-5"
 
          >
          <figure
@@ -97,7 +92,6 @@
                    ></MediaVideo>
                  </figure>
            </div>  
-         <!-- </vue-marquee-slider> -->
    </div>
     
     
@@ -113,42 +107,9 @@
     <div v-if="isGalleryExpanded" class="overlay-gallery"   ref="overlayGallery"    @mouseenter="showGalleryOnHover"
     @mouseleave="hideGalleryOnLeave">
         <div class="gallery-content">
-          <!-- <button @click="closeImageModal" class="close-button">
-          [  Close Gallery ]
-          </button> -->
-      
+   
 
           <div class="gallery-images">
-         
-            <!-- <div>
-              <div 
-              v-for="(slide, index) in project.slider"
-                    :key="slide._key"
-                    class="gallmobile "
-                      >
-                    <figure
-                v-for="image in slide.images"
-                :key="image._key"
-                @click="openImageModal(index)"
-                style="cursor: pointer;"
-              >
-                <MediaImage
-                :src="image.image.asset._ref"
-                v-if="image.image"
-                class="gallery-image"
-              ></MediaImage>
-              <MediaVideoPlay
-                :id="image.video.id"
-                :active="realIndex == index ? true : false"
-                v-else-if="image.video.id"
-                :thumbTime="image.video.thumbTime"
-                class="gallery-image"
-             ></MediaVideoPlay>
-         
-                    </figure>
-              </div>  
-            </div> -->
-         
 
             <section
         class=" top-0 left-0 hidden w-full  md:block  cursor-grab  slider"
@@ -157,39 +118,6 @@
         ref="slider"
       >
     
-
-        <!-- <button
-          class="absolute top-0 left-0 z-30 w-1/2 h-full previous"
-          :class="back ? '' : 'disabled'"
-          @click="prev"
-          ref="prev"
-          aria-label="Previous"
-        ></button>
-        <button
-          class="absolute top-0 right-0 z-30 w-1/2 h-full next"
-          @click="next"
-          aria-label="Next"
-        ></button> -->
-        <!-- <button
-          class="absolute top-0 left-0 z-30 w-1/2 h-full previous"
-          :class="back ? '' : 'disabled'"
-          @click="prev"
-          ref="prev"
-          aria-label="Previous"
-        ></button> -->
-        <!-- <button
-          class="absolute top-0 right-0 z-30 w-screen h-full next"
-          @click="next"
-          aria-label="Next"
-        ></button> -->
-        <!-- <button
-    class="absolute top-0 left-0 z-30 w-1/2 text-xl previous"
-    @click="prev"
-    ref="prev"
-    aria-label="Previous"
-  >
-    <
-  </button> -->
  
 
         <div
@@ -211,8 +139,8 @@
             "
             :class="realIndex == 0 ? 'opacity-95' : ''"
           >
-          <!-- <div class="image-number">[ {{ index + 1 }} ]</div> -->
       
+    
           <div class="flex h-full p-2 pb-0 w-13/16 ">
               <figure
                 v-for="image in slide.images"
@@ -232,7 +160,6 @@
                   :src="image.image.asset._ref"
                   v-if="image.image"
                   class="gallery-image w-auto h-full "
-             
                   :class="
                     image.padding
                       ? 'object-contain'
@@ -265,25 +192,15 @@
         </div>
         <div class=" absolute arrow z-[100000] w-1/2 text-black next text-4xl ">
                 <button
-    class=" z-[100000] pointer-events-auto w-1/2 h-1/6 text-black next text-4xl "
-    @click="next"
-    aria-label="Next"
-  >
-   >
-  </button>
+                    class=" z-[100000] pointer-events-auto w-1/2 h-1/6 text-black next text-4xl "
+                    @click="next"
+                    aria-label="Next"
+                  >
+                  <!-- > -->
+                  </button>
 
               </div>
-              
-              <!-- <div  class="relative z-40 w-full h-full pointer-events-none swiper-wrapper " >
-                <button
-    class="backbtn z-[100000] pointer-events-auto w-1/2 h-1/6 text-black next text-4xl previous"
-    @click="prev"
-    ref="prev"
-    aria-label="Previous"
-  >
-    <
-  </button>
-</div> -->
+
            </section>
 
 
@@ -291,6 +208,7 @@
 
         </div>
     </div>
+  
   </div>
      
     </section>
@@ -323,7 +241,6 @@ export default {
       step: 0,
       imageNumberPosition: { top: 0, left: 0 }, // Initialize position
       isImageModalOpen: false,
-      selectedImageURL: '',
       isGalleryExpanded: false,
       clickedImageIndex: null, // Initially set to null
       swiperOptions: {
@@ -345,28 +262,18 @@ export default {
       this.back = true;
     }
   },
-  // mounted() {
-  //   this.SET_FOOTER(this.project.footer);
-  // },
+
     mounted() {
-    // Create a new instance of Lenis
     const lenis = new Lenis();
 
-    // Set up a scroll event listener
     lenis.on('scroll', (e) => {
-      // Handle scroll events here
       console.log(e);
-
-      // You can access scroll-related properties from the 'e' object
-      // For example, you can use e.scrollTop to get the current scroll position.
     });
-        // Create a requestAnimationFrame function to keep the scroll listener active
         function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
 
-    // Start the requestAnimationFrame loop
     requestAnimationFrame(raf);
 
     const overlay = document.querySelector('.overlay-gallery');
@@ -375,12 +282,10 @@ export default {
 
   },
   methods: {
-        // Function to show the gallery on hover
         showGalleryOnHover() {
       this.$refs.overlayGallery.classList.add('active');
     },
 
-    // Function to hide the gallery when the mouse leaves
     hideGalleryOnLeave() {
       this.$refs.overlayGallery.classList.add('active');
     },
@@ -394,6 +299,7 @@ export default {
       this.isGalleryExpanded = false;
       this.clickedImageIndex = null;
     },
+
     updateImageNumberPosition(event) {
     this.imageNumberPosition = {
       top: event.clientY + 'px',
@@ -401,42 +307,16 @@ export default {
     };
   },
     generateThumbnailURL(imageURL) {
-      // Implement logic to generate thumbnail URL from the imageURL
-      // For example, you can append "_thumbnail" to the filename.
-      // Modify this according to your image URL structure.
-      // Example:
-      // return imageURL.replace('.jpg', '_thumbnail.jpg');
       return imageURL; // Just return the original imageURL for simplicity.
     },
     toggleGallery() {
     this.isGalleryExpanded = !this.isGalleryExpanded;
   },
     onSlideChange(swiper) {
-      // this.index = swiper.activeIndex + 1;
-      // this.realIndex = swiper.activeIndex;
-      // const gsap = this.$gsap;
-      // if (swiper.activeIndex == 0 && !this.back) {
-      //   this.$refs["prev"].classList.add("disabled");
-      // } else {
-      //   this.$refs["prev"].classList.remove("disabled");
-      // }
-      // if (this.index > 1) {
-      //   gsap.to(this.$refs["skew"], { x: "-150%" });
-      // } else {
-      //   gsap.to(this.$refs["skew"], { x: "0%" });
-      // }
+
     },
     scroll() {
-      // if (this.project.slider) {
-      //   this.scrolled = !this.scrolled;
-      //   const gsap = this.$gsap;
-      //   let height = this.$refs["footer"].offsetHeight;
-        // if (this.scrolled) {
-        //   gsap.to(this.$refs["container"], { y: -height });
-        // } else {
-        //   gsap.to(this.$refs["container"], { y: 0 });
-        // }
-      // }
+ 
     },
     
     next() {
@@ -448,13 +328,7 @@ export default {
         this.mySwiper.slideNext();
       }
     },
-    // prev() {
-    //   if (this.mySwiper.isBeginning && this.back) {
-    //     this.$router.go(-1);
-    //   } else {
-    //     this.mySwiper.slidePrev();
-    //   }
-    // },
+
     ...mapMutations(["SET_FOOTER"]),
   },
 };
@@ -463,29 +337,13 @@ export default {
 <style scoped>
 
 
-figure{
-  /* height: 45vh; */
-}
 
-/* .normal-case {
-    text-transform: none !important;
-} */
 
-/* makes it hotizontal if you ad this as a div around it */
+
+
 .scroll-container {
-/* width: 100%;  */
-
-    /* width: 100vw;
-  overflow-x: scroll !important;
-  white-space: nowrap;
-  display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: flex-start; */
-
     width: 98vw;
-    /* width: 100vw; */
+    width: 100vw;
     /* width: 98vw !important; */
     white-space: nowrap;
     display: flex;
@@ -497,7 +355,7 @@ figure{
 }
 
 .insidescrollcont{
-  /* padding-bottom: 3vh !important; */
+
   padding-bottom: 10px!important;
 }
 
@@ -510,38 +368,25 @@ figure{
 }
 }
 .scroll-container div{
-/* padding-right: .2vw; */
+
 }
 
 .scroll-container > * {
-display: inline-block; /* Display content in a horizontal line */
+display: inline-block; 
 }
-/* makes it hotizontal if you ad this as a div around it */
+
 .scrollcost{
-    /* flex: 0 0 calc(33.33% - 20px); */
-     /* 33.33% for three images in a row, adjust spacing as needed */
   height: 55vh;
-  height: calc(30.33vw - -4px);
-  /* height: 15%; */
-  
+  /* height: calc(30.33vw - -4px); */
+  height: calc(27.33vw - -4px);  
 }
 
 .masonry .flex-item {
-/* display: flex; */
-/* flex-direction: row;    */
- /* margin-right: 20px !important; */
- /* margin: auto !important; */
- /* margin-right: auto  !important; 
-min-width: auto !important; */
 margin-right: 200px !important;
 min-width: 350px !important;
-/* Add other flex properties as needed */
 }
 .masonry .flex-item img {
-/* display: flex; */
-/* flex-direction: row; */
 max-height: 30vw;
-/* Add other flex properties as needed */
 }
 
 .overlay-gallery {
@@ -655,6 +500,7 @@ button{
 .gallery-image {
   max-width: 45vw;
   max-height: 85vh;
+  max-height: 75vh;
   width: 45vw;
   margin: 0px;
   padding-bottom: 2vh;
@@ -721,6 +567,7 @@ button{
   .bottomtextprmb{
   width: 100vw;
   display: flex;
+  padding: 0rem !important;
   justify-content: center;
   }
 

@@ -161,7 +161,7 @@ reverse
                     ></MediaVideo>
                     
                     </div>
-                    <div class=' leading-[1.2] md:leading-[1] pt-5 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap pl-[.2vw] normal-case font-medium '>
+                    <div class=' leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap pl-[.2vw] normal-case font-medium '>
                     <p v-if="item.photographer">
                           {{ item.photographer }},
                     </p>
@@ -188,7 +188,7 @@ reverse
       <!-- List layout -->
       <div
         v-else
-        class="list-container uppercase fade-in-out"
+        class="list-container h-screen uppercase fade-in-out"
         :class="{ 'fade-in': !displayGrid, 'fade-out': displayGrid }"
       >
         <!-- List layout content here -->
@@ -202,7 +202,7 @@ reverse
           <div
             class="list-header uppercase h-space-12 md:h-space-6 2xl:h-space-4 custom-text-size"
           >
-            <div class='projectmobile'>Project</div>
+            <!-- <div class='projectmobile'>Project</div> -->
             <div class='projectmobileyes flex' >
               <div @click="toggleRoleView" class='pr-3' :class="{ 'text-opacity-100': !displayRole, 'text-opacity-25': displayRole }">Project</div> /
               <button class="uppercase pl-3" @click="toggleRoleView"  :class="{ 'text-opacity-25': !displayRole, 'text-opacity-100': displayRole }">
@@ -892,7 +892,7 @@ figure {
   justify-content: flex-end; /* Align buttons to the top right */
   margin-top: 0px;
   text-transform: uppercase;
-  font-size: 1.25rem /* 20px */;
+  font-size: 1.25rem ;
   line-height: 1.75rem;
   z-index: 10;
   position: relative;
@@ -905,12 +905,12 @@ figure {
   display: flex;
     justify-content: flex-end;
     flex-direction: row;
-    width: 98vw;
+    width: 97vw;
 }
 
 @media (min-width: 768px) {
   .button-container {
-    font-size: 1.25rem /* 20px */;
+    font-size: 1.25rem ;
     line-height: 1.75rem /* Adjust the font size for larger screens */;
   }
 }
@@ -918,7 +918,7 @@ figure {
 /* Media query for screens with a minimum width of 1024px */
 @media (min-width: 1024px) {
   .button-container {
-    font-size: 1.25rem /* 20px */;
+    font-size: 1.25rem ;
     line-height: 1.75rem /* Adjust the font size for even larger screens */;
   }
 }
