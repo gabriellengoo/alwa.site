@@ -50,7 +50,7 @@
       
 
       <div class="md:pr-6" :class="home.sections ? 'md:w-7/16' : 'w-full'">
-        <Grid size="small" :items="home.grid"></Grid>
+        <!-- <Grid size="small" :items="home.grid"></Grid> -->
         <Grid2 size="small" :items="home.grid2"></Grid2>
       </div>
 
@@ -110,7 +110,7 @@ export default {
                       {..., grid2[] {_key, spacer, "video" : 
                     {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
                       "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
-                    title, photographer,year,hair,styleing, link, production,
+                    title, photographer,year,imageWidth,hair,styleing, link, production,
                       "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
                      
                     

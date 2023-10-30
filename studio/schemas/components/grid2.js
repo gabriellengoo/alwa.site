@@ -11,7 +11,7 @@ import { RiNumber7 } from "react-icons/Ri";
 
 export default {
   name: "grid2",
-  title: "Grid 2",
+  title: "Grid",
   type: "array",
   options: {
     layout: "grid",
@@ -22,6 +22,21 @@ export default {
       title: "Item",
       type: "object",
       fields: [
+        // {
+        //   name: "imageWidth",
+        //   title: "Image Width",
+        //   type: "number",
+        //   description: "Set the width of the image in pixels",
+        //   validation: (Rule) => Rule.min(0).integer(),
+        // },
+        {
+          name: "imageWidth",
+          title: "Image Width",
+          type: "string",
+          hidden: ({ parent, value }) =>
+          !value && (parent?.spacer || parent?.link),
+          description: "Set the width of the image in pixels",
+        },
         {
           name: "image",
           title: "Image",
@@ -36,36 +51,6 @@ export default {
           hidden: ({ parent, value }) =>
             (!value && parent?.spacer) || (!value && parent?.image),
         },
-        // {
-        //   name: "spacer",
-        //   title: "Spacer",
-        //   type: "string",
-        //   options: {
-        //     list: ["0", "1", "2", "3", "4", "5", "6", "7"],
-        //     layout: "dropdown",
-        //   },
-        //   hidden: ({ parent, value }) =>
-        //     (!value && parent?.image) || (!value && parent?.video),
-        // },
-        // {
-        //   name: "double",
-        //   title: "Double",
-        //   type: "boolean",
-        // },
-        // {
-        //   name: "position",
-        //   title: "Position",
-        //   type: "string",
-        //   hidden: ({ parent, value }) => !value && parent?.spacer,
-        //   options: {
-        //     list: [
-        //       { title: "Left", value: "left" },
-        //       { title: "Center", value: "center" },
-        //       { title: "Right", value: "right" },
-        //     ],
-        //     layout: "dropdown",
-        //   },
-        // },
         {
           name: "reference",
           title: "Reference",
@@ -106,7 +91,7 @@ export default {
         },
         {
           name: "hair",
-          title: "Hair",
+          title: "Hair and Makeup",
           type: "string",
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),

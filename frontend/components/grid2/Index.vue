@@ -5,7 +5,7 @@
       <button @click="switchToGrid">Grid</button>
     :class="{ 'active-button': displayGrid }"
     </div> bottom-div-->
-<div class=" ">
+<div class="  pt-[6rem]">
     <!-- <div class="button-container  ">
       <button
         class=""
@@ -29,11 +29,11 @@
       </button>
     </div> -->
 
-    <!-- <div class="button-container ">
+    <div class="button-container ">
     <button class=" uppercase" @click="toggleListView">
       {{ displayGrid ? "overview" : "overview" }}
     </button>
-  </div> -->
+  </div>
 
     <client-only>
       <!-- Grid layout -->
@@ -131,7 +131,8 @@ reverse
                     
                       :class="{ 'text-left ': !displayGrid }"
                     >
-                      <div :class="size == 'small' ? 'smaller-text' : ''" class='flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw]'>
+                    <!--  :class="size == 'small' ? 'smaller-text' : ''" -->
+                      <div  :style="{ width:item.imageWidth + 'px' }"  :class="size == 'small' ? 'smaller-text' : ''" class='mobilesize flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw]'>
                         {{ item.title ? item.title : item.reference.title }}
                        
                       </div>
@@ -147,21 +148,21 @@ reverse
                       :src="item.image.image"
                       v-if="item.image.image"
                       class=" scrollcost "
-                     
-                      :style="{ opacity: imageOpacity }"
+                      :style="{ opacity: imageOpacity, width:item.imageWidth + 'px' }"
+
                     >
                   </MediaImage>
                     <MediaVideo
                     ref="scrollContainer"
                       :id="item.video.id"
                       v-if="item.video.id"
-                      :style="{ opacity: imageOpacity }"
+                      :style="{ opacity: imageOpacity, width:item.imageWidth + 'px' }"
                       class="scrollcost "
                     ></MediaVideo>
                     
                     </div>
                     <!--  md:w-[auto] lg:w-[auto] md:w-[26vw] lg:w-[26vw] -->
-                    <div class=' leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap pl-[.2vw] normal-case font-medium '>
+                    <div  :style="{ width:item.imageWidth + 'px' }"  class='mobilesize leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap pl-[.2vw] normal-case font-medium '>
                     <p v-if="item.photographer">
                           {{ item.photographer }},
                     </p>
@@ -476,6 +477,7 @@ export default {
       this.redraw();
     },
 
+  
     hover(item) {
       if (item.reference.title) {
         this.SET_ACTIVE_PROJECT(item.reference);
@@ -503,7 +505,20 @@ export default {
 }
 }
 
+.portrait {
+  /* Add your portrait styles here */
+  /* height: calc(45.55vh - 20px); */
+  width: calc(25.33vw - 20px); 
+  /* Example: 50% width for portrait images */
+}
 
+/* Landscape Styles */
+.landscape {
+  /* Add your landscape styles here */
+  width: calc(45.33vw - 20px);
+
+  /* width: 33.33%; Example: 33.33% width for landscape images */
+}
 .text-opacity-25 {
 opacity: 0.25;
 }
@@ -600,7 +615,7 @@ opacity: 0 !important;
   /* position: relative; */
   /* top: 0vh !important; 
   transition: top 0.3s ease; */
-padding: .4vw;
+/* padding: .4vw; */
 /* padding-right: 15px; */
 }
 
@@ -1020,7 +1035,11 @@ figure {
 .scrollcost {
     /* flex: 0 0 calc(33.33% - 20px); */
     height: unset;
-    width: calc(99.33vw - 15px);
+    width: calc(99.33vw - 15px) !important;
+}
+
+.mobilesize{
+  width: calc(99.33vw - 15px) !important;
 }
 
 .button-container {

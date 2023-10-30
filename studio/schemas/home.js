@@ -10,54 +10,55 @@ export default {
       title: 'Title',
       type: 'string',
     },
-    {
-      name: 'grid',
-      type: 'grid',
-    },
+    // {
+    //   name: 'grid',
+    //   type: 'grid',
+    // },
     {
       name: 'grid2',
+      title: 'Home grid',
       type: 'grid2',
     },
-    {
-      name: "sections",
-      title: "Grid Sections",
-      type: "array",
+    // {
+    //   name: "sections",
+    //   title: "Grid Sections",
+    //   type: "array",
       // options: {
       //   layout: "grid",
       // },
-      of: [
-        {
-          name: "section",
-          title: "Add grid",
-          type: "object",
-          options: {
-            layout: "grid",
-          },
-          fields: [
-            {
-              name: "title",
-              title: "Title",
-              type: "string",
-            },
-            {
-              name: 'grid',
-              title: "Row landscape based",
-              type: 'grid',
-            },
-            {
-              name: 'grid2',
-              title: "Row portrait based",
-              type: 'grid2',
-            },
-          ],
-          preview: {
-            select: {
-              title: 'title',
-            },
-          },        
-        },
-      ],
-    },
+      // of: [
+      //   {
+      //     name: "section",
+      //     title: "Add grid",
+      //     type: "object",
+      //     options: {
+      //       layout: "grid",
+      //     },
+      //     fields: [
+      //       {
+      //         name: "title",
+      //         title: "Title",
+      //         type: "string",
+      //       },
+      //       {
+      //         name: 'grid',
+      //         title: "Row landscape based",
+      //         type: 'grid',
+      //       },
+      //       {
+      //         name: 'grid2',
+      //         title: "Row portrait based",
+      //         type: 'grid2',
+      //       },
+      //     ],
+      //     preview: {
+      //       select: {
+      //         title: 'title',
+      //       },
+      //     },        
+      //   },
+      // ],
+    // },
   ],
   preview: {
     select: {

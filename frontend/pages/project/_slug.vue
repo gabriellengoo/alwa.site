@@ -196,7 +196,7 @@
                     @click="next"
                     aria-label="Next"
                   >
-                  <!-- > -->
+                  >
                   </button>
 
               </div>
@@ -220,7 +220,7 @@
 import { groq } from "@nuxtjs/sanity";
 import { mapMutations } from "vuex";
 import Header from '~/components/layout/Header.vue'
-import Lenis from '@studio-freight/lenis'; 
+// import Lenis from '@studio-freight/lenis'; 
 
 export default {
   components: {
@@ -264,17 +264,17 @@ export default {
   },
 
     mounted() {
-    const lenis = new Lenis();
+    // const lenis = new Lenis();
 
-    lenis.on('scroll', (e) => {
-      console.log(e);
-    });
-        function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    // lenis.on('scroll', (e) => {
+    //   console.log(e);
+    // });
+    //     function raf(time) {
+    //   lenis.raf(time);
+    //   requestAnimationFrame(raf);
+    // }
 
-    requestAnimationFrame(raf);
+    // requestAnimationFrame(raf);
 
     const overlay = document.querySelector('.overlay-gallery');
 

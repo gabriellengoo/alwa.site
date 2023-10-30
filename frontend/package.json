@@ -21,7 +21,6 @@
     "hls.js": "^1.4.12",
     "install": "^0.13.0",
     "keen-slider": "^6.8.6",
-    "locomotive-scroll": "^4.1.4",
     "node": "^16.15.1",
     "nodejs": "^0.0.0",
     "npm": "^10.1.0",
