@@ -11,10 +11,10 @@ import { RiNumber7 } from "react-icons/Ri";
 
 export default {
   name: "grid2",
-  title: "Grid Bottom",
+  title: "Grid 2",
   type: "array",
   options: {
-    layout: "grid2",
+    layout: "grid",
   },
   of: [
     {
@@ -36,36 +36,36 @@ export default {
           hidden: ({ parent, value }) =>
             (!value && parent?.spacer) || (!value && parent?.image),
         },
-        {
-          name: "spacer",
-          title: "Spacer",
-          type: "string",
-          options: {
-            list: ["0", "1", "2", "3", "4", "5", "6", "7"],
-            layout: "dropdown",
-          },
-          hidden: ({ parent, value }) =>
-            (!value && parent?.image) || (!value && parent?.video),
-        },
-        {
-          name: "double",
-          title: "Double",
-          type: "boolean",
-        },
-        {
-          name: "position",
-          title: "Position",
-          type: "string",
-          hidden: ({ parent, value }) => !value && parent?.spacer,
-          options: {
-            list: [
-              { title: "Left", value: "left" },
-              { title: "Center", value: "center" },
-              { title: "Right", value: "right" },
-            ],
-            layout: "dropdown",
-          },
-        },
+        // {
+        //   name: "spacer",
+        //   title: "Spacer",
+        //   type: "string",
+        //   options: {
+        //     list: ["0", "1", "2", "3", "4", "5", "6", "7"],
+        //     layout: "dropdown",
+        //   },
+        //   hidden: ({ parent, value }) =>
+        //     (!value && parent?.image) || (!value && parent?.video),
+        // },
+        // {
+        //   name: "double",
+        //   title: "Double",
+        //   type: "boolean",
+        // },
+        // {
+        //   name: "position",
+        //   title: "Position",
+        //   type: "string",
+        //   hidden: ({ parent, value }) => !value && parent?.spacer,
+        //   options: {
+        //     list: [
+        //       { title: "Left", value: "left" },
+        //       { title: "Center", value: "center" },
+        //       { title: "Right", value: "right" },
+        //     ],
+        //     layout: "dropdown",
+        //   },
+        // },
         {
           name: "reference",
           title: "Reference",
@@ -76,13 +76,13 @@ export default {
           hidden: ({ parent, value }) =>
             !value && (parent?.spacer || parent?.link),
         },
-        {
-          name: "link",
-          title: "Link",
-          type: "url",
-          hidden: ({ parent, value }) =>
-            !value && (parent?.spacer || parent?.reference),
-        },
+        // {
+        //   name: "link",
+        //   title: "Link",
+        //   type: "url",
+        //   hidden: ({ parent, value }) =>
+        //     !value && (parent?.spacer || parent?.reference),
+        // },
         {
           name: "title",
           title: "Title",
@@ -98,8 +98,29 @@ export default {
           !value && (parent?.spacer || parent?.reference),
         },
         {
+          name: "styleing",
+          title: "Styleing",
+          type: "string",
+          hidden: ({ parent, value }) =>
+          !value && (parent?.spacer || parent?.reference),
+        },
+        {
+          name: "hair",
+          title: "Hair",
+          type: "string",
+          hidden: ({ parent, value }) =>
+          !value && (parent?.spacer || parent?.reference),
+        },
+        {
           name: "year",
-          title: "year",
+          title: "Alwa Role",
+          type: "string",
+          hidden: ({ parent, value }) =>
+          !value && (parent?.spacer || parent?.reference),
+        },
+        {
+          name: "production",
+          title: "Production or Casting",
           type: "string",
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),

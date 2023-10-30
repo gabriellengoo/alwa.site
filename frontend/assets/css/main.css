@@ -42,7 +42,7 @@ html {
   filter: blur(5px); /* Adjust the blur amount as needed */
 }
 
-html.lenis {
+/* html.lenis {
   height: auto;
 }
 
@@ -61,7 +61,7 @@ html.lenis {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
-}
+} */
 
 @media (min-width: 768px)
  {

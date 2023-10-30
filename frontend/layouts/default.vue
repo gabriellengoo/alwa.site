@@ -1,6 +1,6 @@
 <template>
   <main class="min-h-full">
-    <LenisComponent />
+    <!-- <LenisComponent /> -->
     <TransitionComponent />
     <!-- <AboutPage /> -->
     <LayoutHeader
@@ -44,7 +44,7 @@
 <script>
 import { mapActions, mapMutations } from 'vuex'
 import TransitionComponent from '~/components/TransitionComponent.vue';
-import Lenis from '@studio-freight/lenis'; 
+// import Lenis from '@studio-freight/lenis'; 
 import AboutPage from '~/components/AboutPage.vue'
 
 export default {
@@ -54,32 +54,32 @@ export default {
   },
   mounted() {
     // Create a new instance of Lenis
-    const lenis = new Lenis({
-    duration: 1,
-    easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-    direction: "vertical",
-    gestureDirection: "vertical",
-    smooth: true,
-    smoothTouch: true,
-    touchMultiplier: 2,
-});
+//     const lenis = new Lenis({
+//     duration: 1,
+//     easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+//     direction: "vertical",
+//     gestureDirection: "vertical",
+//     smooth: true,
+//     smoothTouch: true,
+//     touchMultiplier: 2,
+// });
 
     // Set up a scroll event listener
-    lenis.on('scroll', (e) => {
+    // lenis.on('scroll', (e) => {
       // Handle scroll events here
-      console.log(e);
-
+      // console.log(e);
+// 
       // You can access scroll-related properties from the 'e' object
       // For example, you can use e.scrollTop to get the current scroll position.
-    });
+    // });
         // Create a requestAnimationFrame function to keep the scroll listener active
-        function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    //     function raf(time) {
+    //   lenis.raf(time);
+    //   requestAnimationFrame(raf);
+    // }
 
     // Start the requestAnimationFrame loop
-    requestAnimationFrame(raf);
+    // requestAnimationFrame(raf);
   },
   components: {
     TransitionComponent,

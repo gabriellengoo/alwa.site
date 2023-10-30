@@ -12,7 +12,7 @@
         
     
 
-      <div v-if="home.sections" class="md:w-9/16">
+      <!-- <div v-if="home.sections" class="md:w-9/16">
         <section
           class="mt-2 space-y-4 md:space-y-0 md:space-x-4 md:flex"
           v-for="section in home.sections"
@@ -27,15 +27,38 @@
             <Richtext :blocks="section.content" v-if="section.content"></Richtext>
           </div>
         </section>
-      </div>
+      </div> -->
      
+ 
+
+      <!-- <div class="md:pr-6" :class="home.sections ? 'md:w-7/16' : 'w-full'">
+        <div v-if="home.sections && home.sections.length">
+        <div v-for="section in home.sections" :key="section._key">
+          <div class="section">
+            Render the Grid component with section.grid if it exists
+            <div class="section-grid" v-if="section.grid">
+              <Grid size="small" :items="section.grid"></Grid>
+            </div>
+            Render the Grid2 component with section.grid2 if it exists
+            <div class="section-grid2" v-if="section.grid2">
+              <Grid2 size="small" :items="section.grid2"></Grid2>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div> -->
+      
+
       <div class="md:pr-6" :class="home.sections ? 'md:w-7/16' : 'w-full'">
         <Grid size="small" :items="home.grid"></Grid>
+        <Grid2 size="small" :items="home.grid2"></Grid2>
       </div>
 
       <!-- <div class="md:pr-6" :class="home.sections ? 'md:w-7/16' : 'w-full'">
         <Grid2 size="small" :items="home.grid2"></Grid2>
       </div> -->
+
+
 
       <div class="bottom-0 left-0 w-full">
     <div class="flex justify-center text-3xl md:text-5xl  w-9/16">
@@ -78,13 +101,31 @@ export default {
 
   async asyncData({ params, $sanity }) {
     const homeQuery = groq`*[_type == "home" ] {..., 
-      grid[] {_key, spacer, "video" : 
+                     grid[] {_key, spacer, "video" : 
                     {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
                       "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
                     title, photographer,year,hair,styleing, link, production,
                       "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
+                     
+                      {..., grid2[] {_key, spacer, "video" : 
+                    {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
+                      "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
+                    title, photographer,year,hair,styleing, link, production,
+                      "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
+                     
+                    
+
+                      {...,
+                        sections[]{
+                          title,
+                          grid,
+                          grid2
+                        }
+                      }
+                      
                       | order(_updatedAt desc)[0]
                       `
+
     const home = await $sanity.fetch(homeQuery)
     return { home }
   },

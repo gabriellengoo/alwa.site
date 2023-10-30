@@ -5,7 +5,7 @@
       <button @click="switchToGrid">Grid</button>
     :class="{ 'active-button': displayGrid }"
     </div> bottom-div-->
-<div class=" pt-[6rem]">
+<div class=" ">
     <!-- <div class="button-container  ">
       <button
         class=""
@@ -29,12 +29,11 @@
       </button>
     </div> -->
 
-    <div class="button-container ">
+    <!-- <div class="button-container ">
     <button class=" uppercase" @click="toggleListView">
-      <!-- {{ displayGrid ? "List" : "Grid" }} -->
       {{ displayGrid ? "overview" : "overview" }}
     </button>
-  </div>
+  </div> -->
 
     <client-only>
       <!-- Grid layout -->
@@ -161,6 +160,7 @@ reverse
                     ></MediaVideo>
                     
                     </div>
+                    <!--  md:w-[auto] lg:w-[auto] md:w-[26vw] lg:w-[26vw] -->
                     <div class=' leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap pl-[.2vw] normal-case font-medium '>
                     <p v-if="item.photographer">
                           {{ item.photographer }},
@@ -513,8 +513,11 @@ opacity: 0 !important;
 }
   .scrollcost{
     flex: 0 0 calc(33.33% - 20px); /* 33.33% for three images in a row, adjust spacing as needed */
-  height: 60vh;
-  height: calc(33.33vw - 15px);
+    /* width: 40vh; */
+    width: calc(32.33vw - 20px);
+    /* width: auto; */
+  /* height: 60vh; */
+  /* height: calc(33.33vw - 15px); */
   /* height: 15%; */
   
 }
@@ -581,6 +584,7 @@ opacity: 0 !important;
 }
 
 .insidescrollcont{
+  /* height: 59vh; */
   padding-bottom: 25px !important;
 }
 
@@ -596,7 +600,7 @@ opacity: 0 !important;
   /* position: relative; */
   /* top: 0vh !important; 
   transition: top 0.3s ease; */
-/* padding: .4vw; */
+padding: .4vw;
 /* padding-right: 15px; */
 }
 

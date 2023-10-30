@@ -1,14 +1,19 @@
 <!-- components/TransitionComponent.vue -->
 
 <template>
-    <div>
-         
-        <transition name="screen-transition" mode="out-in">
-          <!-- <div v-if="isTransitionActive" class="white-screen"></div> -->
+    <div class="">
+  
+        
+      <transition name="screen-transition" mode="out-in" >
+        <!-- <div v-if="isTransitionActive" class="white-screen"></div> -->
       <div v-if="isTransitionActive" class="black-screen"></div>
+      <!-- <div v-if="isTransitionActive" class="bg-white w-screen h-screen absolute z-[100000000]"></div> -->
     </transition>
+
+
     <!-- Text content outside the black-screen div text-zinc-700  text-slate-50-->
-    <div class="text-content overflow-hidden" :class="{ 'active': isTransitionActive }">
+    <div  v-if="isTransitionActive" :class="{ 'active': isTransitionActive }" class="white-screen"></div>
+    <div class="text-content overflow-hidden " :class="{ 'active': isTransitionActive }">
       <div class="flex uppercase w-screen content-center flex-wrap text-neutral-700  h-screen text-xl justify-center p-10">
         <!-- <p class="">
           AWLA
@@ -108,8 +113,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(255, 255, 255);
-  z-index: 100000;
+  /* background: rgba(255, 255, 255, 0.357);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); */
+  background-color: #fff; 
+  z-index: 100001; /* Adjust z-index to be behind the black-screen */
 }
 .blacksText{
     transition: none !important;

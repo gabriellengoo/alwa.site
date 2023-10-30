@@ -378,7 +378,8 @@ display: inline-block;
 .scrollcost{
   height: 55vh;
   /* height: calc(30.33vw - -4px); */
-  height: calc(27.33vw - -4px);  
+  /* height: calc(27.33vw - -4px);   */
+  height: calc(37.33vw - -4px);
 }
 
 .masonry .flex-item {
