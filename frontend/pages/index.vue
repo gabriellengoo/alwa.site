@@ -29,7 +29,7 @@
         </section>
       </div> -->
      
- 
+  
 
       <!-- <div class="md:pr-6" :class="home.sections ? 'md:w-7/16' : 'w-full'">
         <div v-if="home.sections && home.sections.length">
@@ -111,7 +111,7 @@ export default {
                       {..., grid2[] {_key, spacer, "video" : 
                     {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
                       "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
-                    title, photographer,year,imageWidth,hair,styleing, link, production,
+                    title, photographer,year,imageWidth,hair,styleing, link, production,listImage,
                       "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
                      
                     

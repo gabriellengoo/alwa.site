@@ -44,7 +44,7 @@
           </div>
 
               <div class='bottomtextprmb w-screen fixed bottom-0 z-[10] pb-14 uppercase border-t-[.95px] border-black  text-[11.84px]'>
-                  <div class="bottomtextprmbinn  p-[.05vw] pl-[.3vw] " v-if="project.production"> 
+                  <div class="bottomtextprmbinn  p-[.05vw] md:pl-5 " v-if="project.production"> 
                   {{ project.production }}
                 </div>
               </div>

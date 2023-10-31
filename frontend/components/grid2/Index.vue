@@ -114,6 +114,10 @@ reverse
 :width="350"
 reverse
 > -->
+<!-- <header class="flex gap-4 text-xs md:w-2/9" v-if="home.content">
+            <span class="w-1/2 uppercase">{{ home.title }}</span>
+          </header> -->
+
    <div 
             v-for="item in items"
             :key="item._key"
@@ -194,31 +198,25 @@ reverse
         :class="{ 'fade-in': !displayGrid, 'fade-out': displayGrid }"
  
          >
-         <img
+        
+         <!-- <img
                       class="listimg z-0 fixed block"
                       src="https://cdn.sanity.io/images/t4wk0gbl/production/085e01293b5efa5fe496afd7d535461d5acbf85f-1920x2331.jpg?w=2000&fit=max&auto=format&dpr=2"
                       width="100%"
                       height="100%"
                       alt="COPYRIOGHT"
-                    />
-                    <!-- <MediaImage
-                      class="listimg z-0 fixed block"
-                      :src="listImage"
-                      v-if="listImage"
-                      width="100%"
-                      height="100%"
-                      alt="mainimg"
-                    ></MediaImage> -->
-                    <!-- <div  v-for="item in items">
-                      <MediaImage
-                      class="listimg z-0 fixed block"
-                      :src="listImage"
-                      v-if="listImage"
-                      :sizes="
-                        size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
-                      "
-                    ></MediaImage>
+                    /> -->
+                    <!-- <div v-for="item in home" :key="item._id">
+                      <img
+                        class="listimg z-0 fixed block"
+                        :src="item.listImage"
+                        width="100%"
+                        height="100%"
+                        alt="COPYRIGHT"
+                      />
                     </div> -->
+                   
+                  
                   
                     <!--     v-if="displayListImage" -->
         <!-- List layout content here -->
@@ -246,6 +244,20 @@ reverse
             <div> </div>
             <div> </div>
           </div>
+          <div  v-for="item in items">
+            <img
+                        class="listimg z-0 fixed block hidemobile"
+                        :src="item.listImage"
+                    
+                      v-if="item.listImage"
+                      :sizes="
+                        size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
+                      "
+                      
+                      
+                      />
+          </div>
+         
           <div class="hoverarealist bg-[#f7f7f7]" 
             >
             <!--  @mouseover="toggleListImage"
@@ -268,6 +280,7 @@ reverse
             ]"
                 
           >
+          
           <!--  @mouseenter="hoveredItem = item; 
             lastHoveredItem = item"
             @mouseleave="hoveredItem = null" -->
@@ -298,7 +311,8 @@ reverse
                 ]"
                 v-if="item.reference.slug"
                 :to="`/project/${item.reference.slug}`"
-             
+                @mouseenter.native="hover(item)"
+                @mouseleave.native="leave()"
               >
               <!--  for fade to work
                 @mouseenter.native="hover(item)"
@@ -315,6 +329,8 @@ reverse
                         : ''
                     "
                   >
+               
+                  
                   <!--   @mouseenter="hoveredItem = item"
                       @mouseleave="hoveredItem = null" -->
                     <figcaption
@@ -385,6 +401,7 @@ reverse
 
               <div class='sticky contain-image'>
                 <span class="imgcont">
+                 
                 <MediaImage
                       :size="item.image.size"
                       :aspect="item.image.aspect"
@@ -948,6 +965,10 @@ figure {
 .list-header {
    padding-left: 0vw !important;
    width: 63% !important;
+}
+
+.hidemobile{
+  display: none  !important;
 }
 
 .listText{

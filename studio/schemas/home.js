@@ -21,11 +21,11 @@ export default {
     //   hidden: ({ parent, value }) =>
     //     (!value && parent?.spacer) || (!value && parent?.video),
     // },
-    {
-      name: 'listImage',
-      title: 'List Main Image',
-      type: 'url',
-    },
+    // {
+    //   name: 'listImage',
+    //   title: 'List Main Image',
+    //   type: 'url',
+    // },
     {
       name: 'grid2',
       title: 'Home grid',
