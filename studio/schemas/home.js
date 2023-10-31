@@ -13,7 +13,19 @@ export default {
     // {
     //   name: 'grid',
     //   type: 'grid',
+    // }, 
+    // {
+    //   name: "listImage",
+    //   title: "List main image",
+    //   type: "image",
+    //   hidden: ({ parent, value }) =>
+    //     (!value && parent?.spacer) || (!value && parent?.video),
     // },
+    {
+      name: 'listImage',
+      title: 'List Main Image',
+      type: 'url',
+    },
     {
       name: 'grid2',
       title: 'Home grid',

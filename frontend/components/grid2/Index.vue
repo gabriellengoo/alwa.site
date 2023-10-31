@@ -187,22 +187,54 @@ reverse
 
       
       <!-- List layout -->
+      
       <div
         v-else
         class="list-container h-screen uppercase fade-in-out"
         :class="{ 'fade-in': !displayGrid, 'fade-out': displayGrid }"
-      >
+ 
+         >
+         <img
+                      class="listimg z-0 fixed block"
+                      src="https://cdn.sanity.io/images/t4wk0gbl/production/085e01293b5efa5fe496afd7d535461d5acbf85f-1920x2331.jpg?w=2000&fit=max&auto=format&dpr=2"
+                      width="100%"
+                      height="100%"
+                      alt="COPYRIOGHT"
+                    />
+                    <!-- <MediaImage
+                      class="listimg z-0 fixed block"
+                      :src="listImage"
+                      v-if="listImage"
+                      width="100%"
+                      height="100%"
+                      alt="mainimg"
+                    ></MediaImage> -->
+                    <!-- <div  v-for="item in items">
+                      <MediaImage
+                      class="listimg z-0 fixed block"
+                      :src="listImage"
+                      v-if="listImage"
+                      :sizes="
+                        size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
+                      "
+                    ></MediaImage>
+                    </div> -->
+                  
+                    <!--     v-if="displayListImage" -->
         <!-- List layout content here -->
         <div
-          class="list-container "
+          class="list-container"
           :class="[
             // !displayGrid ? 'list-layout-item' : '',
             size == 'small' ? 'mb-0 md:mb-1 2xl:mb-2' : '',
           ]"
+            
         >
           <div
             class="list-header uppercase h-space-12 md:h-space-6 2xl:h-space-4 custom-text-size"
-          >
+         
+            >
+        
             <!-- <div class='projectmobile'>Project</div> -->
             <div class='projectmobileyes flex' >
               <div @click="toggleRoleView" class='pr-3' :class="{ 'text-opacity-100': !displayRole, 'text-opacity-25': displayRole }">Project</div> /
@@ -214,6 +246,10 @@ reverse
             <div> </div>
             <div> </div>
           </div>
+          <div class="hoverarealist bg-[#f7f7f7]" 
+            >
+            <!--  @mouseover="toggleListImage"
+            @mouseleave="toggleListImage" -->
           <div
             class="liststuff relative transition-opacity duration-300 item "
             v-for="item in items"
@@ -230,9 +266,11 @@ reverse
                 : '',
               !displayGrid ? 'list-layout-item' : '', // Add list layout class
             ]"
-            @mouseenter="hoveredItem = item; lastHoveredItem = item"
-            @mouseleave="hoveredItem = null"
+                
           >
+          <!--  @mouseenter="hoveredItem = item; 
+            lastHoveredItem = item"
+            @mouseleave="hoveredItem = null" -->
             <figure
               class="list-container"
               :class="[
@@ -247,6 +285,7 @@ reverse
                   : 'h-space-12 md:h-space-6 2xl:h-space-4',
                 size == 'small' ? 'mb-0 md:mb-1 2xl:mb-2' : '',
               ]"
+           
             >
               <NuxtLink
                 :class="[
@@ -259,9 +298,11 @@ reverse
                 ]"
                 v-if="item.reference.slug"
                 :to="`/project/${item.reference.slug}`"
-                @mouseenter.native="hover(item)"
-                @mouseleave.native="leave()"
+             
               >
+              <!--  for fade to work
+                @mouseenter.native="hover(item)"
+                @mouseleave.native="leave()" -->
                 <span
                   class="flex flex-col items-start h-full max-w-full"
                   :class="size == 'small' ? 'w-full' : 'w-auto'"
@@ -274,12 +315,12 @@ reverse
                         : ''
                     "
                   >
+                  <!--   @mouseenter="hoveredItem = item"
+                      @mouseleave="hoveredItem = null" -->
                     <figcaption
                       class="listText relative flex w-full cursor-pointer pl-[35vw] leading-[17px] duration-300 hover:!text-black focus:!text-black group-hover:text-midGray"
                       v-if="size == 'small'"
                       :class="{ 'text-left ': !displayGrid }"
-                      @mouseenter="hoveredItem = item"
-                      @mouseleave="hoveredItem = null"
                     >
                       <div class="listTextInner">
                         <div :class="size == 'small' ? 'smaller-text' : ''">
@@ -353,9 +394,10 @@ reverse
                       :sizes="
                         size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
                       "
-                       :class="{ 'image-opacity-0': !hoveredItem }"
+                     
                     ></MediaImage>
                 </span>
+                <!--   :class="{ 'image-opacity-0': !hoveredItem }" -->
                 <span class="videocont">
                     <MediaVideo
                       :id="item.video.id"
@@ -364,7 +406,7 @@ reverse
                       :sizes="
                         size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
                       "
-                      :class="{ 'image-opacity-0': !hoveredItem }"
+                   
                       class="borderlist   "
                     ></MediaVideo>
                 </span>
@@ -377,6 +419,7 @@ reverse
             </figure>
           </div>
         </div>
+        </div>
       </div>
     </client-only>
   </div>
@@ -387,6 +430,8 @@ import { mapMutations, mapState } from "vuex";
 import Vue from 'vue'
 import VueMarqueeSlider from 'vue-marquee-slider';
 // import LocomotiveScroll from 'locomotive-scroll';
+// import client from './SanityClient.js'
+import { SanityClient } from "@sanity/client";
 
 Vue.use(VueMarqueeSlider)
 
@@ -398,6 +443,7 @@ export default {
       scrollLeft: 0,
       containerClass: "flex flex-col w-full h-full",
       imageClass: "contain-image",
+      displayListImage: true,
       displayRole: true, // Initialize displayRole
       imageOpacity: 1, // Add this property
       displayGrid: true, // Use displayGrid to track the layout state
@@ -416,6 +462,10 @@ export default {
   methods: {
     ...mapMutations(["SET_ACTIVE_PROJECT", "SET_ACTIVE_TALENT"]),
    
+    toggleListImage() {
+      this.displayListImage = !this.displayListImage;
+    },
+
     toggleListView() {
     this.displayGrid = !this.displayGrid;
     // You can also add logic to redraw the layout here if needed
@@ -505,6 +555,20 @@ export default {
 }
 }
 
+.hoverarealist{
+  height: 100vh;
+  /* height: auto; */
+  padding-bottom: 20vh;
+  width: auto;
+  background-color: rgba(247, 247, 247, 0) !important;
+  z-index: 2;
+  position: relative;
+  top:0;
+}
+
+.hoverarealist:hover{
+  background-color: rgb(247 247 247) !important;
+}
 
 .list-container:nth-child(2) .list-layout-item .contain-image{
 /* display: none; */
@@ -539,6 +603,13 @@ export default {
     transition-duration: 0s !important;
     animation: none !important;
   } */
+
+  .listimg{
+    left: 5vw;
+    top: 25vh;
+    width: 25vw;
+    height: auto;
+  }
 
 .portrait {
   /* Add your portrait styles here */
@@ -797,6 +868,22 @@ figure{
   transition-duration: 0s !important;
   animation: none !important;
 }
+
+/* .list-layout-item:hover  .contain-image{
+  display: none;
+  }
+
+  .list-layout-item:nth-child(2) .contain-image{
+    display:block;
+    position: fixed;
+  } */
+
+  /* .list-stuff:hover + .list-layout-item:nth-child(2) .contain-image {
+  display: none;
+} */
+
+
+
 
 
 .list-layout-item  .contain-image img{

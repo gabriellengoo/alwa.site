@@ -58,7 +58,7 @@
         <Grid2 size="small" :items="home.grid2"></Grid2>
       </div> -->
 
-
+    
 
       <div class="bottom-0 left-0 w-full">
     <div class="flex justify-center text-3xl md:text-5xl  w-9/16">
@@ -100,7 +100,8 @@ export default {
   },
 
   async asyncData({ params, $sanity }) {
-    const homeQuery = groq`*[_type == "home" ] {..., 
+    const homeQuery = groq`*[_type == "home" ]  {..., listImage} {..., 
+     
                      grid[] {_key, spacer, "video" : 
                     {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
                       "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
