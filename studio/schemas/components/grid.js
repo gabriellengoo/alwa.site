@@ -114,6 +114,7 @@ export default {
         {
           name: "year",
           title: "Alwa Role",
+          description: " this is the footer",
           type: "string",
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),

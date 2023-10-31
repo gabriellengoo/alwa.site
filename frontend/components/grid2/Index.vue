@@ -140,14 +140,14 @@ reverse
                     </figcaption>
                     
                     <!-- bordercont -->
-                    <div class="  ">
+                    <div class="   ">
                     <MediaImage
                       ref="scrollContainer"
                         @mouseenter="handleMouseEnter"
                         @mouseleave="handleMouseLeave"
                       :src="item.image.image"
                       v-if="item.image.image"
-                      class=" scrollcost "
+                      class=" scrollcost hover "
                       :style="{ opacity: imageOpacity, width:item.imageWidth + 'px' }"
 
                     >
@@ -157,10 +157,9 @@ reverse
                       :id="item.video.id"
                       v-if="item.video.id"
                       :style="{ opacity: imageOpacity, width:item.imageWidth + 'px' }"
-                      class="scrollcost "
+                      class="scrollcost  "
                     ></MediaVideo>
-                    
-                    </div>
+                   </div>
                     <!--  md:w-[auto] lg:w-[auto] md:w-[26vw] lg:w-[26vw] -->
                     <div  :style="{ width:item.imageWidth + 'px' }"  class='mobilesize leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap pl-[.2vw] normal-case font-medium '>
                     <p v-if="item.photographer">
@@ -186,6 +185,7 @@ reverse
         </div>
       </div>
 
+      
       <!-- List layout -->
       <div
         v-else
@@ -504,6 +504,41 @@ export default {
     padding-right: 0rem !important;
 }
 }
+
+
+.list-container:nth-child(2) .list-layout-item .contain-image{
+/* display: none; */
+/* display: block;
+    position: fixed; */
+}
+
+.list-container:nth-child(2){
+/* display: none; */
+/* display: block;
+    position: fixed; */
+}
+.list-layout-item:nth-child(2) .contain-image{
+    /* display:block;
+    position: fixed; */
+    /* position: absolute; */
+    /* top: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vh; */
+    /* transform: scale(12); */
+  }
+  /* .list-layout-item:nth-child(2):hover .contain-image{
+    display:contents;
+    top: 6.3vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: none  !important;
+    transition-duration: 0s !important;
+    animation: none !important;
+  } */
 
 .portrait {
   /* Add your portrait styles here */
@@ -893,16 +928,18 @@ figure {
 
 .hover {
   top: 0vh;
+  position: relative;
   /* margin-top: 2px; */
   /* transition: margin 0.3s ease;  */
-  /* transition: top 0.3s ease; */
+  transition: top 0.3s ease;
 }
 
 .hover:hover {
+  position: relative;
   /* margin-top: 10px !important;  */
-  /* top: 3vh !important;  */
+  top: .4vh !important; 
   /* transition: margin 0.3s ease; */
-  /* transition: top 0.3s ease; */
+  transition: top 0.3s ease;
 }
 
 .button-container {

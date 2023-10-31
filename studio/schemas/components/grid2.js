@@ -99,6 +99,7 @@ export default {
         {
           name: "year",
           title: "Alwa Role",
+          description: " This is the footer on project pages",
           type: "string",
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),
