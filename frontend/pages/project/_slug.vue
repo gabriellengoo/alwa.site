@@ -11,7 +11,7 @@
         >
           <div class="justify-between w-full flex items-end mobiletitle">
             <div
-              class="md:pl-5 pb-5 fixed top-[0vh] z-[10] pt-36 text-[14.21px] projecttextmb"
+              class="md:pl-5 pb-5 fixed top-[0vh] z-[10] pt-36 text-[14.21px] w-[25vw] projecttextmb"
             >
               <div class="pb-5">{{ project.title }}</div>
               <div
@@ -31,6 +31,7 @@
               </button>
             </div>
           </div>
+          
         </div>
 
         <div
@@ -137,20 +138,27 @@
                           class="gallery-image relative object-cover object-center w-full h-auto p-4 my-auto"
                         ></MediaVideoPlay>
                       </figure>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="absolute arrow z-[100000] w-1/2 text-black next text-4xl"
-                >
-                  <button
-                    class="z-[100000] pointer-events-auto w-1/2 h-1/6 text-black next text-4xl"
+                      <button
+                    class="nextbtn z-[100000] pointer-events-auto w-1/2 h-1/6 text-black next text-4xl"
                     @click="next"
                     aria-label="Next"
                   >
                     >
                   </button>
+                    </div>
+                  </div>
                 </div>
+                <!-- <div
+                  class="absolute arrow z-[100000] w-1/2 text-black next text-4xl"
+                >
+                  <button
+                    class="nextbtn z-[100000] pointer-events-auto w-1/2 h-1/6 text-black next text-4xl"
+                    @click="next"
+                    aria-label="Next"
+                  >
+                    >
+                  </button>
+                </div> -->
               </section>
             </div>
           </div>
@@ -366,6 +374,7 @@ export default {
   width: 100vw;
   height: 100vh;
   background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgb(255 255 255 / 45%);
   backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
   transition: backdrop-filter 0.3s ease; /* Add a smooth transition effect */
   display: flex;
@@ -404,12 +413,22 @@ export default {
 
 button {
   /* cursor: url('data:image/svg+xml;utf8,<svg height="15" width="15" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>') 15 15,alias; */
-  cursor: crosshair;
+  /* cursor: crosshair;
   padding-left: 55vw;
   position: relative;
   margin-top: auto;
   margin-bottom: auto;
   height: 80vh;
+  width: fit-content; */
+}
+
+.nextbtn{
+  cursor: crosshair;
+  padding-left: 55vw;
+  position: absolute;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: inherit;
   width: fit-content;
 }
 
