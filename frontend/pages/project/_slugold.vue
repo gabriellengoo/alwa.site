@@ -405,7 +405,7 @@ export default {
 button {
   /* cursor: url('data:image/svg+xml;utf8,<svg height="15" width="15" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>') 15 15,alias; */
   cursor: crosshair;
-  padding-left: 55vw;
+  padding-left: 5vw;
   position: relative;
   margin-top: auto;
   margin-bottom: auto;
