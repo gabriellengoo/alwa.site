@@ -31,7 +31,6 @@
               </button>
             </div>
           </div>
-          
         </div>
 
         <div
@@ -61,7 +60,6 @@
             >
               <MediaImage
                 ref="scrollContainer"
-           
                 :src="image.image.asset._ref"
                 v-if="image.image"
                 class="scrollcost"
@@ -139,12 +137,12 @@
                         ></MediaVideoPlay>
                       </figure>
                       <button
-                    class="nextbtn z-[100000] pointer-events-auto w-1/2 h-1/6 text-black next text-4xl"
-                    @click="next"
-                    aria-label="Next"
-                  >
-                    >
-                  </button>
+                        class="nextbtn z-[100000] pointer-events-auto w-1/2 h-1/6 text-black next text-4xl"
+                        @click="next"
+                        aria-label="Next"
+                      >
+                        >
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -199,7 +197,7 @@ export default {
           enabled: true,
         },
       },
-
+      imageOpacity: 1, // Add this property
       scrolled: false,
       back: false,
     };
@@ -239,6 +237,7 @@ export default {
 
     openImageModal(index) {
       this.clickedImageIndex = index;
+      this.swiperOptions = { ...this.swiperOptions, initialSlide: index };
       this.isGalleryExpanded = true;
     },
 
@@ -422,7 +421,7 @@ button {
   width: fit-content; */
 }
 
-.nextbtn{
+.nextbtn {
   cursor: crosshair;
   padding-left: 55vw;
   position: absolute;
