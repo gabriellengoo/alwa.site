@@ -704,7 +704,7 @@ button .circle:hover {
       /* min-height: 365px; */
       width: 100vw;
       max-width: 100vw;
-}
+ }
 
  .mobile{
     display: none;
