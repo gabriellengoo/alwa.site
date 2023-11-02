@@ -72,7 +72,7 @@
         <!-- Add an SVG icon here -->
         <div class="flex justify-between mobilemenu">
           <NuxtLink class="w-[11vw] h-auto" to="/">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
+            <svg class="fill-[#505050]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
                   <path
@@ -137,11 +137,13 @@
                 ><span
                   speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                   speechify-initial-font-size="16px"
-                  ><span
+                  >
+                  <!-- <span
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px" class=" pointer-events-auto" @click="toggleBlueBox"
                     >Back</span
-                  ></span
+                  > -->
+                  </span
                 ><span
                   aria-hidden="true"
                   class="pl-8"
@@ -387,6 +389,12 @@ export default {
 
       // Update the content container position
       this.updateContentContainerPosition();
+
+      if (this.isBlueBoxActive) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
     },
     updateContentContainerPosition() {
       const isMobile = window.innerWidth <= 768;
@@ -649,9 +657,9 @@ button .circle:hover {
   transition: height 1s ease, opacity 0.5s ease; /* Add smooth transitions */
 }
 .white-box {
-  /* position: fixed; */
+  position: fixed;
   /* position: relative; */
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   left: 0;
   width: 100%;
@@ -661,9 +669,10 @@ button .circle:hover {
   /* height: 0; */
   opacity: 0;
   pointer-events: none;
-  background: rgba(255, 255, 255, 0.357);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  /* background: rgba(255, 255, 255, 0.357); */
+  background: rgba(255, 255, 255, 0.82);
+  /* -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); */
   transition: opacity 1s ease; /* Add smooth transitions */
   z-index: -10;
 }
@@ -720,7 +729,12 @@ button .circle:hover {
 }
 
 .blue-box {
-    position: fixed;
+    position: relative;
+    top: 0 !important;
+    left: 0 !important;
+    width: 110%;
+    height: 0;
+    /* background-color: #212121; */
 }
 
 .white-box {
