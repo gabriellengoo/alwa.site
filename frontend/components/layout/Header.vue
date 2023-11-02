@@ -111,8 +111,12 @@
         <div
         v-if="isBlueBoxActive"
   class="text flex flex-1 flex-col justify-between lg:flex-row"
-  :style="{ transform: isBlueBoxActive ? 'translateY(0vh)' : 'translateY(50)' }"
         >
+        <!-- <div
+        v-if="isBlueBoxActive"
+  class="text flex flex-1 flex-col justify-between lg:flex-row"
+  :style="{ transform: isBlueBoxActive ? 'translateY(0vh)' : 'translateY(50)' }"
+        > -->
           <div
             class="text flex p-[10px] flex-1 flex-col justify-between lg:flex-row"
             speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
