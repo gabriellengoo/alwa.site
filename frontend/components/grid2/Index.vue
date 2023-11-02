@@ -1143,7 +1143,7 @@ figure {
 
   .scrollcost {
     /* flex: 0 0 calc(33.33% - 20px); */
-    height: unset;
+    height: unset !important;
     width: calc(99.33vw - 15px) !important;
   }
 
