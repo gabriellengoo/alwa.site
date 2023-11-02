@@ -145,9 +145,9 @@ reverse
                         class="scrollcost hover"
                         :style="{
                           opacity: imageOpacity,
-                          // width: item.imageWidth + 'px',
+                           width: item.imageWidth + 'px',
                         }"
-                      >
+                      > 
                       </MediaImage>
                       <MediaVideo
                         ref="scrollContainer"
