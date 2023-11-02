@@ -31,7 +31,7 @@ export default {
           name: "imageWidth",
           title: "Image Width",
           type: "number",
-          description: "Set the width of the image in pixels",
+          description: "Set the width of the image in viewporth width",
           validation: (Rule) => Rule.min(0).integer(),
         },
         {

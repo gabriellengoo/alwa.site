@@ -42,6 +42,9 @@ html {
   filter: blur(5px); /* Adjust the blur amount as needed */
 }
 
+.resize-animation {
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out !important;
+}
 /* html.lenis {
   height: auto;
 }

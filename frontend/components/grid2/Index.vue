@@ -129,7 +129,7 @@ reverse
                       <div
                         :style="{ width: `calc(${item.imageWidth}vw - 20px)` }"
                         :class="size == 'small' ? 'smaller-text' : ''"
-                        class="mobilesize flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw]"
+                        class="mobilesize resize-animation flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw]"
                       >
                         {{ item.title ? item.title : item.reference.title }}
                       </div>
@@ -143,7 +143,7 @@ reverse
                         @mouseleave="handleMouseLeave"
                         :src="item.image.image"
                         v-if="item.image.image"
-                        class="scrollcost hover"
+                        class="scrollcost resize-animation hover"
                         :style="{
                           opacity: imageOpacity,
                            width: `calc(${item.imageWidth}vw - 20px)`,
@@ -158,13 +158,13 @@ reverse
                           opacity: imageOpacity,
                           width: `calc(${item.imageWidth}vw - 20px)`,
                         }"
-                        class="scrollcost"
+                        class="scrollcost resize-animation"
                       ></MediaVideo>
                     </div>
                     <!--  md:w-[auto] lg:w-[auto] md:w-[26vw] lg:w-[26vw] -->
                     <div
                       :style="{ width: `calc(${item.imageWidth}vw - 20px)` }"
-                      class="mobilesize leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap pl-[.2vw] normal-case font-medium"
+                      class="mobilesize resize-animation leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap pl-[.2vw] normal-case font-medium"
                     >
                       <p v-if="item.photographer">{{ item.photographer }},</p>
                       <p v-if="item.production">{{ item.production }},</p>
