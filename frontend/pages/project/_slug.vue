@@ -373,7 +373,7 @@ export default {
   width: 100vw;
   height: 100vh;
   background-color: rgba(255, 255, 255, 0.9);
-  background-color: rgb(255 255 255 / 45%);
+  /* background-color: rgb(255 255 255 / 45%); */
   backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
   transition: backdrop-filter 0.3s ease; /* Add a smooth transition effect */
   display: flex;
