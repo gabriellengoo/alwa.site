@@ -642,7 +642,8 @@ export default {
 .scrollcost {
   flex: 0 0 calc(33.33% - 20px); /* 33.33% for three images in a row, adjust spacing as needed */
   /* width: 40vh; */
-  width: calc(32.33vw - 20px);
+  width: calc(32.33vw - 20px) !important;
+  height: 60vh !important;
   /* width: auto; */
   /* height: 60vh; */
   /* height: calc(33.33vw - 15px); */
