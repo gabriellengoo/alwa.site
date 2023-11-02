@@ -27,27 +27,27 @@ export default {
       title: "Item",
       type: "object",
       fields: [
-        // {
-        //   name: "imageWidth",
-        //   title: "Image Width",
-        //   type: "number",
-        //   description: "Set the width of the image in pixels",
-        //   validation: (Rule) => Rule.min(0).integer(),
-        // },
+        {
+          name: "imageWidth",
+          title: "Image Width",
+          type: "number",
+          description: "Set the width of the image in pixels",
+          validation: (Rule) => Rule.min(0).integer(),
+        },
         {
           name: 'listImage',
           title: 'List Main Image',
           description: "This will be the image you see first on the list, only set the first grid image url",
           type: 'url',
         },
-        {
-          name: "imageWidth",
-          title: "Image Width",
-          type: "string",
-          hidden: ({ parent, value }) =>
-          !value && (parent?.spacer || parent?.link),
-          description: "Set the width of the image in pixels",
-        },
+        // {
+        //   name: "imageWidth",
+        //   title: "Image Width",
+        //   type: "string",
+        //   hidden: ({ parent, value }) =>
+        //   !value && (parent?.spacer || parent?.link),
+        //   description: "Set the width of the image in pixels",
+        // },
         {
           name: "image",
           title: "Image",

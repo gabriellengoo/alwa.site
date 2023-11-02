@@ -124,9 +124,10 @@ reverse
                     :to="`/project/${item.reference.slug}`"
                   >
                     <figcaption :class="{ 'text-left ': !displayGrid }">
-                      <!--  :class="size == 'small' ? 'smaller-text' : ''" -->
+                      <!--  :class="size == 'small' ? 'smaller-text' : ''" 
+                          width: calc(32.33vw - 20px);-->
                       <div
-                        :style="{ width: item.imageWidth + 'px' }"
+                        :style="{ width: `calc(${item.imageWidth}vw - 20px)` }"
                         :class="size == 'small' ? 'smaller-text' : ''"
                         class="mobilesize flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw]"
                       >
@@ -145,7 +146,7 @@ reverse
                         class="scrollcost hover"
                         :style="{
                           opacity: imageOpacity,
-                           width: item.imageWidth + 'px',
+                           width: `calc(${item.imageWidth}vw - 20px)`,
                         }"
                       > 
                       </MediaImage>
@@ -155,14 +156,14 @@ reverse
                         v-if="item.video.id"
                         :style="{
                           opacity: imageOpacity,
-                          width: item.imageWidth + 'px',
+                          width: `calc(${item.imageWidth}vw - 20px)`,
                         }"
                         class="scrollcost"
                       ></MediaVideo>
                     </div>
                     <!--  md:w-[auto] lg:w-[auto] md:w-[26vw] lg:w-[26vw] -->
                     <div
-                      :style="{ width: item.imageWidth + 'px' }"
+                      :style="{ width: `calc(${item.imageWidth}vw - 20px)` }"
                       class="mobilesize leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap pl-[.2vw] normal-case font-medium"
                     >
                       <p v-if="item.photographer">{{ item.photographer }},</p>
