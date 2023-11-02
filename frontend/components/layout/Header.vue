@@ -649,9 +649,9 @@ button .circle:hover {
   transition: height 1s ease, opacity 0.5s ease; /* Add smooth transitions */
 }
 .white-box {
-  /* position: fixed; */
+  position: fixed;
   /* position: relative; */
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   left: 0;
   width: 100%;
