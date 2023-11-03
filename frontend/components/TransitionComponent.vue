@@ -19,7 +19,7 @@
           AWLA
         </p> -->
         <div class="svgcontainer reveal  h-auto grayscale">
-            <svg class="copyr fill-[#505050] md:w-[10vw] sm:w-[55vw] p-0 grayscale" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
+            <svg class="copyr fill-[#505050] md:w-[10vw] sm:w-[35vw] p-0 grayscale" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
                   <path
@@ -85,7 +85,7 @@
 } */
 @media (max-width: 768px) {
 .copyr{
-  width: 70vw;
+  width: 20vw;
 }
 }
 

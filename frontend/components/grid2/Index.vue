@@ -5,7 +5,7 @@
       <button @click="switchToGrid">Grid</button>
     :class="{ 'active-button': displayGrid }"
     </div> bottom-div-->
-    <div class="pt-[6rem] 2xl:pt-[14rem] ">
+    <div class="pt-[6rem] sm:pt-[7rem] mobilegridpad 2xl:pt-[14rem] ">
       <!-- <div class="button-container  ">
       <button
         class=""
@@ -561,8 +561,18 @@ export default {
   pr-6 {
     padding-right: 0rem !important;
   }
+  .mobilegridpad{
+  padding-top: 6rem;
+}
 }
 
+@media screen and (max-width: 1023px) {
+  /* Your CSS styles for screens smaller than 1024px go here */
+  /* For example, you can change the font size or layout */
+.mobilegridpad{
+  /* padding-top: 0.5vw; */
+}
+}
 .hoverarealist {
   height: 100vh;
   /* height: auto; */

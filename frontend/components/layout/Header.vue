@@ -71,7 +71,7 @@
 
         <!-- Add an SVG icon here -->
         <div class="flex justify-between mobilemenu">
-          <NuxtLink class="w-[11vw] h-auto" to="/">
+          <NuxtLink class="w-[11vw] mobilemenupad h-auto" to="/">
             <svg class="fill-[#505050]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
@@ -84,7 +84,7 @@
           </NuxtLink>
 
           
-          <button class="pl-2 uppercase flex items-end " @click="toggleBlueBox">
+          <button class="pl-2 uppercase flex items-end mobilemenupad " @click="toggleBlueBox">
     About
     <span
       class="inline-block px-4 text-midGray"
@@ -110,6 +110,7 @@
         <transition name="fade" mode="out-in">
         <div
         v-if="isBlueBoxActive"
+        @click="toggleBlueBox"
   class="text flex flex-1 flex-col justify-between lg:flex-row"
         >
         <!-- <div
@@ -124,9 +125,10 @@
           >
             <button
               title="Close Information Drawer"
-              class="flex uppercase lg:hidden pt-[20vh]"
+              class="flex uppercase lg:hidden pt-[20vh] z-[100000]"
               speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
               speechify-initial-font-size="16px"
+              @click="toggleBlueBox"
             >
             <span
                 class=""
@@ -134,10 +136,10 @@
                 speechify-initial-font-size="16px"
                 ><span
                   aria-hidden="true"
-                  class="pr-8 "
+                  class="pr-8 z-[100000]"
                   speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                   speechify-initial-font-size="16px"
-                  >/</span
+                  >/ Back</span
                 ><span
                   speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                   speechify-initial-font-size="16px"
@@ -186,9 +188,9 @@
                       alt="logo"
                     />
           </span> is a production and casting company based in London active worldwide
-               
+               <!-- md:hidden -->
                 <div
-                class="portable-text lg:hidden md:hidden sm:pt-5"
+                class="portable-text lg:hidden md:pt-5 sm:pt-5"
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
               >
@@ -639,7 +641,8 @@ button .circle:hover {
 .blue-box div {
   position: relative;
   transition: height 1s ease, opacity 0.5s ease; /* Add smooth transitions */
-  pointer-events: none; /* Disable pointer events when hidden */
+  /* pointer-events: none;  */
+  /* Disable pointer events when hidden */
   /* z-index: 100; */
    /* font-size: 0.925rem; */
   /* font-weight: initial; */
@@ -741,6 +744,9 @@ button .circle:hover {
     /* background-color: #212121; */
 }
 
+svg{
+  width: 17vw;
+}
 .white-box {
   position: fixed;
 }
@@ -783,82 +789,42 @@ header{
 
 }
 
-/* For iPads in Portrait Mode */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
+@media screen and (max-width: 1023px) {
+  /* Your CSS styles for screens smaller than 1024px go here */
+  /* For example, you can change the font size or layout */
+  .blue-box.active{
+    height: 100vh;
+  }
 
+  svg{
+  width: 14vw;
+}
+  .blue-box{
+    top:0;
+  }
+  .mobile{
+    display:contents;
+  }
 
-  .blue-box {
-  top: -12vh;
-  left: -2vw;
-  width: 110%;
-  height: 0;
-  /* background-color: #212121; */
-}
-}
-
-/* For iPads in Landscape Mode */
-@media only screen and (min-width: 1024px) {
-  .blue-box {
-  /* top: -14vh;
-  left: -2vw;
-  width: 110%;
-  height: 0; */
-  /* background-color: #212121; */
-}
+  .headposition{
+    display: none;   
 }
 
-/* For 12.9-inch iPad Pro in Portrait Mode */
-@media only screen and (min-width: 1024px) and (max-width: 1366px) {
-  .blue-box {
-  /* top: -7vh;
-  left: -2vw;
-  width: 110%;
-  height: 0; */
-  /* background-color: #212121; */
+.mobilemenu{
+  border-bottom-width: 0.95px;
+    border-color: rgba(28, 25, 23);
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
 }
-.blue-box {
-  top: -13vh;
-  /* width: 110%; */
-  height: 0;
-      top: -7vh;
-    /* left: -2vw; */
-    width: 100vw;
-  /* transition: none; */
-  /* background-color: #212121; */
 
+.mobilemenupad{
+  padding: 0.5vw;
 }
 }
 
-@media (max-width: 1366px) {
-  .blue-box {
-  /* top: -7vh;
-  left: -2vw;
-  width: 110%;
-  height: 0; */
-  /* background-color: #212121; */
-}
-.blue-box {
-  top: -1vh;
-  /* width: 110%; */
-  height: 0;
-      /* top: -7vh; */
-    /* left: -2vw; */
-    width: 100vw;
-  /* transition: none; */
-  /* background-color: #212121; */
 
-}
-}
 
-/* For 12.9-inch iPad Pro in Landscape Mode */
-@media only screen and (min-width: 1366px) and (max-width: 1024px) {
-  .blue-box {
-  top: -11vh;
-  left: -2vw;
-  width: 110%;
-  height: 0;
-  /* background-color: #212121; */
-}}
+
 
 .white-box.active {
   height: 100vh; /* Adjust the height as needed */

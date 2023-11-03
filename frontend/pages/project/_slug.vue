@@ -3,17 +3,20 @@
   <div class="relative md:min-h-fit md:overflow-hidden">
     <LenisComponent />
     <section>
-      <div class="bottom-div pt-28">
+      <!-- pt-28 -->
+      <div class="bottom-div ">
         <!-- titles -->
         <div
           v-if="project"
-          class="ml-auto text-lg uppercase lg:text-xl md:text-xl font-heading w-full flex justify-center"
+          
+          class="ml-auto  text-lg uppercase lg:text-xl md:text-xl font-heading w-full flex justify-center"
         >
-          <div class="justify-between w-full flex items-end mobiletitle">
+          <div class="titles mobiletitle fixed z-[10] justify-between w-full flex items-end ">
             <div
-              class="md:pl-5 pb-5 fixed top-[0vh] z-[10] pt-36 text-[14.21px] w-[25vw] projecttextmb"
-            >
-              <div class="pb-5">{{ project.title }}</div>
+              class="inner-div  md:pl-5 pb-5  top-[0vh]   text-[14.21px] w-[25vw] sm:w-screen projecttextmb"
+              id="titleInnerDiv"
+              >
+              <div class="pb-5 mobileslugtitle">{{ project.title }}</div>
               <div
                 v-if="project.related"
                 class="flex flex-col leading-5 normal-case"
@@ -45,8 +48,8 @@
         </div>
 
         <!-- non scroll copy -->
-
-        <div class="scroll-container pt-48">
+<!-- pt-48 -->
+        <div class="scroll-container  " ref="scrollContainer">
           <div
             v-for="(slide, index) in project.slider"
             :key="slide._key"
@@ -213,6 +216,49 @@ export default {
 
   mounted() {
     // const lenis = new Lenis();
+//     document.addEventListener('DOMContentLoaded', function () {
+//   const mobileTitle = document.querySelector('.mobiletitle');
+//   const innerDiv = mobileTitle.querySelector('.inner-div');
+
+//   if (mobileTitle && innerDiv) {
+//     const innerDivWidth = innerDiv.offsetWidth; // Get the inner div's width
+//     mobileTitle.style.paddingTop = innerDivWidth + 30 + "px" ; // Set the top padding
+//   }
+// });
+
+    // Get a reference to the title's inner div
+    const titleInnerDiv = document.getElementById('titleInnerDiv');
+
+    // Check if the titleInnerDiv exists
+    if (titleInnerDiv) {
+      // Get the height of the title's inner div
+      const titleInnerDivHeight = titleInnerDiv.offsetHeight;
+
+      // Set the paddingTop of the scroll container
+      const scrollContainer = this.$refs.scrollContainer; // Make sure you have a ref on your scroll container
+      if (scrollContainer) {
+        scrollContainer.style.paddingTop = titleInnerDivHeight + 10 + 'px';
+        // scrollContainer.style.paddingTop = titleInnerDivHeight - 75 + 'px';
+      }
+    }
+  
+
+//         // Get a reference to the title's inner div
+// const titleInnerDivmobile = document.getElementById('titleInnerDivmobile');
+
+// // Check if the titleInnerDiv exists
+// if (titleInnerDivmobile) {
+//   // Get the height of the title's inner div
+//   const titleInnerDivmobileHeight = titleInnerDivmobileHeight.offsetHeight;
+
+//   // Set the paddingTop of the scroll container
+//   const scrollContainermobile = this.$refs.scrollContainermobile; // Make sure you have a ref on your scroll container
+//   if (scrollContainermobile) {
+//     scrollContainermobile.style.paddingTop = titleInnerDivmobileHeight + 'px';
+//     // scrollContainer.style.paddingTop = titleInnerDivHeight - 75 + 'px';
+//   }
+// }
+
 
     // lenis.on('scroll', (e) => {
     //   console.log(e);
@@ -439,18 +485,26 @@ button {
 }
 
 .gallery-image {
-  max-width: 45vw;
+  /* max-width: 45vw;
   max-height: 85vh;
   max-height: 75vh;
   width: 45vw;
   margin: 0px;
-  padding-bottom: 2vh;
+  padding-bottom: 2vh; */
+  max-width: 45vw;
+    max-height: calc(42.33vw - 20px);
+    width: 45vw;
+    width: calc(34.33vw - 20px);
+    margin: 0px;
+  /* padding-bottom: 2vh; */
 
   cursor: grab !important;
 }
 
 .scroll-container div img {
-  object-fit: cover;
+  /* object-fit: cover; */
+  /* height: 55vh; */
+  /* height: auto; */
   object-position: center center;
   /* Add default styles for the image here */
   /* transition: border-radius 0s ease, filter 0s ease; */
@@ -463,8 +517,7 @@ button {
   overflow: hidden;
 }
 
-.bottom-div {
-}
+
 
 /* img{
   object-fit: cover;
@@ -485,11 +538,30 @@ button {
   height: calc(80% - 0.5rem);
 }
 
+
+.bottom-div {
+    padding-top: 8rem;
+    transition: padding-top 0.3s ease-in-out, height 0.3s ease-in-out !important;
+}
+
+@media screen and (max-width: 1023px) {
+  /* Your CSS styles for screens smaller than 1024px go here */
+  /* For example, you can change the font size or layout */
+  .bottom-div {
+    padding-top: 2rem;
+    transition: padding-top 0.3s ease-in-out, height 0.3s ease-in-out !important;
+}
+}
+
 @media (max-width: 768px) {
   .overlay-gallery {
     z-index: 0;
   }
 
+  .bottom-div {
+    padding-top: 8rem;
+    transition: padding-top 0.3s ease-in-out, height 0.3s ease-in-out !important;
+}
   /*   display: block;
     position: absolute; */
 
@@ -509,11 +581,18 @@ button {
 
   .bottomtextprmbinn {
     width: 92vw;
+    padding-bottom: 1vh;
+  }
+
+  .mobileslugtitle{
+    padding-bottom: 0.25rem;
   }
 
   .projecttextmb {
-    padding-top: 9rem;
+    width: fit-content;
+    /* padding-top: 7rem; */
     padding-left: 1vw;
+    font-size: 11.84px;
   }
 
   .scroll-container div img {
@@ -521,6 +600,7 @@ button {
     width: 92vw !important;
     padding-right: 0vw;
     height: 56vh;
+    height: auto;
     overflow-x: hidden;
     align-content: center;
   }
@@ -535,7 +615,7 @@ button {
     width: 100vw;
     display: flex;
     padding-right: 0vw;
-    height: 56vh;
+    /* height: 56vh; */
     overflow-x: hidden;
     flex-direction: column;
     align-content: center;
@@ -556,7 +636,8 @@ button {
     bottom: auto;
     left: auto;
     width: 100%;
-    padding: 0px;
+    /* padding: 0px; */
+    /* padding-top: 6rem; */
   }
 
   .scroll-container {
@@ -570,17 +651,17 @@ button {
 
   .mobiletitle {
     position: fixed;
-    top: 17vw;
+    /* top: 17vw; */
     background: 0;
     height: fit-content;
     z-index: 1;
     padding: 3vw;
-    padding-top: 20vh;
+    /* padding-top: 20vh; */
     border-bottom: 0px;
   }
 
   .mobiletitle {
-    position: relative !important;
+    /* position: relative !important; */
   }
   .scroll-container {
     /* width: 100%; */
@@ -595,7 +676,6 @@ button {
   .scroll-container div img {
     width: 100vw;
     padding-right: 0vw;
-    height: 56vh;
     overflow-x: hidden;
   }
 }
