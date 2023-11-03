@@ -49,11 +49,13 @@
 
         <!-- non scroll copy -->
 <!-- pt-48 -->
-        <div class="scroll-container  " ref="scrollContainer">
+        <div class="scroll-container  resize-animation" ref="scrollContainer">
+          <!-- md:p-5 -->
           <div
             v-for="(slide, index) in project.slider"
             :key="slide._key"
-            class="gallmobile insidescrollcont md:p-5"
+            class="gallmobile insidescrollcont "
+            :style="{ width: `calc(${slide.imageWidth}vw - 20px)` }"
           >
             <figure
               v-for="image in slide.images"
@@ -62,11 +64,12 @@
               style="cursor: pointer"
             >
               <MediaImage
-                ref="scrollContainer"
+                ref="scrollContainer resize-animation"
                 :src="image.image.asset._ref"
                 v-if="image.image"
+                :style="{ width: `calc(${image.imageWidth}vw - 20px)` }"
                 class="scrollcost"
-                :style="{ opacity: imageOpacity }"
+                
               >
               </MediaImage>
               <MediaVideo
@@ -74,7 +77,8 @@
                 :active="realIndex == index ? true : false"
                 v-else-if="image.video.id"
                 :thumbTime="image.video.thumbTime"
-                class="scrollcost object-contain object-top w-auto h-full"
+                :style="{ width: `calc(${image.imageWidth}vw - 20px)` }"
+                class="scrollcost resize-animation object-contain object-top w-auto h-full"
               ></MediaVideo>
             </figure>
           </div>
@@ -179,7 +183,7 @@ export default {
     Header,
   },
   async asyncData({ params, $sanity }) {
-    const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {..., "archiveSlug": archive->slug.current, slider[] {fullWidth, images[] {..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}}}, "talent" : talent->title, "talentSlug" : talent->slug.current, "footer" : footer, "talentBio" : talent->shortBio, "nextProject" : nextProject->slug.current,
+    const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {..., "archiveSlug": archive->slug.current, slider[] {fullWidth, imageWidth, images[] {..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}}}, "talent" : talent->title, "talentSlug" : talent->slug.current, "footer" : footer, "talentBio" : talent->shortBio, "nextProject" : nextProject->slug.current,
     "related": *[_type=='project' && references(^.talent._ref) && _id != ^._id]{ _id, title, production, meta, "slug" : slug.current }
      } | order(_updatedAt desc)[0]`;
     const project = await $sanity.fetch(query);
@@ -347,7 +351,8 @@ export default {
     transform: translateX(-100%);
   }
 }
-.scroll-container div {
+.scroll-container {
+  padding: 1vw;
 }
 
 .scroll-container > * {
@@ -355,10 +360,12 @@ export default {
 }
 
 .scrollcost {
-  height: 55vh;
+  /* height: 55vh; */
   /* height: calc(30.33vw - -4px); */
   /* height: calc(27.33vw - -4px);   */
-  height: calc(37.33vw - -4px);
+  /* height: calc(37.33vw - -4px); */
+  /* width: calc(37.33vw - -4px); */
+  width: calc(32.3vw - 4px);
 }
 
 .masonry .flex-item {
@@ -642,6 +649,7 @@ button {
 
   .scroll-container {
     padding-top: 3vh;
+    padding: 0;
   }
   .list-layout {
     /* opacity: 1;  */

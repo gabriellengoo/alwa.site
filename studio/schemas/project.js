@@ -150,6 +150,13 @@ export default {
                         (!value && parent?.spacer) || (!value && parent?.video),
                     },
                     {
+                      name: "imageWidth",
+                      title: "Image Width",
+                      type: "number",
+                      description: "Set the width of the image in viewporth width",
+                      validation: (Rule) => Rule.min(0).integer(),
+                    },
+                    {
                       name: "video",
                       title: "Video",
                       type: "mux.video",
