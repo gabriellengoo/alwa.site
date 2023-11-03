@@ -135,13 +135,16 @@
                           "
                           :sizes="'sm:200vw md:150vw lg:200vw'"
                         ></MediaImage>
-                        <MediaVideoPlay
+                        <MediaVideo
                           :id="image.video.id"
                           :active="realIndex == index ? true : false"
                           v-else-if="image.video.id"
                           :thumbTime="image.video.thumbTime"
-                          class="gallery-image relative object-cover object-center w-full h-auto p-4 my-auto"
-                        ></MediaVideoPlay>
+                          :style="{ pointerEvents: 'auto' , width: `calc(${image.imageWidth}vw - 20px)` }"
+                          @click="handleVideoClick(image.video.id)"
+                       
+                          class="gallery-image relative object-cover object-center z-[10000000] w-full h-auto p-4 my-auto"
+                        ></MediaVideo>
                       </figure>
                       <button
                         class="nextbtn z-[100000] pointer-events-auto w-1/2 h-1/6 text-black next text-4xl"
@@ -277,6 +280,11 @@ export default {
     const overlay = document.querySelector(".overlay-gallery");
   },
   methods: {
+    handleVideoClick(videoId) {
+      // Call the playVideo() method of your MediaVideoPlay component
+      this.$refs.mediaVideoPlay.playVideo(videoId);
+    },
+
     showGalleryOnHover() {
       this.$refs.overlayGallery.classList.add("active");
     },

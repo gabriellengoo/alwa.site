@@ -596,7 +596,7 @@ button .circle:hover {
 
 .icon svg, .icon img {
     height: 2em;
-    width: 6em;
+    width: 5em;
     fill: currentColor;
 }
 
