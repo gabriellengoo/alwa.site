@@ -4,7 +4,7 @@
     <LenisComponent />
     <section>
       <!-- pt-28 -->
-      <div class="bottom-div ">
+      <div class="bottom-div xl:pt-[14rem] ">
         <!-- titles -->
         <div
           v-if="project"
@@ -109,11 +109,11 @@
                     class="flex justify-center w-full h-full transition-opacity duration-300 swiper-slide"
                     :class="realIndex == 0 ? 'opacity-95' : ''"
                   >
-                    <div class="flex h-full p-2 pb-0 w-13/16">
+                    <div class="overlaycont flex h-full p-2 pb-0 w-13/16">
                       <figure
                         v-for="image in slide.images"
                         :key="image._key"
-                        class="flex flex-col flex-1 w-full h-full"
+                        class="overlaydiv flex flex-col flex-1 w-full h-full"
                         :class="
                           image.padding
                             ? image.padding == 'medium'
@@ -124,6 +124,21 @@
                             : ''
                         "
                       >
+                      <!-- <button
+                          class="backbtn z-[100000] pointer-events-auto w-1/2 h-1/6 text-black back text-4xl"
+                          @click="previous"
+                          aria-label="Previous"
+                        >
+                          &lt; 
+                        </button> -->
+                        <button
+                            class=" backbtn top-0 left-0 z-30 w-1/2 h-full text-black back text-4xl previous"
+                            :class="back ? '' : 'disabled'"
+                            @click="prev"
+                            ref="prev"
+                            aria-label="Previous"
+                          >
+                          &lt; </button>
                         <MediaImage
                           :src="image.image.asset._ref"
                           v-if="image.image"
@@ -133,6 +148,7 @@
                               ? 'object-contain'
                               : 'object-contain max-w-full'
                           "
+                          :style="{ pointerEvents: 'auto' , width: `calc(${image.overlayimageWidth}vw - 20px)` }"
                           :sizes="'sm:200vw md:150vw lg:200vw'"
                         ></MediaImage>
                         <MediaVideo
@@ -140,19 +156,21 @@
                           :active="realIndex == index ? true : false"
                           v-else-if="image.video.id"
                           :thumbTime="image.video.thumbTime"
-                          :style="{ pointerEvents: 'auto' , width: `calc(${image.imageWidth}vw - 20px)` }"
+                          :style="{ pointerEvents: 'auto' , width: `calc(${image.overlayimageWidth}vw - 20px)` }"
                           @click="handleVideoClick(image.video.id)"
                        
                           class="gallery-image relative object-cover object-center z-[10000000] w-full h-auto p-4 my-auto"
                         ></MediaVideo>
-                      </figure>
-                      <button
-                        class="nextbtn z-[100000] pointer-events-auto w-1/2 h-1/6 text-black next text-4xl"
+                        <button
+                        class="nextbtn z-[100000] pointer-events-auto w-1/2 h-full text-black next text-4xl"
                         @click="next"
                         aria-label="Next"
                       >
                         >
                       </button>
+                      </figure>
+                    
+                     
                     </div>
                   </div>
                 </div>
@@ -186,7 +204,7 @@ export default {
     Header,
   },
   async asyncData({ params, $sanity }) {
-    const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {..., "archiveSlug": archive->slug.current, slider[] {fullWidth, imageWidth, images[] {..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}}}, "talent" : talent->title, "talentSlug" : talent->slug.current, "footer" : footer, "talentBio" : talent->shortBio, "nextProject" : nextProject->slug.current,
+    const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {..., "archiveSlug": archive->slug.current, slider[] {fullWidth, imageWidth, overlayimageWidth, images[] {..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}}}, "talent" : talent->title, "talentSlug" : talent->slug.current, "footer" : footer, "talentBio" : talent->shortBio, "nextProject" : nextProject->slug.current,
     "related": *[_type=='project' && references(^.talent._ref) && _id != ^._id]{ _id, title, production, meta, "slug" : slug.current }
      } | order(_updatedAt desc)[0]`;
     const project = await $sanity.fetch(query);
@@ -241,12 +259,21 @@ export default {
       // Get the height of the title's inner div
       const titleInnerDivHeight = titleInnerDiv.offsetHeight;
 
-      // Set the paddingTop of the scroll container
+      const isMobile = window.innerWidth <= 768;
+
       const scrollContainer = this.$refs.scrollContainer; // Make sure you have a ref on your scroll container
-      if (scrollContainer) {
-        scrollContainer.style.paddingTop = titleInnerDivHeight + 10 + 'px';
-        // scrollContainer.style.paddingTop = titleInnerDivHeight - 75 + 'px';
-      }
+
+      if (isMobile) {
+    scrollContainer.style.paddingTop = titleInnerDivHeight + 20 + 'px';
+  } else {
+    // For non-mobile screens, you can use different padding
+    scrollContainer.style.paddingTop = titleInnerDivHeight + 10 + 'px';
+  }
+      // Set the paddingTop of the scroll container
+      // if (scrollContainer) {
+      //   scrollContainer.style.paddingTop = titleInnerDivHeight + 20 + 'px';
+      //   // scrollContainer.style.paddingTop = titleInnerDivHeight - 75 + 'px';
+      // }
     }
   
 
@@ -280,6 +307,21 @@ export default {
     const overlay = document.querySelector(".overlay-gallery");
   },
   methods: {
+    onSlideChange(swiper) {
+      this.index = swiper.activeIndex + 1
+      this.realIndex = swiper.activeIndex
+      const gsap = this.$gsap
+      if (swiper.activeIndex == 0 && !this.back) {
+        this.$refs['prev'].classList.add('disabled')
+      } else {
+        this.$refs['prev'].classList.remove('disabled')
+      }
+      if (this.index > 1) {
+        gsap.to(this.$refs['skew'], { x: '-150%' })
+      } else {
+        gsap.to(this.$refs['skew'], { x: '0%' })
+      }
+    },
     handleVideoClick(videoId) {
       // Call the playVideo() method of your MediaVideoPlay component
       this.$refs.mediaVideoPlay.playVideo(videoId);
@@ -328,6 +370,14 @@ export default {
         this.mySwiper.slideNext();
       }
     },
+    prev() {
+      if (this.mySwiper.isBeginning && this.back) {
+        this.$router.go(-1)
+      } else {
+        this.mySwiper.slidePrev()
+      }
+    },
+
 
     ...mapMutations(["SET_FOOTER"]),
   },
@@ -335,6 +385,16 @@ export default {
 </script>
 
 <style scoped>
+.overlaydiv{
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.overlaycont{
+  width: 100vw;
+    height: 100vh;
+}
 .scroll-container {
   width: 98vw;
   width: 100vw;
@@ -483,13 +543,41 @@ button {
 }
 
 .nextbtn {
-  cursor: crosshair;
+  /* cursor: crosshair;
   padding-left: 55vw;
   position: absolute;
   margin-top: auto;
   margin-bottom: auto;
   height: inherit;
-  width: fit-content;
+  width: fit-content; */
+
+  cursor: crosshair;
+    padding-left: 15vw;
+    /* position: relative; */
+    margin-top: auto;
+    margin-bottom: auto;
+    height: inherit;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.backbtn {
+  /* cursor: crosshair;
+  padding-left: 55vw;
+  position: absolute;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: inherit;
+  width: fit-content; */
+
+  cursor: crosshair;
+    padding-right: 15vw;
+    /* position: relative; */
+    margin-top: auto;
+    margin-bottom: auto;
+    height: inherit;
+    width: -moz-fit-content;
+    width: fit-content;
 }
 
 .gallery-images {
@@ -501,19 +589,23 @@ button {
 
 .gallery-image {
   /* max-width: 45vw;
-  max-height: 85vh;
-  max-height: 75vh;
-  width: 45vw;
-  margin: 0px;
-  padding-bottom: 2vh; */
-  max-width: 45vw;
     max-height: calc(42.33vw - 20px);
     width: 45vw;
     width: calc(34.33vw - 20px);
-    margin: 0px;
-  /* padding-bottom: 2vh; */
-
+    margin: 0px; */
   cursor: grab !important;
+
+  padding-top: 20vh;
+    padding-bottom: 20vh;
+  max-width: 100vw;
+    width: calc(36.33vw - 20px);
+    align-items: center;
+}
+
+@media (min-width: 2560px) {
+    .bottom-div {
+        padding-top: 14rem  !important;
+    }
 }
 
 .scroll-container div img {

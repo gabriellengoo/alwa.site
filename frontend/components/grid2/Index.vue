@@ -329,7 +329,7 @@ reverse
                         <!--   @mouseenter="hoveredItem = item"
                       @mouseleave="hoveredItem = null" -->
                         <figcaption
-                          class="listText relative flex w-full cursor-pointer pl-[35vw] leading-[17px] duration-300 hover:!text-black focus:!text-black group-hover:text-midGray"
+                          class="listText relative flex w-full cursor-pointer pl-[32vw] leading-[17px] duration-300 hover:!text-black focus:!text-black group-hover:text-midGray"
                           v-if="size == 'small'"
                           :class="{ 'text-left ': !displayGrid }"
                         >
