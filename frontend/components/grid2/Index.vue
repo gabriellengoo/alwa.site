@@ -325,7 +325,7 @@ reverse
                               )}`
                             : ''
                         "
-                      >
+                      > 
                         <!--   @mouseenter="hoveredItem = item"
                       @mouseleave="hoveredItem = null" -->
                         <figcaption
