@@ -579,7 +579,7 @@ export default {
 </script>
 
 <style scoped>
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   pr-6 {
     padding-right: 0rem !important;
   }
@@ -590,14 +590,21 @@ export default {
 .listimg {
   left: calc(4.79vw - 10px);
 }
+} */
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  /* Your tablet-specific styles here */
+  .mobilegridpad{
+  padding-top: 9rem;
+}
 }
 
 @media screen and (max-width: 1023px) {
   /* Your CSS styles for screens smaller than 1024px go here */
   /* For example, you can change the font size or layout */
-.mobilegridpad{
-  /* padding-top: 0.5vw; */
-}
+/* .mobilegridpad{
+  padding-top: 6vw;
+} */
 }
 .hoverarealist {
   height: 100vh;
@@ -1010,6 +1017,9 @@ figure {
 
 /* Media query for screens with a maximum width of 768px (mobile devices) */
 @media (max-width: 768px) {
+  .listimg {
+  left: calc(4.79vw - 10px);
+}
   .list-header {
     padding-left: 0vw !important;
     width: 63% !important;
