@@ -166,12 +166,23 @@ reverse
                       :style="{ width: `calc(${item.imageWidth}vw - 20px)` }"
                       class="mobilesize resize-animation leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap pl-[.2vw] normal-case font-medium"
                     >
-                      <p v-if="item.photographer">{{ item.photographer }},</p>
-                      <p v-if="item.production">{{ item.production }},</p>
-                      <p v-if="item.styleing">{{ item.styleing }},</p>
+                    <!-- <div class=""> -->
+                      <p v-if="item.photographer">{{ item.photographer }} <span v-if="item.production">, </span></p>
+                      <p v-if="item.production">{{ item.production }} <span v-if="item.styleing">, </span></p>
+                      <p v-if="item.styleing">{{ item.styleing }} <span v-if="item.hair">, </span></p>
                       <p v-if="item.hair">
-                        {{ item.hair }}
+                        {{ item.hair }}  <span v-if="item.makeup">, </span>
                       </p>
+                      <p v-if="item.makeup">
+                        {{ item.makeup }} <span v-if="item.dop">, </span>
+                      </p>
+                      <p v-if="item.dop">
+                        {{ item.dop }}<span v-if="item.set">, </span>
+                      </p>
+                      <p v-if="item.set">
+                        {{ item.set }}
+                      </p>
+                    <!-- </div> -->
                     </div>
                   </NuxtLink>
                 </div>
@@ -247,14 +258,17 @@ reverse
             </div>
             <div v-for="item in items">
               <img
+              :class="{ 'hidden': isHovered }"
                 class="listimg z-0 fixed block hidemobile"
                 :src="item.listImage"
                 v-if="item.listImage"
                 :sizes="size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'"
-              />
+              
+                />
             </div>
 
-            <div class="hoverarealist bg-[#f7f7f7]">
+            <div class="hoverarealist bg-[#f7f7f7]" @mouseover="toggleListImageOnHover"
+            @mouseleave="toggleListImageOnLeave">
               <!--  @mouseover="toggleListImage"
             @mouseleave="toggleListImage" -->
               <div
@@ -376,22 +390,22 @@ reverse
                               class="year-container yearmobile"
                             >
                               <div class="year yearmobile">
-                                {{ item.year }}
+                                {{ item.production }}
                               </div>
                             </div>
                           </div>
 
                           <!-- desk year -->
-                          <div class="listTextInner yearmobile nomobile desk">
+                          <!-- <div class="listTextInner yearmobile nomobile desk">
                             <div
                               :class="size == 'small' ? 'smaller-text' : ''"
                               class="year-container yearmobile"
                             >
                               <div class="year yearmobile">
-                                {{ item.year }}
+                                {{ item.production }}
                               </div>
                             </div>
-                          </div>
+                          </div> -->
                         </figcaption>
 
                         <!-- was here -->
@@ -449,6 +463,7 @@ export default {
   data() {
     return {
       project: false,
+      isHovered: false,
       scrollLeft: 0,
       containerClass: "flex flex-col w-full h-full",
       imageClass: "contain-image",
@@ -470,6 +485,13 @@ export default {
   },
   methods: {
     ...mapMutations(["SET_ACTIVE_PROJECT", "SET_ACTIVE_TALENT"]),
+
+    toggleListImageOnHover() {
+      this.isHovered = true; // Set the hover state to true
+    },
+    toggleListImageOnLeave() {
+      this.isHovered = false; // Set the hover state to false
+    },
 
     toggleListImage() {
       this.displayListImage = !this.displayListImage;
@@ -564,6 +586,10 @@ export default {
   .mobilegridpad{
   padding-top: 6rem;
 }
+
+.listimg {
+  left: calc(4.79vw - 10px);
+}
 }
 
 @media screen and (max-width: 1023px) {
@@ -585,8 +611,13 @@ export default {
 }
 
 .hoverarealist:hover {
-  background-color: rgb(247 247 247) !important;
+  /* background-color: rgb(247 247 247) !important; */
 }
+
+.hoverarealist:hover + .listimg {
+    display: none;
+    opacity: 0;
+  }
 
 .list-container:nth-child(2) .list-layout-item .contain-image {
   /* display: none; */
@@ -623,10 +654,19 @@ export default {
   } */
 
 .listimg {
-  left: 5vw;
+  /* left: 5vw;
   top: 25vh;
   width: 25vw;
+  height: auto; */
   height: auto;
+    position: absolute;
+    width: 25vw;
+      width: calc(28.33vw - 20px);
+    left: 3vw;
+        left: calc(4.03vw - 10px);
+    top: 25vh;
+    top: 21vh;
+    /* pointer-events: none; */
 }
 
 .portrait {
@@ -868,15 +908,22 @@ figure {
 .list-layout-item .contain-image {
   display: none;
   /* width: 60vh; */
-  width: 40vh;
+  /* width: 40vh; */
   /* padding-left: 3vw; */
-  left: 3.5vw;
+  /* left: 3.5vw; */
   /* left: calc(5vw - 20px); */
-  padding-left: calc(5vw - 20px);
+  /* padding-left: calc(5vw - 20px);
   padding-right: calc(5vw - 20px);
   transition: none !important;
   transition-duration: 0s !important;
-  animation: none !important;
+  animation: none !important; */
+  /* background-color: rgb(247 247 247); */
+  position: fixed;
+  display: none;
+    pointer-events: none;
+    /* z-index: 1; */
+    height: 100vh;
+    width: 100vw;
 }
 
 /* .list-layout-item:hover  .contain-image{
@@ -893,7 +940,22 @@ figure {
 } */
 
 .list-layout-item .contain-image img {
-  width: calc(27.33vw - 20px);
+  /* width: calc(27.33vw - 20px); */
+  width: calc(28.33vw - 20px);
+    height: auto;
+    position: absolute;
+    left: 3vw;
+    top: 25vh;
+    top: 21vh;
+    pointer-events: none;
+}
+
+.listText div .year{
+  justify-content: flex-end;
+  display: flex;
+    justify-content: flex-end;
+    width: 18vw;
+    text-align: end;
 }
 
 .list-layout-item .contain-image video {
@@ -943,7 +1005,7 @@ figure {
 }
 
 .imgcont {
-  padding-top: 10vw;
+  /* padding-top: 10vw; */
 }
 
 /* Media query for screens with a maximum width of 768px (mobile devices) */
@@ -970,6 +1032,7 @@ figure {
     line-height: 17px;
     cursor: pointer;
     display: flex;
+    
     width: 100% !important;
     position: relative;
   }
@@ -1089,6 +1152,7 @@ figure {
 }
 
 .photographer {
+  /* text-align: end; */
   /* margin-left: 10px; */
   /* padding-left: 10rem; */
 }
@@ -1114,12 +1178,15 @@ figure {
   display: flex;
   width: 29vw;
   width: 24vw;
+  width: inherit;
   /* width: 100%; */
   position: relative;
+  padding-right: 0.4vw;
 }
 
-.year {
-  width: auto !important;
+.year-container {
+  justify-content: flex-end;
+  /* width: auto !important; */
 }
 /* Default font size for smaller screens */
 .custom-text-size {
@@ -1189,6 +1256,7 @@ figure {
 
   .photographer {
     justify-content: flex-end !important;
+    text-align: end;
   }
 
   .projectmobile {

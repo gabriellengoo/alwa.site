@@ -108,6 +108,27 @@ export default {
           !value && (parent?.spacer || parent?.reference),
         },
         {
+          name: "makeup",
+          title: "Makeup",
+          type: "string",
+          hidden: ({ parent, value }) =>
+          !value && (parent?.spacer || parent?.reference),
+        },
+        {
+          name: "dop",
+          title: "DOP",
+          type: "string",
+          hidden: ({ parent, value }) =>
+          !value && (parent?.spacer || parent?.reference),
+        },
+        {
+          name: "set",
+          title: "Set designer",
+          type: "string",
+          hidden: ({ parent, value }) =>
+          !value && (parent?.spacer || parent?.reference),
+        },
+        {
           name: "year",
           title: "Alwa Role",
           description: " This is the footer on project pages",
@@ -118,6 +139,7 @@ export default {
         {
           name: "production",
           title: "Production or Casting",
+          description: " This is what will show on the list",
           type: "string",
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),

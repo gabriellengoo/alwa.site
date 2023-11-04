@@ -111,7 +111,7 @@ export default {
                       {..., grid2[] {_key, spacer, "video" : 
                     {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
                       "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
-                    title, photographer,year,imageWidth,hair,styleing, link, production,listImage,
+                    title, photographer,year,imageWidth,hair,makeup,dop,set,styleing, link, production,listImage,
                       "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
                      
                     
