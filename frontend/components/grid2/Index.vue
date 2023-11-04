@@ -5,7 +5,7 @@
       <button @click="switchToGrid">Grid</button>
     :class="{ 'active-button': displayGrid }"
     </div> bottom-div-->
-    <div class="pt-[6rem] sm:pt-[7rem] mobilegridpad 2xl:pt-[14rem] ">
+    <div class="pt-[6rem] sm:pt-[7rem] mobilegridpad 2xl:pt-[12rem] ">
       <!-- <div class="button-container  ">
       <button
         class=""

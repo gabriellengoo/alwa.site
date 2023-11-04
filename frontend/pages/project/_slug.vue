@@ -4,7 +4,7 @@
     <LenisComponent />
     <section>
       <!-- pt-28 -->
-      <div class="bottom-div xl:pt-[14rem] ">
+      <div class="bottom-div xl:pt-[14rem] 2xl:pt-[12rem] ">
         <!-- titles -->
         <div
           v-if="project"
