@@ -102,7 +102,7 @@ export default {
         },
         {
           name: "hair",
-          title: "Hair and Makeup",
+          title: "Hair",
           type: "string",
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),
