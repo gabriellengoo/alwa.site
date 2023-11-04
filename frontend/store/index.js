@@ -4,11 +4,17 @@ export const state = () => ({
   activeProject: false,
   activeTalent: false,
   footer: false,
+  isGalleryOpen: false,
   // contact: false,
   menu: false,
 })
 
+
+
 export const mutations = {
+  setGalleryState(state, isOpen) {
+    state.isGalleryOpen = isOpen;
+  },
   SET_GRID(state, grid) {
     state.grid = grid
   },

@@ -1,6 +1,9 @@
 <template>
   <!-- sticky -->
   <!-- <div class="  z-[100000] sticky  top-0">     bg-[#f7f7f7]  width: 90vw; -->
+  <!-- <header
+    class="sticky  top-0 left-0 z-20  p-0 pt-2 text-lg leading-snug uppercase  md:pb-2 md:pt-2 "
+  > -->
   <header
     class="sticky  top-0 left-0 z-20  p-0 pt-2 text-lg leading-snug uppercase  md:pb-2 md:pt-2 "
   >
@@ -8,10 +11,14 @@
     <!-- desk -->
     <div class="headposition  resize-animation ">
     <div
-      class="content-container hidden border-b-[.95px] border-stone-900 md:flex w-screen justify-between"
+      class="content-container hidden  border-b-[.95px] border-stone-900 md:flex w-screen justify-between"
+      :class="{ 'border-b-[0px]': $store.state.isGalleryOpen }"
       :style="contentContainerStyle"
     >
+
       <nav class="flex-row md:justify-center   top-0 hidden w-1/16 md:flex">
+        <!-- <span class=" border-b-[.95px] absolute top-[8vh] content-container w-screen  border-stone-900 z-0"
+></span> -->
         <!-- <NuxtLogo/> -->
         <!-- <div>
     <div v-for="about in abouts" :key="about._id">
@@ -389,6 +396,12 @@ export default {
   },
   methods: {
     ...mapMutations(["TOGGLE_MENU"]),
+    openGallery() {
+      this.$store.commit('setGalleryState', true); // Set gallery state as open
+    },
+    closeGallery() {
+      this.$store.commit('setGalleryState', false); // Set gallery state as closed
+    },
     toggleBlueBox() {
       // Toggle the blue box visibility
       this.isBlueBoxActive = !this.isBlueBoxActive;
