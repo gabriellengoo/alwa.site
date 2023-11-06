@@ -167,14 +167,14 @@ reverse
                       class="mobilesize resize-animation leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap pl-[.2vw] normal-case font-medium"
                     >
                     <!-- <div class=""> -->
-                      <p v-if="item.photographer">{{ item.photographer }} <span v-if="item.production">, </span></p>
-                      <p v-if="item.production">{{ item.production }} <span v-if="item.styleing">, </span></p>
-                      <p v-if="item.styleing">{{ item.styleing }} <span v-if="item.hair">, </span></p>
+                      <p v-if="item.photographer">{{ item.photographer }}<span v-if="item.production">, </span></p>
+                      <p v-if="item.production">{{ item.production }}<span v-if="item.styleing">, </span></p>
+                      <p v-if="item.styleing">{{ item.styleing }}<span v-if="item.hair">, </span></p>
                       <p v-if="item.hair">
-                        {{ item.hair }}  <span v-if="item.makeup">, </span>
+                        {{ item.hair }}<span v-if="item.makeup">, </span>
                       </p>
                       <p v-if="item.makeup">
-                        {{ item.makeup }} <span v-if="item.dop">, </span>
+                        {{ item.makeup }}<span v-if="item.dop">, </span>
                       </p>
                       <p v-if="item.dop">
                         {{ item.dop }}<span v-if="item.set">, </span>
