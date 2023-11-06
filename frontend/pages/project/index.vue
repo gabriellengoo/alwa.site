@@ -1,7 +1,9 @@
 <template>
   <!-- md:h-screen -->
   <div class="relative md:min-h-fit md:overflow-hidden">
-    <LenisComponent />
+    <!-- <LenisComponent /> -->
+    <!-- <Header /> -->
+   
     <section>
       <div class="bottom-div pt-28">
         <!-- titles -->
@@ -151,11 +153,13 @@
 import { groq } from "@nuxtjs/sanity";
 import { mapMutations } from "vuex";
 import Header from "~/components/layout/Header.vue";
+import AboutPage from '~/components/AboutPage.vue';
 // import Lenis from '@studio-freight/lenis';
 
 export default {
   components: {
     Header,
+    AboutPage,
   },
   async asyncData({ params, $sanity }) {
     const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {..., "archiveSlug": archive->slug.current, slider[] {fullWidth, images[] {..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}}}, "talent" : talent->title, "talentSlug" : talent->slug.current, "footer" : footer, "talentBio" : talent->shortBio, "nextProject" : nextProject->slug.current,

@@ -4,11 +4,11 @@
       {{ about.title }}
       <p>This is the AboutPage component yes.</p>
     </div>
-    <!-- <p>This is the AboutPage component no.</p> -->
+    <p>This is the AboutPage component no.</p>
   </div>
 </template>
 
-<script>
+<script> 
 import { groq } from '@nuxtjs/sanity'
 import { mapActions, mapMutations } from 'vuex'
 

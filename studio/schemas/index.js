@@ -8,4 +8,4 @@ import project from "./project";
 // import view from "./view"
 // import about from "./about";
 
-export const schemaTypes = [home,project,blockContent,grid,grid2,]
+export const schemaTypes = [home,project,blockContent,grid,grid2]

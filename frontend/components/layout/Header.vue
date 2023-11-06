@@ -378,13 +378,13 @@
 <script>
 import { groq } from "@nuxtjs/sanity";
 import { mapState, mapMutations } from "vuex";
-import AboutPage from "@/components/AboutPage.vue";
-import NuxtLogo from "~/components/NuxtLogo.vue";
-
+// import AboutPage from "@/components/AboutPage.vue";
+// import NuxtLogo from "~/components/NuxtLogo.vue";
+ 
 export default {
   components: {
-    AboutPage,
-    NuxtLogo,
+    // AboutPage,
+    // NuxtLogo,
   },
   async asyncData({ params, $sanity }) {
     const query = groq`*[_type == "about"]`;

@@ -24,6 +24,93 @@ export default {
       type: "slug",
       options: { source: "title" },
     },
+    {
+      name: "aboutmeta",
+      title: "About",
+      type: "array",
+      options: {
+        editModal: "popover",
+      },
+      of: [
+        {
+          name: "meta",
+          title: "Meta",
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              title: "Title",
+              type: "string",
+            },
+            {
+              name: "content",
+              title: "Content",
+              type: "string",
+            },
+          ],
+          preview: {
+            select: {
+              title: "content",
+              subtitle: "title",
+            },
+          },
+        },
+      ],
+    },
+    {
+      name: "metaemails",
+      title: "Meta Email",
+      type: "array",
+      options: {
+        editModal: "popover",
+      },
+      of: [
+        {
+          name: "meta",
+          title: "Meta",
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              title: "Title",
+              type: "string",
+            },
+            {
+              name: "content",
+              title: "Content",
+              type: "string",
+            },
+            {
+              name: "link",
+              title: "Link",
+              type: "object",
+              fields: [
+                {
+                  name: "title",
+                  title: "Title",
+                  type: "string",
+                },
+                {
+                  name: "link",
+                  title: "Link",
+                  type: "url",
+                  validation: (Rule) =>
+                    Rule.uri({
+                      scheme: ["http", "https", "mailto", "tel"],
+                    }),
+                },
+              ],
+            },
+          ],
+          preview: {
+            select: {
+              title: "content",
+              subtitle: "title",
+            },
+          },
+        },
+      ],
+    },
     // {
     //   name: "artistSlug",
     //   title: "Artist Slug",

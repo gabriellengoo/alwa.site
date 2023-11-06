@@ -3,7 +3,7 @@
     <!-- <LenisComponent /> -->
     <TransitionComponent />
     <!-- <AboutPage /> -->
-    <LayoutHeader
+    <!-- <LayoutHeader
       :class="
         $nuxt.$route.name == 'index' ||
         $nuxt.$route.name == 'index-bak' ||
@@ -28,7 +28,7 @@
           ? 'hidden'
           : 'hidden md:flex'
       "
-    ></LayoutHeaderMin>
+    ></LayoutHeaderMin> -->
     <Nuxt />
     <LayoutFooter
       class="fixed"

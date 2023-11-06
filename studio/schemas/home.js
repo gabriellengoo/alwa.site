@@ -14,63 +14,132 @@ export default {
     //   name: 'grid',
     //   type: 'grid',
     // }, 
-    // {
-    //   name: "listImage",
-    //   title: "List main image",
-    //   type: "image",
-    //   hidden: ({ parent, value }) =>
-    //     (!value && parent?.spacer) || (!value && parent?.video),
-    // },
-    // {
-    //   name: 'listImage',
-    //   title: 'List Main Image',
-    //   type: 'url',
-    // },
     {
       name: 'grid2',
       title: 'Home grid',
       type: 'grid2',
     },
     // {
-    //   name: "sections",
-    //   title: "Grid Sections",
+    //   name: "meta",
+    //   title: "Meta",
     //   type: "array",
-      // options: {
-      //   layout: "grid",
-      // },
-      // of: [
-      //   {
-      //     name: "section",
-      //     title: "Add grid",
-      //     type: "object",
-      //     options: {
-      //       layout: "grid",
-      //     },
-      //     fields: [
-      //       {
-      //         name: "title",
-      //         title: "Title",
-      //         type: "string",
-      //       },
-      //       {
-      //         name: 'grid',
-      //         title: "Row landscape based",
-      //         type: 'grid',
-      //       },
-      //       {
-      //         name: 'grid2',
-      //         title: "Row portrait based",
-      //         type: 'grid2',
-      //       },
-      //     ],
-      //     preview: {
-      //       select: {
-      //         title: 'title',
-      //       },
-      //     },        
-      //   },
-      // ],
+    //   options: {
+    //     editModal: "popover",
+    //   },
+    //   of: [
+    //     {
+    //       name: "meta",
+    //       title: "Meta",
+    //       type: "object",
+    //       fields: [
+    //         {
+    //           name: "title",
+    //           title: "Title",
+    //           type: "string",
+    //         },
+    //         {
+    //           name: "content",
+    //           title: "Content",
+    //           type: "string",
+    //         },
+    //       ],
+    //       preview: {
+    //         select: {
+    //           title: "content",
+    //           subtitle: "title",
+    //         },
+    //       },
+    //     },
+    //   ],
     // },
+
+       {
+      name: "meta",
+      title: "Meta",
+      type: "array",
+      options: {
+        editModal: "popover",
+      },
+      of: [
+        {
+          name: "meta",
+          title: "Meta",
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              title: "Title",
+              type: "string",
+            },
+            {
+              name: "content",
+              title: "Content",
+              type: "string",
+            },
+          ],
+          preview: {
+            select: {
+              title: "content",
+              subtitle: "title",
+            },
+          },
+        },
+      ],
+    },
+    {
+      name: "metaemails",
+      title: "Meta Email",
+      type: "array",
+      options: {
+        editModal: "popover",
+      },
+      of: [
+        {
+          name: "meta",
+          title: "Meta",
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              title: "Title",
+              type: "string",
+            },
+            {
+              name: "content",
+              title: "Content",
+              type: "string",
+            },
+            {
+              name: "link",
+              title: "Link",
+              type: "object",
+              fields: [
+                {
+                  name: "title",
+                  title: "Title",
+                  type: "string",
+                },
+                {
+                  name: "link",
+                  title: "Link",
+                  type: "url",
+                  validation: (Rule) =>
+                    Rule.uri({
+                      scheme: ["http", "https", "mailto", "tel"],
+                    }),
+                },
+              ],
+            },
+          ],
+          preview: {
+            select: {
+              title: "content",
+              subtitle: "title",
+            },
+          },
+        },
+      ],
+    },
   ],
   preview: {
     select: {

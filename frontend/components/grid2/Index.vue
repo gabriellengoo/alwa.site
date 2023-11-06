@@ -5,7 +5,7 @@
       <button @click="switchToGrid">Grid</button>
     :class="{ 'active-button': displayGrid }"
     </div> bottom-div-->
-    <div class="pt-[6rem] sm:pt-[7rem] mobilegridpad 2xl:pt-[12rem] ">
+    <div class="pt-[7rem] sm:pt-[7rem] mobilegridpad 2xl:pt-[13rem] ">
       <!-- <div class="button-container  ">
       <button
         class=""
@@ -595,7 +595,7 @@ export default {
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   /* Your tablet-specific styles here */
   .mobilegridpad{
-  padding-top: 9rem;
+  padding-top: 8.5rem;
 }
 }
 
