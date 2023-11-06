@@ -5,18 +5,28 @@
     <!-- <AboutPage /> -->
     <!-- <LayoutHeader
       :class="
-        $nuxt.$route.name == 'index' ||
-        $nuxt.$route.name == 'index-bak' ||
+        // $nuxt.$route.name != 'index' ||
+        // $nuxt.$route.name != 'index-bak' ||
         $nuxt.$route.name == 'about' ||
         $nuxt.$route.name == 'contact' ||
         $nuxt.$route.name != 'project-slug' ||
-        $nuxt.$route.name != 'archive-slug' ||
-        $nuxt.$route.name == 'work'
+        $nuxt.$route.name != 'archive-slug' 
+        // $nuxt.$route.name == 'index'
           ? ''
           : ' md:hidden'
       "
-    ></LayoutHeader>  
-    <LayoutHeaderMin
+    ></LayoutHeader>    -->
+    <LayoutHeader
+  :class="{
+    'md:hidden': !(
+      $nuxt.$route.name == 'about' ||
+      $nuxt.$route.name == 'contact' ||
+      $nuxt.$route.name == 'project-slug' ||
+      $nuxt.$route.name == 'archive-slug'
+    )
+  }"
+></LayoutHeader>
+    <!-- <LayoutHeaderMin
       :class="
         $nuxt.$route.name != 'index' ||
         $nuxt.$route.name != 'index-bak' ||
