@@ -196,7 +196,7 @@ reverse
 
         <div
           v-else
-          class="list-container h-screen uppercase fade-in-out"
+          class="list-container min-h-screen uppercase fade-in-out"
           :class="{ 'fade-in': !displayGrid, 'fade-out': displayGrid }"
         >
           <!-- <img

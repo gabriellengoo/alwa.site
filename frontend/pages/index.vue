@@ -130,7 +130,7 @@
           >
             <button
               title="Close Information Drawer"
-              class="flex uppercase lg:hidden pt-[20vh] z-[100000]"
+              class="flex uppercase lg:hidden pt-[10vh] z-[100000]"
               speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
               speechify-initial-font-size="16px"
               @click="toggleBlueBox"
@@ -205,7 +205,7 @@
         </span>
       </span>
 
-   
+      <br/>
                <!-- md:hidden -->
                 <div
                 class="portable-text lg:hidden md:pt-5 sm:pt-5"
@@ -216,7 +216,8 @@
                     href="mailto:joana@alwa.co.uk"
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
-                    >   <span v-if="home.metaemails" class="">
+                    
+                    >    <br/>  <br/> <span v-if="home.metaemails" class="">
         <span
           class=""
           v-for="metaemails in home.metaemails"
@@ -237,7 +238,7 @@
                     href="mailto:madi@alwa.co.uk"
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
-                    >madi@alwa.co.uk</a
+                    ></a
                   >
            
                <br
@@ -247,7 +248,7 @@
                     href="mailto:kataraztna@alwa.co.uk"
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
-                    >kataraztna@alwa.co.uk</a
+                    ></a
                   ><br
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
@@ -260,7 +261,7 @@
                     href="mailto:+4473028635221342"
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
-                    >+4473028635221342</a
+                    ></a
                   ><br
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
@@ -269,16 +270,16 @@
                     href="mailto:StudioRentals@sameold.com"
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
-                    >@alwaproduction</a
+                    ></a
                   >
                   <p class='pt-9'
                   speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                   speechify-initial-font-size="16px"
                 >
-                unit 2, 65 Dalston lane<br
+                <br
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
-                  />e82ng, london uk<br
+                  /><br
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
                   />
@@ -313,7 +314,7 @@
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
               >
-               
+               <br/>
                 <div
                 class="portable-text"
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
@@ -344,7 +345,7 @@
                     href="mailto:madi@alwa.co.uk"
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
-                    >madi@alwa.co.uk</a
+                    ></a
                   >
            
                <br
@@ -354,7 +355,7 @@
                     href="mailto:kataraztna@alwa.co.uk"
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
-                    >kataraztna@alwa.co.uk</a
+                    ></a
                   ><br
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
@@ -367,7 +368,7 @@
                     href="mailto:+4473028635221342"
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
-                    >+4473028635221342</a
+                    ></a
                   ><br
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
@@ -376,16 +377,16 @@
                     href="mailto:StudioRentals@sameold.com"
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
-                    >@alwaproduction</a
+                    ></a
                   >
                   <p class='pt-9'
                   speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                   speechify-initial-font-size="16px"
                 >
-                unit 2, 65 Dalston lane<br
+                <br
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
-                  />e82ng, london uk<br
+                  /><br
                     speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                     speechify-initial-font-size="16px"
                   />
@@ -447,7 +448,7 @@
 
     
 
-      <div class="bottom-0 left-0 w-full">
+      <div class="bottom-0 pt-[14vh] left-0 w-full">
     <div class="flex justify-center text-3xl md:text-5xl  w-9/16">
       <img
                       class="copyr w-[45vw] md:w-[15vw] sm:w-[50vw] p-0"
