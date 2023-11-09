@@ -1,6 +1,10 @@
 // webhook.js
-module.exports = async (req, res) => {
-    // Your webhook logic here
-    res.status(200).send('Webhook processed successfully');
+
+exports.handler = async (event, context) => {
+  // Your webhook logic here
+  console.log('Webhook triggered:', event);
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: 'Webhook received' }),
   };
-  
+};

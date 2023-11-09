@@ -16,4 +16,14 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
-})
+
+  api: {
+    // Other API configurations
+
+    // Add the webhook configuration here
+    webhook: {
+      path: './webhook', // Adjust the path based on your project structure
+      methods: ['post'],
+    },
+  },
+});
