@@ -25,16 +25,16 @@ export default {
       options: { source: "title" },
     },
     {
-      name: "aboutmeta",
-      title: "About",
+      name: "metadis",
+      title: "About Text",
       type: "array",
       options: {
-        editModal: "popover",
+       modal: "popover",
       },
       of: [
         {
           name: "meta",
-          title: "Meta",
+          title: "Meta", 
           type: "object",
           fields: [
             {
@@ -59,10 +59,10 @@ export default {
     },
     {
       name: "metaemails",
-      title: "Meta Email",
+      title: "About emails",
       type: "array",
       options: {
-        editModal: "popover",
+        modal: "popover",
       },
       of: [
         {
@@ -83,23 +83,11 @@ export default {
             {
               name: "link",
               title: "Link",
-              type: "object",
-              fields: [
-                {
-                  name: "title",
-                  title: "Title",
-                  type: "string",
-                },
-                {
-                  name: "link",
-                  title: "Link",
-                  type: "url",
-                  validation: (Rule) =>
-                    Rule.uri({
-                      scheme: ["http", "https", "mailto", "tel"],
-                    }),
-                },
-              ],
+              type: "url",
+              validation: (Rule) =>
+                Rule.uri({
+                  scheme: ["http", "https", "mailto", "tel"],
+                }),
             },
           ],
           preview: {
@@ -111,54 +99,6 @@ export default {
         },
       ],
     },
-    // {
-    //   name: "artistSlug",
-    //   title: "Artist Slug",
-    //   type: "slug",
-    //   options: { source: "title" },
-    // },
-    // {
-    //   name: "client",
-    //   title: "Client",
-    //   type: "tags",
-    // },
-    //   {
-    //   name: "archiveSlug", // Add this field for storing the archive slug
-    //   title: "Archive Slug",
-    //   type: "slug",
-    //   options: { source: "title" }, // You can change the source field as needed
-    // },
-    // {
-    //   name: "talent",
-    //   title: "Talent",
-    //   type: "reference",
-    //   to: [
-    //     {
-    //       type: "talent",
-    //     },
-    //   ],
-    // },
-    // {
-    //   name: "nextProject", 
-    //   title: "Next Project",
-    //   type: "reference",
-    //   to: [
-    //     {
-    //       type: "project",
-    //     },
-    //   ],
-    //   options: {
-    //     filter: ({ document }) => {
-    //       return {
-    //         filter: "talent._ref == $talentId && _id != $id",
-    //         params: {
-    //           talentId: document.talent._ref,
-    //           id: document._id,
-    //         },
-    //       };
-    //     },
-    //   },
-    // },
     {
       name: "meta",
       title: "Meta",
@@ -343,34 +283,7 @@ export default {
         },
       ],
     },
-    // {
-    //   name: "footer",
-    //   title: "Footer",
-    //   type: "array",
-    //   of: [
-    //     {
-    //       name: "button",
-    //       title: "Button",
-    //       type: "object",
-    //       fields: [
-    //         {
-    //           name: "title",
-    //           title: "Title",
-    //           type: "string",
-    //         },
-    //         {
-    //           name: "link",
-    //           title: "Link",
-    //           type: "url",
-    //           validation: (Rule) =>
-    //             Rule.uri({
-    //               scheme: ["http", "https", "mailto", "tel"],
-    //             }),
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
+
   ],
   preview: {
     select: {

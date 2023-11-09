@@ -164,20 +164,20 @@ reverse
                     <!--  md:w-[auto] lg:w-[auto] md:w-[26vw] lg:w-[26vw] -->
                     <div
                       :style="{ width: `calc(${item.imageWidth}vw - 20px)` }"
-                      class="mobilesize resize-animation leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap pl-[.2vw] normal-case font-medium"
+                      class="mobilesize resize-animation leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap  normal-case font-medium"
                     >
                     <!-- <div class=""> -->
-                      <p v-if="item.photographer">{{ item.photographer }}<span v-if="item.production">, </span></p>
-                      <p v-if="item.production">{{ item.production }}<span v-if="item.styleing">, </span></p>
-                      <p v-if="item.styleing">{{ item.styleing }}<span v-if="item.hair">, </span></p>
+                      <p v-if="item.photographer">{{ item.photographer }}<span v-if="item.production">,&nbsp; </span></p>
+                      <!-- <p v-if="item.production">{{ item.production }}<span v-if="item.styleing">, </span></p> -->
+                      <p v-if="item.styleing">{{ item.styleing }}<span v-if="item.hair">,&nbsp; </span></p> 
                       <p v-if="item.hair">
-                        {{ item.hair }}<span v-if="item.makeup">, </span>
+                        {{ item.hair }}<span v-if="item.makeup">,&nbsp; </span>
                       </p>
                       <p v-if="item.makeup">
-                        {{ item.makeup }}<span v-if="item.dop">, </span>
+                        {{ item.makeup }}<span v-if="item.dop">,&nbsp; </span>
                       </p>
                       <p v-if="item.dop">
-                        {{ item.dop }}<span v-if="item.set">, </span>
+                        {{ item.dop }}<span v-if="item.set">,&nbsp; </span>
                       </p>
                       <p v-if="item.set">
                         {{ item.set }}
@@ -186,11 +186,23 @@ reverse
                     </div>
                   </NuxtLink>
                 </div>
+                <div class="bottom-0  left-0 w-full">
+    <div class="flex justify-center text-3xl md:text-5xl  w-9/16">
+      <img
+                      class="copyr w-[45vw] md:w-[15vw] sm:w-[50vw] p-0"
+                      src="COPYRIOGHT.png"
+                      width="50%"
+                      height="20%"
+                      alt="COPYRIOGHT"
+                    />
+    </div>
+  </div>
                 <!-- </vue-marquee-slider> -->
               </div>
             </div>
           </div>
-        </div>
+         </div>
+         
 
         <!-- List layout -->
 
@@ -442,6 +454,18 @@ reverse
                 </figure>
               </div>
             </div>
+            <div class="bottom-0 pt-[14vh] left-0 w-full">
+    <div class="flex justify-center text-3xl md:text-5xl  w-9/16">
+      <!-- <img
+                      class="copyr w-[45vw] md:w-[15vw] sm:w-[50vw] p-0"
+                      src="COPYRIOGHT.png"
+                      width="50%"
+                      height="20%"
+                      alt="COPYRIOGHT"
+                    /> -->
+                    <br/>
+    </div>
+  </div>
           </div>
         </div>
       </client-only>
@@ -666,7 +690,7 @@ export default {
   width: 25vw;
   height: auto; */
   height: auto;
-    position: absolute;
+    /* position: absolute; */
     width: 25vw;
       width: calc(28.33vw - 20px);
     left: 3vw;
@@ -958,9 +982,8 @@ figure {
 }
 
 .listText div .year{
-  justify-content: flex-end;
   display: flex;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
     width: 18vw;
     text-align: end;
 }

@@ -95,35 +95,35 @@ export default {
         },
         {
           name: "styleing",
-          title: "Styleing",
+          title: "info",
           type: "string",
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),
         },
         {
           name: "hair",
-          title: "Hair",
+          title: "info",
           type: "string",
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),
         },
         {
           name: "makeup",
-          title: "Makeup",
+          title: "info",
           type: "string",
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),
         },
         {
           name: "dop",
-          title: "DOP",
+          title: "info",
           type: "string",
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),
         },
         {
           name: "set",
-          title: "Set designer",
+          title: "info",
           type: "string",
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),

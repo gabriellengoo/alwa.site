@@ -10,49 +10,11 @@ export default {
       title: 'Title',
       type: 'string',
     },
-    // {
-    //   name: 'grid',
-    //   type: 'grid',
-    // }, 
     {
       name: 'grid2',
       title: 'Home grid',
       type: 'grid2',
     },
-    // {
-    //   name: "meta",
-    //   title: "Meta",
-    //   type: "array",
-    //   options: {
-    //     editModal: "popover",
-    //   },
-    //   of: [
-    //     {
-    //       name: "meta",
-    //       title: "Meta",
-    //       type: "object",
-    //       fields: [
-    //         {
-    //           name: "title",
-    //           title: "Title",
-    //           type: "string",
-    //         },
-    //         {
-    //           name: "content",
-    //           title: "Content",
-    //           type: "string",
-    //         },
-    //       ],
-    //       preview: {
-    //         select: {
-    //           title: "content",
-    //           subtitle: "title",
-    //         },
-    //       },
-    //     },
-    //   ],
-    // },
-
        {
       name: "meta",
       title: "Meta",
@@ -112,24 +74,13 @@ export default {
             {
               name: "link",
               title: "Link",
-              type: "object",
-              fields: [
-                {
-                  name: "title",
-                  title: "Title",
-                  type: "string",
-                },
-                {
-                  name: "link",
-                  title: "Link",
-                  type: "url",
-                  validation: (Rule) =>
-                    Rule.uri({
-                      scheme: ["http", "https", "mailto", "tel"],
-                    }),
-                },
-              ],
+              type: "url",
+              validation: (Rule) =>
+                Rule.uri({
+                  scheme: ["http", "https", "mailto", "tel"],
+                }),
             },
+           
           ],
           preview: {
             select: {

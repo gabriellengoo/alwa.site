@@ -1,8 +1,9 @@
 <template>
+  <!-- md:h-screen -->
+  <div class="relative md:min-h-fit md:overflow-hidden">
+    <!-- <LenisComponent /> -->
 
-<div>
-
-<header
+    <header
     class="sticky  top-0 left-0 z-20  p-0 pt-2 text-lg leading-snug uppercase  md:pb-2 md:pt-2 "
   >
 
@@ -11,19 +12,10 @@
     <div
       class="content-container hidden  border-b-[.95px] border-stone-900 md:flex w-screen justify-between"
       :class="{ 'border-b-[0px]': $store.state.isGalleryOpen }"
-      :style="contentContainerStyle"
     >
 
       <nav class="flex-row md:justify-center   top-0 hidden w-1/16 md:flex">
-        <!-- <span class=" border-b-[.95px] absolute top-[8vh] content-container w-screen  border-stone-900 z-0"
-></span> -->
-        <!-- <NuxtLogo/> -->
-        <!-- <div>
-    <div v-for="about in abouts" :key="about._id">
-      {{ about.title }}
-    </div>
-  </div> -->
-
+ 
         <!-- Add an SVG icon here -->
         <div class="navele flex justify-between ">
           <NuxtLink class="buttonlogo w-[10vw] h-auto" :to="isBlueBoxActive ? $route.path : '/'">
@@ -59,17 +51,13 @@
             <!-- <span class="circle inline-block" speechify-initial-font-family="neue-haas-unica, sans-serif" speechify-initial-font-size="14px"></span> -->
           </button>
         </div>
-        <!-- <button class="underline pl-2 uppercase" @click="toggleBlueBox" >Contact</button> -->
-        <!-- <button><NuxtLink :style="{ textDecoration: activeStyle }" class="underline pl-2 uppercase" to="/">Work</NuxtLink></button> -->
-        <!-- <button><NuxtLink :style="{ textDecoration: activeStyle }" class="underline pl-2 uppercase" to="/">Instagram</NuxtLink></button> -->
-      </nav>
+     </nav>
     </div>
   </div>
 
     <!-- mobile -->
     <div
       class="content-container mobile lg:hidden sm:contents md:contents  "
-      :style="contentContainerStyle"
     >
       <nav class="navelemb mobile flex-row w-1/16 ">
 
@@ -100,10 +88,7 @@
     Contact
   </button>
         </div>
-        <!-- <button class="underline pl-2 uppercase" @click="toggleBlueBox" >Contact</button> -->
-        <!-- <button><NuxtLink :style="{ textDecoration: activeStyle }" class="underline pl-2 uppercase" to="/">Work</NuxtLink></button> -->
-        <!-- <button><NuxtLink :style="{ textDecoration: activeStyle }" class="underline pl-2 uppercase" to="/">Instagram</NuxtLink></button> -->
-      </nav>
+     </nav>
     </div>
 
     <!-- Add a div for the blue box  @click="toggleBlueBox" -->
@@ -118,11 +103,7 @@
         @click="toggleBlueBox"
   class="text flex flex-1 flex-col justify-between lg:flex-row"
         >
-        <!-- <div
-        v-if="isBlueBoxActive"
-  class="text flex flex-1 flex-col justify-between lg:flex-row"
-  :style="{ transform: isBlueBoxActive ? 'translateY(0vh)' : 'translateY(50)' }"
-        > -->
+      
           <div
             class="text flex p-[10px] flex-1 flex-col justify-between lg:flex-row"
             speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
@@ -176,7 +157,7 @@
               
               <!-- <span class="icon baseline h-auto sm:pt-5"> -->
                      
-          <div v-if="home.meta" class="md:pb-5 sm:pb-5">
+          <div v-if="project.metadis" class="md:pb-5 sm:pb-5">
             <span class="icon baseline h-auto sm:pt-5">
             <img
                       class="   p-0"
@@ -188,11 +169,11 @@
           </span>
         <span
           class=""
-          v-for="meta in home.meta"
-          :key="meta._key"
+          v-for="metadis in project.metadis"
+          :key="metadis._key"
         >
-          <span class="" v-if="meta.content">
-            <span class="">{{ meta.content }}</span>
+          <span class="" v-if="metadis.content">
+            <span class="">{{ metadis.content }}</span>
           </span>
         </span>
       </div>
@@ -203,7 +184,7 @@
                 class="portable-text lg:hidden "
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
-                v-if="home.metaemails"
+                v-if="project.metaemails"
               >
              
               
@@ -212,7 +193,7 @@
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
        
-          v-for="metaemails in home.metaemails"
+          v-for="metaemails in project.metaemails"
           :key="metaemails._key"
               >
               <div  v-if="metaemails.link">
@@ -254,7 +235,7 @@
               
               </div>
               <button
-              v-if="home.metaemails"
+              v-if="project.metaemails"
                 title="Close Information Drawer"
                 class="hidden uppercase lg:flex lg:flex-col text-left"
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
@@ -266,7 +247,7 @@
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
        
-          v-for="metaemails in home.metaemails"
+          v-for="metaemails in project.metaemails"
           :key="metaemails._key"
               >
               <div  v-if="metaemails.link">
@@ -293,128 +274,142 @@
       class="white-box z-[100001]  w-screen h-screen "
     ></div>
   </header>
-  
- <div class="gap-2 p-2 ">
 
 
- 
- 
-
-
-
-
-      
-
-      <div class="md:pr-6" :class="home.meta ? 'md:w-7/16' : 'w-full'">
-
-      
-        <!-- <Grid size="small" :items="home.grid"></Grid> -->
-        <Grid2 size="small" :items="home.grid2"></Grid2>
-      </div>
-
-
-</div>
-
-
-</div>
-
+  </div>
 </template>
-
-
-
-
-
 <script>
-import { groq } from '@nuxtjs/sanity'
-import { mapState, mapActions } from 'vuex'
-// import AboutPage from '~/components/AboutPage.vue'
+import { groq } from "@nuxtjs/sanity";
+import { mapMutations } from "vuex";
+// import Header from "~/components/layout/Header.vue";
+// import Lenis from '@studio-freight/lenis';
 
 export default {
-
-  name: 'IndexPage',
+  // components: {
+  //   Header,
+  // },
+  async asyncData({ params, $sanity }) {
+    const query = groq`*[_type == "project"]  {...,metadis[]{
+                      title,
+                      content,
+                    }} | order(_updatedAt desc)[0]`;
+                    // && slug.current == "${params.slug}"
+    const project = await $sanity.fetch(query);
+    return { project };
+  },
   data() {
     return {
-      project: false,
-      abouts: [],
       index: 1,
       realIndex: 0,
       step: 0,
+      imageNumberPosition: { top: 0, left: 0 }, // Initialize position
+      isImageModalOpen: false,
+      isGalleryExpanded: false,
       isBlueBoxActive: false,
-      contentContainerStyle: {},
+      clickedImageIndex: null, // Initially set to null
+      swiperOptions: {
+        slidesPerView: "auto",
+        keyboard: {
+          enabled: true,
+        },
+      },
+      imageOpacity: 1, // Add this property
       scrolled: false,
       back: false,
-      abouts: [],
-      activeStyle: { textDecoration: "none" },
+    };
+  },
+  created() {
+    if (
+      this.$nuxt.context.from &&
+      this.$nuxt.context.from.name == "project-slug"
+    ) {
+      this.back = true;
     }
   },
 
-  scroll() {
-    if (this.project.slider) {
-      this.scrolled = !this.scrolled;
-      const gsap = this.$gsap;
-      let height = this.$refs["footer"].offsetHeight;
-      if (this.scrolled) {
-        gsap.to(this.$refs["container"], { y: -height });
-      } else {
-        gsap.to(this.$refs["container"], { y: 0 });
-      }
+  mounted() {
+
+
+    // Get a reference to the title's inner div
+    const titleInnerDiv = document.getElementById('titleInnerDiv');
+
+    // Check if the titleInnerDiv exists
+    if (titleInnerDiv) {
+      // Get the height of the title's inner div
+      const titleInnerDivHeight = titleInnerDiv.offsetHeight;
+
+      const isMobile = window.innerWidth <= 768;
+
+      const scrollContainer = this.$refs.scrollContainer; // Make sure you have a ref on your scroll container
+
+
+ 
     }
-  },
-
-  async asyncData({ params, $sanity }) {
-    const homeQuery = groq`*[_type == "home" ]  {..., listImage,} {..., 
-     
-                     grid[] {_key, spacer, "video" : 
-                    {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
-                      "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
-                    title, photographer,year,hair,styleing, link, production,
-                      "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
-                     
-                      {..., grid2[] {_key, spacer, "video" : 
-                    {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
-                      "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
-                    title, photographer,year,imageWidth,hair,makeup,dop,set,styleing, link, production,listImage,
-                      "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
-                     
-                    {...,meta[]{
-                      title,
-                      content,
-                    }}
-
-                    {...,metaemails[]{
-                      title,
-                      content,
-                      link,
-                     
-                    }}
-
-                      {...,
-                        sections[]{
-                          title,
-                          grid,
-                          grid2
-                        }
-                      }
-                      
-                      | order(_updatedAt desc)[0]
-                      `
-
-    const home = await $sanity.fetch(homeQuery)
-    return { home }
-  },
   
-  methods: {
-    ...mapActions(['setTitle']),
-    setProject(reference) {
-      this.project = reference
-    },
 
+
+    const overlay = document.querySelector(".overlay-gallery");
+  },
+  methods: {
     openGallery() {
       this.$store.commit('setGalleryState', true); // Set gallery state as open
     },
     closeGallery() {
       this.$store.commit('setGalleryState', false); // Set gallery state as closed
     },
+    onSlideChange(swiper) {
+      this.index = swiper.activeIndex + 1
+      this.realIndex = swiper.activeIndex
+      const gsap = this.$gsap
+      if (swiper.activeIndex == 0 && !this.back) {
+        this.$refs['prev'].classList.add('disabled')
+      } else {
+        this.$refs['prev'].classList.remove('disabled')
+      }
+      if (this.index > 1) {
+        gsap.to(this.$refs['skew'], { x: '-150%' })
+      } else {
+        gsap.to(this.$refs['skew'], { x: '0%' })
+      }
+    },
+    handleVideoClick(videoId) {
+      // Call the playVideo() method of your MediaVideoPlay component
+      this.$refs.mediaVideoPlay.playVideo(videoId);
+    },
+
+    showGalleryOnHover() {
+      this.$refs.overlayGallery.classList.add("active");
+    },
+
+    hideGalleryOnLeave() {
+      this.$refs.overlayGallery.classList.add("active");
+    },
+
+    openImageModal(index) {
+      this.clickedImageIndex = index;
+      this.swiperOptions = { ...this.swiperOptions, initialSlide: index };
+      this.isGalleryExpanded = true;
+    },
+
+    closeImageModal() {
+      this.isGalleryExpanded = false;
+      this.clickedImageIndex = null;
+    },
+
+    updateImageNumberPosition(event) {
+      this.imageNumberPosition = {
+        top: event.clientY + "px",
+        left: event.clientX + "px",
+      };
+    },
+    generateThumbnailURL(imageURL) {
+      return imageURL; // Just return the original imageURL for simplicity.
+    },
+    toggleGallery() {
+      this.isGalleryExpanded = !this.isGalleryExpanded;
+    },
+    onSlideChange(swiper) {},
+    scroll() {},
     toggleBlueBox() {
       // Toggle the blue box visibility
       this.isBlueBoxActive = !this.isBlueBoxActive;
@@ -422,11 +417,6 @@ export default {
       // Update the content container position
       this.updateContentContainerPosition();
 
-      if (this.isBlueBoxActive) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
     },
     updateContentContainerPosition() {
       const isMobile = window.innerWidth <= 768;
@@ -436,20 +426,30 @@ export default {
       // Calculate the offset based on whether it's a mobile screen or not
 
       // Set the content container position
-      this.contentContainerStyle = {
-        transform: `translateY(${offset})`,
-      };
+     
     },
- 
+    next() {
+      if (this.mySwiper.isEnd) {
+        if (this.project.nextProject) {
+          this.mySwiper.slideTo(0);
+        }
+      } else {
+        this.mySwiper.slideNext();
+      }
+    },
+    prev() {
+      if (this.mySwiper.isBeginning && this.back) {
+        this.$router.go(-1)
+      } else {
+        this.mySwiper.slidePrev()
+      }
+    },
+
+
+    ...mapMutations(["SET_FOOTER"]),
   },
-  created() {
-    this.setTitle(this.home.title)
-  },
-}
+};
 </script>
-
-
-
 
 <style scoped>
 /* header {  
@@ -612,11 +612,7 @@ button .circle:hover {
     /* top: 0; */
     position: relative;
 }
-/* header{
-  background-color: #ffffff00;
-  pointer-events: none;
-} */
-/* Add styles for the blue box */
+
 .blue-box {
   position: relative;
   /* top: 0;
@@ -687,7 +683,7 @@ button .circle:hover {
 } */
 
 
-/* Add styles for the active blue box */
+
 .blue-box.active {
   height: 365px;
   /* height: fit-content; */
@@ -787,7 +783,6 @@ header{
 }
 
 @media screen and (max-width: 1023px) {
-  /* Your CSS styles for screens smaller than 1024px go here */
   /* For example, you can change the font size or layout */
   .blue-box.active{
     height: 100vh;
@@ -830,13 +825,11 @@ header{
   pointer-events: auto; /* Enable pointer events when visible */
 }
 
-/* Add styles for the content container */
 .content-container {
   transition: transform 1s ease; /* Add smooth transition for content movement */
   /* font-size: 1.125rem !important; */
 }
 
-/* Add this style to your CSS */
 .underline {
   text-decoration: none;
   position: relative;
@@ -857,5 +850,409 @@ header{
 .underline:hover:after,
 .underline:focus:after {
   width: 90%;
+}
+
+
+
+/* end heeader  */
+.overlaydiv{
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.overlaycont{
+  width: 100vw;
+    height: 100vh;
+}
+.scroll-container {
+  width: 98vw;
+  width: 100vw;
+  /* width: 98vw !important; */
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: space-between;
+}
+
+.insidescrollcont {
+  padding-bottom: 10px !important;
+}
+
+@keyframes src-components-animation-2PZg {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.scroll-container {
+  padding: 1vw;
+}
+
+.scroll-container > * {
+  display: inline-block;
+}
+
+.scrollcost {
+  /* height: 55vh; */
+  /* height: calc(30.33vw - -4px); */
+  /* height: calc(27.33vw - -4px);   */
+  /* height: calc(37.33vw - -4px); */
+  /* width: calc(37.33vw - -4px); */
+  width: calc(32.3vw - 4px);
+}
+
+.masonry .flex-item {
+  margin-right: 200px !important;
+  min-width: 350px !important;
+}
+.masonry .flex-item img {
+  max-height: 30vw;
+}
+
+.overlay-gallery {
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.5s ease;
+}
+
+.overlay-gallery.active {
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.image-number {
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 1.2rem;
+  position: absolute;
+  /* position: fixed;  */
+  right: 0;
+  top: 0;
+  padding: 20px;
+  text-transform: uppercase;
+  bottom: 0vh;
+  /* left: 97vw; */
+  color: rgb(18, 18, 18);
+}
+
+.swiper-wrapper {
+  /* transition-property: none; */
+}
+
+.swiper-container {
+  /* cursor: url('https://pngimg.com/uploads/dot/dot_PNG3.png'), auto  !important; */
+}
+
+.swiper-wrapper {
+  align-items: center;
+}
+
+.arrow {
+  top: inherit;
+  left: 95vw;
+}
+
+.overlay-gallery {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  /* background-color: rgb(255 255 255 / 45%); */
+  backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
+  transition: backdrop-filter 0.3s ease; /* Add a smooth transition effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+      /* z-index: 100; */
+  cursor: crosshair;
+}
+
+.backbtn {
+  left: 37vw;
+}
+
+.gallery-content {
+  text-align: center;
+  color: white;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 99999;
+  padding-left: 0vw !important;
+  height: inherit !important;
+  font-size: 14.21px !important;
+  padding-top: 4vh;
+  letter-spacing: -1px;
+  /* position: inherit;
+    bottom: 0vh;
+    padding-bottom: 14vh; */
+}
+
+button {
+  /* cursor: crosshair;
+  padding-left: 55vw;
+  position: relative;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 80vh;
+  width: fit-content; */
+}
+
+.nextbtn {
+  /* cursor: crosshair;
+  padding-left: 55vw;
+  position: absolute;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: inherit;
+  width: fit-content; */
+
+  cursor: crosshair;
+    padding-left: 15vw;
+    /* position: relative; */
+    margin-top: auto;
+    margin-bottom: auto;
+    height: inherit;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.backbtn {
+  /* cursor: crosshair;
+  padding-left: 55vw;
+  position: absolute;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: inherit;
+  width: fit-content; */
+
+  cursor: crosshair;
+    padding-right: 15vw;
+    /* position: relative; */
+    margin-top: auto;
+    margin-bottom: auto;
+    height: inherit;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.gallery-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.gallery-image {
+  /* max-width: 45vw;
+    max-height: calc(42.33vw - 20px);
+    width: 45vw;
+    width: calc(34.33vw - 20px);
+    margin: 0px; */
+  cursor: grab !important;
+
+  padding-top: 20vh;
+    padding-bottom: 20vh;
+  max-width: 100vw;
+    width: calc(36.33vw - 20px);
+    align-items: center;
+}
+
+@media (min-width: 2560px) {
+    .bottom-div {
+        padding-top: 14rem  !important;
+    }
+}
+
+.scroll-container div img {
+  /* object-fit: cover; */
+  /* height: 55vh; */
+  /* height: auto; */
+  object-position: center center;
+  /* transition: border-radius 0s ease, filter 0s ease; */
+  transition: transform 0.35s ease; /* Add the transition property for transform */
+}
+.scroll-container div img:hover {
+  /* transition: opacity .35s ease; */
+  /* transition: border-radius 0.5s ease, filter 2s ease; */
+  transform: scale(1.01);
+  overflow: hidden;
+}
+
+
+
+/* img{
+  object-fit: cover;
+} */
+.list-layout {
+  /* opacity: 1;  */
+  margin-top: 2px;
+  transition: margin 0.3s ease; /* Add a smooth transition effect */
+}
+
+.list-layout img:hover {
+  /* opacity: 0.3;  */
+  margin-top: 20px; /* Adjust margin as needed for spacing */
+  transition: margin 0.3s ease; /* Add a smooth transition effect */
+}
+
+.slider {
+  height: calc(80% - 0.5rem);
+}
+
+
+.bottom-div {
+    padding-top: 8rem;
+    transition: padding-top 0.3s ease-in-out, height 0.3s ease-in-out !important;
+}
+
+@media screen and (max-width: 1023px) {
+  /* For example, you can change the font size or layout */
+  .bottom-div {
+    padding-top: 2rem;
+    transition: padding-top 0.3s ease-in-out, height 0.3s ease-in-out !important;
+}
+}
+
+@media (max-width: 768px) {
+  .overlay-gallery {
+    z-index: 0;
+  }
+
+  .bottom-div {
+    padding-top: 8rem;
+    transition: padding-top 0.3s ease-in-out, height 0.3s ease-in-out !important;
+}
+  /*   display: block;
+    position: absolute; */
+
+  .scroll-container div img:hover {
+    /* transition: opacity .35s ease; */
+    /* transition: border-radius 0.5s ease, filter 2s ease; */
+    transform: 0;
+    overflow: hidden;
+  }
+
+  .bottomtextprmb {
+    width: 100vw;
+    display: flex;
+    padding: 0rem !important;
+    justify-content: center;
+  }
+
+  .bottomtextprmbinn {
+    width: 92vw;
+    padding-bottom: 1vh;
+  }
+
+  .mobileslugtitle{
+    padding-bottom: 0.25rem;
+  }
+
+  .projecttextmb {
+    width: fit-content;
+    /* padding-top: 7rem; */
+    padding-left: 1vw;
+    font-size: 11.84px;
+  }
+
+  .scroll-container div img {
+    padding: 0vw;
+    width: 92vw !important;
+    padding-right: 0vw;
+    height: 56vh;
+    height: auto;
+    overflow-x: hidden;
+    align-content: center;
+  }
+
+  .scroll-container div img {
+    /* display: block; */
+    /* position: absolute; */
+    /* z-index: 2; */
+  }
+
+  figure {
+    width: 100vw;
+    display: flex;
+    padding-right: 0vw;
+    /* height: 56vh; */
+    overflow-x: hidden;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+  }
+
+  .block {
+    display: none;
+  }
+
+  .gallmobile {
+    flex-direction: column;
+  }
+
+  .bottom-div {
+    position: unset;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    /* padding: 0px; */
+    /* padding-top: 6rem; */
+  }
+
+  .scroll-container {
+    padding-top: 3vh;
+    padding: 0;
+  }
+  .list-layout {
+    /* opacity: 1;  */
+    margin-top: 0px;
+    transition: margin 0.3s ease; /* Add a smooth transition effect */
+  }
+
+  .mobiletitle {
+    position: fixed;
+    /* top: 17vw; */
+    background: 0;
+    height: fit-content;
+    z-index: 1;
+    padding: 3vw;
+    /* padding-top: 20vh; */
+    border-bottom: 0px;
+  }
+
+  .mobiletitle {
+    /* position: relative !important; */
+  }
+  .scroll-container {
+    /* width: 100%; */
+    width: 100vw;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+  }
+
+  .scroll-container div img {
+    width: 100vw;
+    padding-right: 0vw;
+    overflow-x: hidden;
+  }
 }
 </style>

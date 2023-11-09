@@ -16,7 +16,7 @@
           : ' md:hidden'
       "
     ></LayoutHeader>    -->
-    <LayoutHeader
+    <!-- <LayoutHeader
   :class="{
     'md:hidden': !(
       $nuxt.$route.name == 'about' ||
@@ -25,7 +25,7 @@
       $nuxt.$route.name == 'archive-slug'
     )
   }"
-></LayoutHeader>
+></LayoutHeader> -->
     <!-- <LayoutHeaderMin
       :class="
         $nuxt.$route.name != 'index' ||
