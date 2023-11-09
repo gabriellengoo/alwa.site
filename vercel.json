@@ -1,0 +1,10 @@
+{
+    "functions": {
+      "webhook": {
+        "handler": "webhook.js",
+        "events": ["http"],
+        "middlewares": ["sanity"]
+      }
+    }
+  }
+  
