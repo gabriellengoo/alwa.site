@@ -505,7 +505,7 @@ export default {
     const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {..., "archiveSlug": archive->slug.current, slider[] {fullWidth, imageWidth, overlayimageWidth, images[] 
       {..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}}}, 
       "talent" : talent->title, "talentSlug" : talent->slug.current, "footer" : footer, "talentBio" : talent->shortBio, "nextProject" : nextProject->slug.current,
-    "related": *[_type=='project' && references(^.talent._ref) && _id != ^._id]{ _id, title, production, meta, metadis, "slug" }
+    "related": *[_type=='project' && references(^.talent._ref) && _id != ^._id]{ _id, title, production, meta, metadis, "slug" : slug.current }{_id, title, production, meta, metadis, metaemails, "slug" : slug.current}
      } 
       | order(_updatedAt desc)[0]`;
                     // && slug.current == "${params.slug}"
