@@ -20,7 +20,7 @@ export default {
       title: "Meta",
       type: "array",
       options: {
-        editModal: "popover",
+        modal: "popover",
       },
       of: [
         {
@@ -53,7 +53,7 @@ export default {
       title: "Meta Email",
       type: "array",
       options: {
-        editModal: "popover",
+        modal: "popover",
       },
       of: [
         {

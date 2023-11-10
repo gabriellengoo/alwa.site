@@ -67,7 +67,8 @@ export default {
   sanity: {
     // module options
     projectId: 't4wk0gbl',
-    apiVersion: '2023-09-05'
+    apiVersion: '2023-09-05',
+    useCdn: false, 
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -99,6 +100,7 @@ export default {
     sanity: {
       projectId: 't4wk0gbl',
       dataset: 'production',
+      useCdn: false, 
     },
   },
 }

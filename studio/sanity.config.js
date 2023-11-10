@@ -17,8 +17,16 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
+  
   // desk: {
-  //   name: 'alew',
+  //   name: 'alwa',
   //   structure: customDeskStructure,
   // },
-})
+  parts: [
+    // Other parts...
+    {
+      name: 'part:@sanity/desk-tool/structure',
+      path: './deskStructure.js', // Make sure to adjust the path accordingly
+    },
+  ],
+}) 

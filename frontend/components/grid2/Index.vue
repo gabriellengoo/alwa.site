@@ -127,9 +127,9 @@ reverse
                       <!--  :class="size == 'small' ? 'smaller-text' : ''" 
                           width: calc(32.33vw - 20px);-->
                       <div
-                        :style="{ width: `calc(${item.imageWidth}vw - 20px)` }"
+                        :style="{ width: `calc(${item.imageWidth}vw - 10px)` }"
                         :class="size == 'small' ? 'smaller-text' : ''"
-                        class="mobilesize resize-animation flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw]"
+                        class="mobilesize resize-animation flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw] pl-0"
                       >
                         {{ item.title ? item.title : item.reference.title }}
                       </div>
@@ -146,7 +146,7 @@ reverse
                         class="scrollcost resize-animation hover"
                         :style="{
                           opacity: imageOpacity,
-                           width: `calc(${item.imageWidth}vw - 20px)`,
+                           width: `calc(${item.imageWidth}vw - 10px)`,
                         }"
                       > 
                       </MediaImage>
@@ -156,14 +156,14 @@ reverse
                         v-if="item.video.id"
                         :style="{
                           opacity: imageOpacity,
-                          width: `calc(${item.imageWidth}vw - 20px)`,
+                          width: `calc(${item.imageWidth}vw - 10px)`,
                         }"
                         class="scrollcost resize-animation"
                       ></MediaVideo>
                     </div>
                     <!--  md:w-[auto] lg:w-[auto] md:w-[26vw] lg:w-[26vw] -->
                     <div
-                      :style="{ width: `calc(${item.imageWidth}vw - 20px)` }"
+                      :style="{ width: `calc(${item.imageWidth}vw - 10px)` }"
                       class="mobilesize resize-animation leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap  normal-case font-medium"
                     >
                     <!-- <div class=""> -->
@@ -1253,6 +1253,7 @@ figure {
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
+    align-items: center;
   }
 
   .scrollcost {

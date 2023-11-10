@@ -1,66 +1,76 @@
 import React from "react";
-import S from "@sanity/desk-tool/structure-builder";
-// import { structure } from "@sanity/desk-tool/structure-builder";
-import Emoji from "a11y-react-emoji";
-const Home = () => <Emoji style={{ fontSize: "2rem" }} symbol="🏠" />;
-const Project = () => <Emoji style={{ fontSize: "2rem" }} symbol="🛠️" />;
 
-
-
-const url = "https://alwa.co.uk/";
+const url = "https://alwaproduction.co.uk/";
 
 const WebPreview = ({ document }) => {
   const { displayed } = document;
-  if (displayed._type === "home") {
-    const targetURL = url + "?preview=true";
-    return (
-      <iframe src={targetURL} frameBorder={0} width="1280px" height="100%" />
-    );
-  } else {
-    const targetURL = url + `?preview=true`;
-    return (
-      <iframe src={targetURL} frameBorder={0} width="1280px" height="100%" />
-    );
+  const targetURL = url + "?preview=true";
+
+  if (displayed._type === "home" || displayed._type === "project") {
+    const iframe = document.createElement("iframe");
+    iframe.src = targetURL;
+    iframe.frameBorder = 0;
+    iframe.width = "1280px";
+    iframe.height = "100%";
+
+    return iframe;
   }
+
+  return null;
 };
 
-export default () =>
-  S.list()
-    .title("Content")
-    .items([
-      S.listItem()
-        .title("Home")
-        .icon(Home)
-        .child(
-          S.document()
-            .schemaType("home")
-            .documentId("home")
-            .title("Home")
-            .views([
-              S.view.form(),
-              S.view.component(WebPreview).title("Web Preview"),
-            ])
-        ),
-        S.listItem()
-        .title("Project")
-        .icon(Project)
-        .child(
-          S.document()
-            .schemaType("project")
-            .documentId("project")
-            .title("Project")
-            .views([
-              S.view.form(),
-              S.view.component(WebPreview).title("Web Preview"),
-            ])
-        ),
-      ...S.documentTypeListItems()
-        .filter((listItem) => !["home"].includes(listItem.getId())),
-    ]);
+export default () => ({
+  name: 'Content',
+  items: [
+    {
+      name: 'Home',
+      child: {
+        documentId: 'home',
+        schemaType: 'home',
+        views: [
+          {
+            name: 'form',
+          },
+          {
+            name: 'Web Preview',
+            component: WebPreview,
+            title: 'Web Preview',
+          },
+        ],
+      },
+    },
+    {
+      name: 'Project',
+      child: {
+        documentId: 'project',
+        schemaType: 'project',
+        views: [
+          {
+            name: 'form',
+          },
+          {
+            name: 'Web Preview',
+            component: WebPreview,
+            title: 'Web Preview',
+          },
+        ],
+      },
+    },
+    // Add other document type items here...
+  ],
+});
+
 export const getDefaultDocumentNode = ({ schemaType }) => {
-  // Conditionally return a different configuration based on the schema type
-  return S.document().views([
-    S.view.form(),
-    S.view.component(WebPreview).title("Web Preview"),
-  ]);
+  return {
+    views: [
+      {
+        name: 'form',
+      },
+      {
+        name: 'Web Preview',
+        component: WebPreview,
+        title: 'Web Preview',
+      },
+    ],
+  };
 };
