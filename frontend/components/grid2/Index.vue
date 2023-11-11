@@ -1097,6 +1097,13 @@ figure {
 
 /* Media query for screens with a maximum width of 768px (mobile devices) */
 @media (max-width: 768px) {
+  .listset{
+  /* height: 100vh; */
+    /* overflow: scroll; */
+    /* position: absolute; */
+    position: unset !important;
+    /* top: 13vh; */
+}
   .fakebtn{
     width: 16vw !important;
     /* top: 3vh; */
