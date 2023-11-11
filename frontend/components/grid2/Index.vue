@@ -1099,7 +1099,8 @@ figure {
 @media (max-width: 768px) {
   .fakebtn{
     width: 16vw !important;
-    top: 3vh;
+    /* top: 3vh; */
+    top: 1vh;
 }
   .listimg {
   left: calc(4.79vw - 10px);
