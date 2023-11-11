@@ -250,7 +250,7 @@
               <button
               v-if="home.metaemails"
                 title="Close Information Drawer"
-                class="hidden uppercase lg:flex lg:flex-col text-left"
+                class="hidden uppercase lg:flex pt-[3vh] lg:flex-col text-left"
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
               >

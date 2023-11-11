@@ -26,7 +26,7 @@
 
         <!-- Add an SVG icon here -->
         <div class="navele flex justify-between ">
-          <NuxtLink class="buttonlogo w-[10vw] h-auto" :to="isBlueBoxActive ? $route.path : '/'">
+          <NuxtLink class="buttonlogo w-[10vw] h-auto" :to="isBlueBoxActive ? $route.path : '/'"> 
             <svg class="fill-[#505050]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
@@ -36,6 +36,7 @@
                 </g>
               </g>
             </svg>
+            
             <!-- <img
                       class=" w-[5vw]  p-0"
                       src="logo.png"
@@ -256,7 +257,7 @@
               <button
               v-if="home.metaemails"
                 title="Close Information Drawer"
-                class="hidden uppercase lg:flex lg:flex-col text-left"
+                class="hidden uppercase lg:flex pt-[3vh] lg:flex-col text-left"
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
               >
@@ -367,13 +368,13 @@ export default {
                      grid[] {_key, spacer, "video" : 
                     {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
                       "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
-                    title, photographer,year,hair,styleing, link, production,
+                    title, photographer,year,hair,styleing, link, production, location,
                       "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
                      
                       {..., grid2[] {_key, spacer, "video" : 
                     {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
                       "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
-                    title, photographer,year,imageWidth,hair,makeup,dop,set,styleing, link, production,listImage,
+                    title, photographer,year,imageWidth,hair,makeup,dop,set,styleing, link, production, location, listImage,
                       "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
                      
                     {...,meta[]{

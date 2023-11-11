@@ -188,6 +188,8 @@
             <span class="">{{ metadis.content }}</span>
           </span>
         </span>
+
+        
       </div>
 
       <br/>
@@ -249,7 +251,7 @@
               <button
               v-if="project.metaemails"
                 title="Close Information Drawer"
-                class="hidden uppercase lg:flex lg:flex-col text-left"
+                class="hidden uppercase lg:flex pt-[3vh] lg:flex-col text-left"
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
               >
@@ -310,6 +312,14 @@
                 {{ meta.title }}
                 {{ meta.content }}
               </div>
+              <div v-if="project.location" class="pt-3">
+                <div
+                class="flex flex-col leading-5 normal-case"
+              >
+                {{ project.location }}
+              </div>
+              </div>
+         
               <button
                 v-if="isGalleryExpanded"
                 @click="closeImageModal"
@@ -505,7 +515,7 @@ export default {
     const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {..., "archiveSlug": archive->slug.current, slider[] {fullWidth, imageWidth, overlayimageWidth, images[] 
       {..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}}}, 
       "talent" : talent->title, "talentSlug" : talent->slug.current, "footer" : footer, "talentBio" : talent->shortBio, "nextProject" : nextProject->slug.current,
-    "related": *[_type=='project' && references(^.talent._ref) && _id != ^._id]{ _id, title, production, meta, metadis, "slug" : slug.current }{_id, title, production, meta, metadis, metaemails, "slug" : slug.current}
+    "related": *[_type=='project' && references(^.talent._ref) && _id != ^._id]{ _id, title, location, production, meta, metadis, "slug" : slug.current }{_id, title, production, meta, metadis, metaemails, "slug" : slug.current}
      } 
       | order(_updatedAt desc)[0]`;
                     // && slug.current == "${params.slug}"

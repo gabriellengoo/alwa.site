@@ -144,6 +144,14 @@ export default {
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),
         },
+        {
+          name: "location",
+          title: "Location",
+          description: " This is what will show on the list",
+          type: "string",
+          hidden: ({ parent, value }) =>
+          !value && (parent?.spacer || parent?.reference),
+        },
       ],
       preview: {
         select: {

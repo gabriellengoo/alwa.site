@@ -138,6 +138,11 @@ export default {
       type: "string",
     },
     {
+      name: "location",
+      title: "Location",
+      type: "string",
+    },
+    {
       name: "slider",
       title: "Slider",
       type: "array",
