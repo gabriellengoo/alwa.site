@@ -504,7 +504,7 @@ export default {
 
   }
 
-.button{
+.button{ 
   /* border-left: .8px solid #000; */
    padding: .5vw;
    padding-right: 0;
