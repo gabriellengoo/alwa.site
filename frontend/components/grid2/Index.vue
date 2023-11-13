@@ -62,10 +62,10 @@
           :class="[size]"
           horizontal-order="true"
         >
-          <!-- Masonry content here -->
+          <!-- Masonry content here w-[99.3vw]-->
           <div
             ref="scrollContainer"
-            class="image-cont w-[99.3vw] flex flex-col fade-in-out"
+            class="image-cont w-[97vw] flex flex-col fade-in-out"
             :class="{ 'fade-in': displayGrid, 'fade-out': !displayGrid }"
           >
             <!-- scroll part -->
@@ -830,7 +830,7 @@ export default {
     flex-wrap: wrap;
     align-content: center;
     justify-content: flex-start; */
-  width: 99.3vw;
+  /* width: 99.3vw; */
   /* width: 100vw; */
   /* width: 98vw !important; */
   white-space: nowrap;
