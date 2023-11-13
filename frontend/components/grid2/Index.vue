@@ -7,7 +7,10 @@
     </div> bottom-div-->
 
     
-    <div class="pt-[7rem] sm:pt-[7rem] mobilegridpad  listset 2xl:pt-[13rem] ">
+    <div class="pt-[7rem] sm:pt-[7rem] mobilegridpad 2xl:pt-[13rem] "
+    :class="[
+              !displayGrid ? 'listset' : '',
+            ]">
       <!-- <div class="button-container  ">
       <button
         class=""
@@ -62,7 +65,7 @@
           <!-- Masonry content here -->
           <div
             ref="scrollContainer"
-            class="image-cont w-[98vw] flex flex-col fade-in-out"
+            class="image-cont w-[99.3vw] flex flex-col fade-in-out"
             :class="{ 'fade-in': displayGrid, 'fade-out': !displayGrid }"
           >
             <!-- scroll part -->
@@ -246,10 +249,11 @@ reverse
 
           <!--     v-if="displayListImage" -->
           <!-- List layout content here -->
+          <!-- <div class=" h-screen overflow-scroll"> -->
           <div
             class="list-container"
             :class="[
-              // !displayGrid ? 'list-layout-item' : '',
+              // !displayGrid ? 'listset' : '',
               size == 'small' ? 'mb-0 md:mb-1 2xl:mb-2' : '',
             ]"
           >
@@ -498,6 +502,7 @@ reverse
               </div>
             </div>
           </div>
+          <!-- </div> -->
         </div>
       </client-only>
     </div>
@@ -651,6 +656,7 @@ export default {
   /* height: 100vh; */
     /* overflow: scroll; */
     position: absolute;
+    /* position: relative; */
     /* top: 13vh; */
 }
 
@@ -824,7 +830,7 @@ export default {
     flex-wrap: wrap;
     align-content: center;
     justify-content: flex-start; */
-  width: 98vw;
+  width: 99.3vw;
   /* width: 100vw; */
   /* width: 98vw !important; */
   white-space: nowrap;
