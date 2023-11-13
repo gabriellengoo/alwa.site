@@ -46,13 +46,13 @@
               </g>
             </svg>
           </div>
-
+    <div class="flex justify-center">
       <div class="button-container">
         <button class="uppercase w-fit" @click="toggleListView">
           {{ displayGrid ? "overview" : "overview" }}
         </button>
       </div>
-  
+    </div>
 
       <client-only>
         <!-- Grid layout -->
@@ -65,7 +65,7 @@
           <!-- Masonry content here w-[99.3vw]-->
           <div
             ref="scrollContainer"
-            class="image-cont w-[97vw] flex flex-col fade-in-out"
+            class="image-cont w-[98vw] flex flex-col fade-in-out"
             :class="{ 'fade-in': displayGrid, 'fade-out': !displayGrid }"
           >
             <!-- scroll part -->

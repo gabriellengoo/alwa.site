@@ -27,12 +27,19 @@ export default {
       title: "Item",
       type: "object",
       fields: [
+        // {
+        //   name: "imageWidth",
+        //   title: "Image Width",
+        //   type: "number",
+        //   description: "Set the width of the image in viewporth width",
+        //   validation: (Rule) => Rule.min(0).integer(),
+        // },
         {
           name: "imageWidth",
           title: "Image Width",
           type: "number",
-          description: "Set the width of the image in viewporth width",
-          validation: (Rule) => Rule.min(0).integer(),
+          description: "Set the width of the image in viewport width",
+          validation: (Rule) => Rule.min(0),
         },
         {
           name: 'listImage',

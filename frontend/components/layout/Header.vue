@@ -507,6 +507,7 @@ export default {
 .button{
   /* border-left: .8px solid #000; */
    padding: .5vw;
+   padding-right: 0;
    font-size: 1.25rem ;
     /* border-width: 3.9px;
     border-right: black;
