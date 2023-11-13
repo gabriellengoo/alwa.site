@@ -300,7 +300,7 @@
         >
           <div class="titles mobiletitle fixed z-[10] justify-between w-full flex items-end ">
             <div
-              class="inner-div  md:pl-5 pb-5  top-[0vh]   text-[14.21px] w-[25vw] sm:w-screen projecttextmb"
+              class="inner-div  pl-[1rem] textppad pb-5  top-[0vh]   text-[14.21px] w-[25vw] sm:w-screen projecttextmb"
               id="titleInnerDiv"
               >
               <div class="pb-5 mobileslugtitle">{{ project.title }}</div>
@@ -335,7 +335,7 @@
           class="bottomtextprmb w-screen fixed bottom-0 z-[10] pb-14 uppercase border-t-[.95px] border-black text-[11.84px]"
         >
           <div
-            class="bottomtextprmbinn p-[.05vw] md:pl-5"
+            class="bottomtextprmbinn p-[.05vw] pl-[1rem] textbpad"
             v-if="project.production"
           >
             {{ project.production }}
@@ -952,6 +952,15 @@ button .circle:hover {
   }
 
 @media (max-width: 768px) {
+
+  .textppad{
+      padding-left: 1rem;
+    }
+
+    .textbpad{
+      padding-left: 0rem;
+    }
+
   .mobile{
     display:contents;
   }
@@ -1026,6 +1035,13 @@ header{
 @media screen and (max-width: 1023px) {
   /* Your CSS styles for screens smaller than 1024px go here */
   /* For example, you can change the font size or layout */
+.textppad{
+  padding-left: 1rem;
+}
+
+/* .textbpad{
+  padding-left: .05vw;
+} */
   .blue-box.active{
     height: 100vh;
   }
@@ -1321,8 +1337,25 @@ button {
     .bottom-div {
         padding-top: 14rem  !important;
     }
+
+    .textppad{
+      padding-left: 2.5rem;
+    }
+
+    .textbpad{
+      padding-left: 2.5rem;
+    }
 }
 
+@media only screen and (min-width: 1440px) and (max-width: 1600px) {
+  .textppad{
+      padding-left: 1.5rem;
+    }
+
+    .textbpad{
+      padding-left: 1.5rem;
+    }
+  }
 .scroll-container div img {
   /* object-fit: cover; */
   /* height: 55vh; */
