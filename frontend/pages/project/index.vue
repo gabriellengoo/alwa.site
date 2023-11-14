@@ -1027,6 +1027,7 @@ header{
   /* border-left: .8px solid #000; */
    padding: .5vw;
    font-size: 1.25rem ;
+   padding-right: 0;
     /* border-width: 3.9px;
     border-right: black;
     border-left: black; */

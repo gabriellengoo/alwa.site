@@ -1143,7 +1143,13 @@ figure {
     
     width: 100% !important;
     position: relative;
+    padding-right: 0vw;
   }
+
+  .list-container {
+    /* position: absolute; */
+    width: 99vw;
+}
 
   /* .list-layout-item:nth-child(2) .contain-image{
   display:none;
