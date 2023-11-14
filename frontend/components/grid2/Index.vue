@@ -1174,7 +1174,7 @@ figure {
 
   .list-container {
     /* position: absolute; */
-    /* width: 99vw; */
+    /* width: 99vw; */ 
     width: auto;
 }
 
