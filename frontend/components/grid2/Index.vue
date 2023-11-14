@@ -262,28 +262,42 @@ reverse
             >
               <!-- <div class='projectmobile'>Project</div> -->
               <div class="projectmobileyes flex">
-                <div
-                  @click="toggleRoleView"
-                  class="pr-3"
-                  :class="{
-                    'text-opacity-100': !displayRole,
-                    'text-opacity-25': displayRole,
-                  }"
-                >
-                  Project
-                </div>
-                /
-                <button
-                  class="uppercase pl-3"
-                  @click="toggleRoleView"
-                  :class="{
-                    'text-opacity-25': !displayRole,
-                    'text-opacity-100': displayRole,
-                  }"
-                >
-                  {{ displayRole ? " role" : " role" }}
-                </button>
-              </div>
+  <div
+    @click="togglePhotographerView"
+    class="pr-3"
+    :class="{
+      'text-opacity-100': displayPhotographer,
+      'text-opacity-25': !displayPhotographer,
+    }"
+  >
+    Photographer
+  </div>
+  /
+  <button
+    class="uppercase pl-3 pr-3"
+    @click="toggleProductionView"
+    :class="{
+      'text-opacity-100': displayProduction,
+      'text-opacity-25': !displayProduction,
+    }"
+  >
+    Role 
+  </button>
+  /
+  <button
+    class="uppercase pl-3"
+    @click="toggleLocationView"
+    :class="{
+      'text-opacity-100': displayLocation,
+      'text-opacity-25': !displayLocation,
+    }"
+  >
+    Location
+  </button>
+</div>
+
+
+
               <!-- <div>Photographer</div> -->
               <div></div>
               <div></div>
@@ -420,28 +434,16 @@ reverse
 
                           <!-- mobile year and shot by -->
                           <div class="listTextInner yearmobile nodesk">
-                            <div
-                              v-if="!displayRole"
-                              :class="size == 'small' ? 'smaller-text' : ''"
-                              class="photographer-container nodesk"
-                            >
-                              <div
-                                class="photographer"
-                                v-if="item.photographer"
-                              >
-                                {{ item.photographer }}
-                              </div>
-                            </div>
-                            <div
-                              v-if="displayRole"
-                              :class="size == 'small' ? 'smaller-text' : ''"
-                              class="year-container yearmobile nodesk"
-                            >
-                              <div class="year yearmobile nodesk">
-                                {{ item.production }}
-                              </div>
-                            </div>
-                          </div>
+  <div v-if="displayPhotographer" :class="size == 'small' ? 'smaller-text' : ''" class="photographer-container nodesk">
+    <div class="photographer" v-if="item.photographer">{{ item.photographer }}</div>
+  </div>
+  <div v-if="displayProduction" :class="size == 'small' ? 'smaller-text' : ''" class="year-container yearmobile nodesk">
+    <div class="year yearmobile nodesk">{{ item.production }}</div>
+  </div>
+  <div v-if="displayLocation" :class="size == 'small' ? 'smaller-text' : ''" class="year-container yearmobile nodesk">
+    <div class=" year yearmobile nodesk" v-if="item.location">{{ item.location }}</div>
+  </div>
+</div>
 
                           <!-- desk year -->
                           <!-- <div class="listTextInner yearmobile nomobile desk">
@@ -528,7 +530,14 @@ export default {
       containerClass: "flex flex-col w-full h-full",
       imageClass: "contain-image",
       displayListImage: true,
-      displayRole: true, // Initialize displayRole
+      // displayRole: true,
+      // displayThird: true, 
+      // displayLocation: true,
+      // currentView: 'photographer', 
+    displayPhotographer: true,
+    displayProduction: false,
+    displayLocation: false,
+
       imageOpacity: 1, // Add this property
       displayGrid: true, // Use displayGrid to track the layout state
       // isListView: true,
@@ -561,13 +570,30 @@ export default {
       this.displayGrid = !this.displayGrid;
       // You can also add logic to redraw the layout here if needed
     },
+    togglePhotographerView() {
+    this.displayPhotographer = !this.displayPhotographer;
+    this.displayProduction = false;
+    this.displayLocation = false;
+  },
 
-    toggleRoleView() {
-      if (this.isMobile) {
-        this.displayRole = !this.displayRole;
-        // You can also add logic to redraw the layout here if needed
-      }
-    },
+  toggleProductionView() {
+    this.displayPhotographer = false;
+    this.displayProduction = !this.displayProduction;
+    this.displayLocation = false;
+  },
+
+  toggleLocationView() {
+    this.displayPhotographer = false;
+    this.displayProduction = false;
+    this.displayLocation = !this.displayLocation;
+  },
+
+  // toggleRoleView() {
+  //   this.displayRole = !this.displayRole;
+  //   this.displayPhotographer = true;
+  //   this.displayProduction = false;
+  //   this.displayLocation = false;
+  // },
     // Add these methods to control the scroll animation
     handleMouseEnter() {
       // Pause the animation on hover
@@ -1148,7 +1174,8 @@ figure {
 
   .list-container {
     /* position: absolute; */
-    width: 99vw;
+    /* width: 99vw; */
+    width: auto;
 }
 
   /* .list-layout-item:nth-child(2) .contain-image{
