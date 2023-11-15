@@ -13,10 +13,12 @@ export default {
   name: "grid2",
   title: "Grid",
   type: "array",
+  // liveEdit: true,
   options: {
     layout: "grid",
   },
   of: [
+    
     // {
     //   name: 'listImage',
     //   title: 'List Main Image',
@@ -27,6 +29,12 @@ export default {
       title: "Item",
       type: "object",
       fields: [
+        {
+          name: "draft",
+          title: "Draft",
+          type: "boolean",
+          description: "Mark this item as a draft",
+        },
         // {
         //   name: "imageWidth",
         //   title: "Image Width",

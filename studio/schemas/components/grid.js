@@ -13,6 +13,7 @@ export default {
   name: "grid",
   title: "Grid",
   type: "array",
+  liveEdit: true,
   options: {
     layout: "grid",
   },

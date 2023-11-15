@@ -6,6 +6,7 @@ export default {
   name: "project",
   title: "Projects",
   type: "document",
+  // liveEdit: true,
   // icon: Project,
   fields: [
     {
@@ -132,11 +133,11 @@ export default {
         },
       ], 
     },
-    {
-      name: "production",
-      title: "Production or Casting",
-      type: "string",
-    },
+    // {
+    //   name: "production",
+    //   title: "Production or Casting",
+    //   type: "string",
+    // },
     {
       name: "location",
       title: "Location",
@@ -186,14 +187,14 @@ export default {
                       title: "Image Width",
                       type: "number",
                       description: "Set the width of the image in viewporth width",
-                      validation: (Rule) => Rule.min(0).integer(),
+                      validation: (Rule) => Rule.min(0),
                     },
                     {
                       name: "overlayimageWidth",
                       title: "Overlay Image Width",
                       type: "number",
                       description: "Set the width of the image in viewporth width",
-                      validation: (Rule) => Rule.min(0).integer(),
+                      validation: (Rule) => Rule.min(0),
                     },
                     {
                       name: "video",

@@ -4,6 +4,7 @@ export default {
   name: 'home',
   title: 'Home',
   type: 'document',
+  // liveEdit: true,
   fields: [
     {
       name: 'title',

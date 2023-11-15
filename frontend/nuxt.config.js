@@ -42,7 +42,6 @@ export default {
     { src: '@plugins/masonry', mode: 'client' },
     { src: '@plugins/lazy', mode: 'client' },
     { src: '@plugins/slider', mode: 'client' },
-
     '~/plugins/preview.client.js',
   ],
   gsap: {
