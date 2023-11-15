@@ -63,7 +63,7 @@
 }
 
 .lgsctoppad{
-  padding-top: 15rem !important;
+  padding-top: 18rem !important;
 }
 
 .textppad{
@@ -77,6 +77,11 @@
 }
 
 .close-button{
+  font-size: 1.8rem !important;
+    line-height: 1.8rem !important;
+}
+
+.headtextlg{
   font-size: 1.8rem !important;
     line-height: 1.8rem !important;
 }

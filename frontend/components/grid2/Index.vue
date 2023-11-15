@@ -7,7 +7,7 @@
     </div> bottom-div-->
 
     
-    <div class="pt-[7rem] sm:pt-[7rem] mobilegridpad 2xl:pt-[13rem] lgsctoppad "
+    <div class="pt-[10rem] sm:pt-[10rem] mobilegridpad 2xl:pt-[14rem] lgsctoppad "
     :class="[
               // !displayGrid ? 'listset' : '',
             ]">
@@ -35,7 +35,7 @@
       fill-[#50505000]
     </div> -->
 
-          <div @click="toggleListView" class="buttonlogo fakebtn w-[10vw] h-auto" > 
+          <div @click="toggleListView" class="buttonlogo fakebtn w-[13vw] h-auto" > 
             <svg class=" fill-[#50505000]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
@@ -206,7 +206,7 @@ reverse
                   </NuxtLink>
                 </div>
                 <div class="bottom-0  left-0 w-full">
-    <div class="flex justify-center text-3xl md:text-5xl  w-9/16">
+    <div class="flex justify-center mbcopyr text-3xl md:text-5xl  w-9/16">
       <!-- <img
                       class="copyr w-[45vw] md:w-[15vw] sm:w-[50vw] p-0"
                       src="COPYRIOGHT.png"
@@ -266,7 +266,7 @@ reverse
             >
               <!-- <div class='projectmobile'>Project</div> -->
               <div class="projectmobileyes flex">
-  <div
+  <!-- <div
     @click="togglePhotographerView"
     class="pr-3"
     :class="{
@@ -276,9 +276,9 @@ reverse
   >
   Project
   </div>
-  /
+  / -->
   <button
-    class="uppercase pl-3 pr-3"
+    class="uppercase  pr-3"
     @click="toggleProductionView"
     :class="{
       'text-opacity-100': displayProduction,
@@ -438,9 +438,9 @@ reverse
 
                           <!-- mobile year and shot by -->
                           <div class="listTextInner yearmobile nodesk">
-  <div v-if="displayPhotographer" :class="size == 'small' ? 'smaller-text' : ''" class="photographer-container nodesk">
+  <!-- <div v-if="displayPhotographer" :class="size == 'small' ? 'smaller-text' : ''" class="photographer-container nodesk">
     <div class="photographer" v-if="item.photographer">{{ item.photographer }}</div>
-  </div>
+  </div> -->
   <div v-if="displayProduction" :class="size == 'small' ? 'smaller-text' : ''" class="year-container yearmobile nodesk">
     <div class="year yearmobile nodesk">{{ item.production }}</div>
   </div>
@@ -496,7 +496,7 @@ reverse
                 </figure>
               </div>
               <div class="bottom-0  left-0 w-full">
-                <div class="flex justify-center text-3xl md:text-5xl  w-9/16">
+                <div class="flex mbcopyr justify-center text-3xl md:text-5xl  w-9/16">
                   <!-- <img
                                   class="copyr w-[45vw] md:w-[15vw] sm:w-[50vw] p-0"
                                   src="COPYRIOGHT.png"
@@ -541,8 +541,8 @@ export default {
       // displayThird: true, 
       // displayLocation: true,
       // currentView: 'photographer', 
-    displayPhotographer: true,
-    displayProduction: false,
+    displayPhotographer: false,
+    displayProduction: true,
     displayLocation: false,
 
       imageOpacity: 1, // Add this property
@@ -701,11 +701,21 @@ export default {
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   /* Your tablet-specific styles here */
   .mobilegridpad{
-  padding-top: 8.5rem;
+  padding-top: 9.5rem !important;
 }
+
 
 .fakebtn{
     width: 15vw !important;
+}
+}
+
+
+
+/* CSS for laptops with a width of 1024 pixels */
+@media only screen and (min-width: 1024px) and (max-width: 1366px) {
+  .lgsctoppad{
+    padding-top: 7rem;
 }
 }
 
@@ -1128,14 +1138,27 @@ figure {
   position: absolute;
     top: 1vh;
     padding: 0.5vw;
+    padding-left: 0;
     width: 10vw;
     z-index: 100000000;
     cursor: crosshair !important;
     /* z-index: 10; */
 }
 
+.list-header{
+    display: none;
+  }
+
 /* Media query for screens with a maximum width of 768px (mobile devices) */
 @media (max-width: 768px) {
+  .mobilegridpad{
+    padding-top: 8rem;
+  }
+
+  .list-header{
+    display: flex !important;
+  }
+
   .listset{
   /* height: 100vh; */
     /* overflow: scroll; */
@@ -1291,11 +1314,11 @@ figure {
 .list-header {
   /* width: calc(33.33% - 10px); */
   /* margin-right: 10px; */
-  display: flex;
+  /* display: flex; */
   /* flex-wrap: wrap; */
   justify-content: space-between;
   /* align-items: center; */
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   padding-left: 35vw;
   width: 100%;
 }
