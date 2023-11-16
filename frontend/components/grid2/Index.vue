@@ -729,7 +729,7 @@ export default {
 .hoverarealist {
   /* height: 100vh; */
   /* height: auto; */
-  padding-bottom: 20vh;
+  /* padding-bottom: 20vh; */
   width: auto;
   background-color: rgba(247, 247, 247, 0) !important;
   z-index: 2;
