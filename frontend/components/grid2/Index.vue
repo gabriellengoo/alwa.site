@@ -7,7 +7,7 @@
     </div> bottom-div-->
 
     
-    <div class="pt-[10rem] sm:pt-[10rem] mobilegridpad 2xl:pt-[14rem] lgsctoppad "
+    <div class="pt-[10rem] sm:pt-[9rem] mobilegridpad 2xl:pt-[14rem] lgsctoppad "
     :class="[
               // !displayGrid ? 'listset' : '',
             ]">
@@ -701,7 +701,7 @@ export default {
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   /* Your tablet-specific styles here */
   .mobilegridpad{
-  padding-top: 9.5rem !important;
+  padding-top: 8.5rem !important;
 }
 
 
@@ -715,7 +715,7 @@ export default {
 /* CSS for laptops with a width of 1024 pixels */
 @media only screen and (min-width: 1024px) and (max-width: 1366px) {
   .lgsctoppad{
-    padding-top: 7rem;
+    padding-top: 6rem;
 }
 }
 
@@ -727,7 +727,7 @@ export default {
 } */
 }
 .hoverarealist {
-  height: 100vh;
+  /* height: 100vh; */
   /* height: auto; */
   padding-bottom: 20vh;
   width: auto;
@@ -791,9 +791,16 @@ export default {
       width: calc(28.33vw - 20px);
     left: 3vw;
         left: calc(4.03vw - 10px);
-    top: 25vh;
-    top: 21vh;
+    /* top: 21vh; */
+    /* top: calc(21vh - 14px); */
     /* pointer-events: none; */
+    padding-top: 0.4vh;
+}
+
+@media only screen and (min-width: 1440px) and (max-width: 1680px) {
+  .listimg {
+    /* top: calc(25vh - 9px); */
+}
 }
 
 .portrait {
@@ -1072,8 +1079,8 @@ figure {
     height: auto;
     position: absolute;
     left: 3vw;
-    top: 25vh;
-    top: 21vh;
+    /* top: 21vh; */
+    top: calc(21vh - 14px);
     pointer-events: none;
 }
 
@@ -1152,7 +1159,7 @@ figure {
 /* Media query for screens with a maximum width of 768px (mobile devices) */
 @media (max-width: 768px) {
   .mobilegridpad{
-    padding-top: 8rem;
+    padding-top: 7rem;
   }
 
   .list-header{
