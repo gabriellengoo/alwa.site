@@ -66,6 +66,18 @@ html {
   pointer-events: none;
 } */
 
+/* Remove default styles for elements with tabindex */
+[tabindex] {
+  outline: none;
+  border: none;
+}
+
+/* Optionally add your own styles for focus state if needed */
+[tabindex]:focus {
+  outline: none;
+}
+
+
 @media (max-width: 768px) {
   .mbcopyr{
     padding-bottom: 11vh

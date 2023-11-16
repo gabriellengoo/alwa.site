@@ -456,9 +456,8 @@
                         <button
                             tabindex="0"
                             class=" backbtn top-0 left-0 z-30 w-1/2 h-full text-black back text-4xl previous"
-                           
                             @click="prev"
-                            
+                            autofocus
                             aria-label="Previous"
                           >
                           &lt; </button>
@@ -573,6 +572,8 @@ export default {
 
   mounted() {
 
+    // // Set initial focus on the first button
+    // this.$refs.prev.focus();
 
     // Get a reference to the title's inner div
     const titleInnerDiv = document.getElementById('titleInnerDiv');
