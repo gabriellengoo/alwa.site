@@ -283,7 +283,7 @@
       class="white-box z-[100001]  w-screen h-screen "
     ></div>
   </header>
-
+ 
     <section>
       <div class="h-screen fixed z-[10]"     v-if="isGalleryExpanded"   @keydown="handleKeyDown" >
               <button v-if="isGalleryExpanded"
