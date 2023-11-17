@@ -1080,7 +1080,7 @@ figure {
     position: absolute;
     left: 3vw;
     /* top: 21vh; */
-    top: calc(21vh - 14px);
+    top: calc(20vh - 14px);
     pointer-events: none;
 }
 

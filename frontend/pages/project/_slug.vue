@@ -285,6 +285,24 @@
   </header>
 
     <section>
+      <div class="h-screen fixed z-[10]"     v-if="isGalleryExpanded"   @keydown="handleKeyDown" >
+              <button v-if="isGalleryExpanded"
+                            tabindex="0"
+                            class=" backbtn top-0 left-0 z-30 w-1/2 h-full text-black back text-4xl previous"
+                            @click="prev"
+                            autofocus
+                            aria-label="Previous"
+                          >
+                          &lt; </button>
+              <button v-if="isGalleryExpanded"
+                        tabindex="0"
+                        class="nextbtn z-[100000] pointer-events-auto w-1/2 h-full text-black next text-4xl"
+                        @click="next"
+                        aria-label="Next"
+                      >
+                        >
+                      </button>
+              </div>
       <!-- pt-28 -->
       <div class="bottom-div  p-2 xl:pt-[14rem] 2xl:pt-[12rem] ">
         <!-- titles -->
@@ -323,6 +341,8 @@
               >
                 [ Close Gallery ]
               </button>
+             
+           
             </div>
           </div>
         </div>
@@ -333,6 +353,7 @@
 <!-- pt-48 -->
         <div class="md:pr-6 md:w-7/16 scroll-container  resize-animation" ref="scrollContainer">
           <!-- md:p-5 -->
+         
           <div
             v-for="(slide, index) in project.slider"
             :key="slide._key"
@@ -363,6 +384,7 @@
                 class="scrollcost resize-animation object-contain object-top w-auto h-full"
               ></MediaVideo>
             </figure>
+            
           </div>
           <div class="bottom-0  left-0 w-full">
     <div class="flex justify-center mbcopyr text-3xl md:text-5xl  w-9/16">
@@ -401,8 +423,9 @@
           ref="overlayGallery"
           @mouseenter="showGalleryOnHover"
           @mouseleave="hideGalleryOnLeave"
-          @keydown="handleKeyDown"
+         
         >
+
         <!-- <NuxtLink class="buttonlogo w-[10vw] h-auto">
             <svg class="fill-[#505050]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704.72 325.07">
               <g id="Layer_2" data-name="Layer 2">
@@ -430,8 +453,17 @@
                     class="flex justify-center w-full h-full transition-opacity duration-300 swiper-slide"
                     :class="realIndex == 0 ? 'opacity-95' : ''"
                   >
+                  
                     <div class="overlaycont flex h-full p-2 pb-0 w-13/16"
                     >
+                    <!-- <button
+                            tabindex="0"
+                            class=" backbtn top-0 left-0 z-30 w-1/2 h-full text-black back text-4xl previous"
+                            @click="prev"
+                            autofocus
+                            aria-label="Previous"
+                          >
+                          &lt; </button> -->
                       <figure
                         v-for="image in slide.images"
                         :key="image._key"
@@ -446,21 +478,7 @@
                             : ''
                         "
                       >
-                      <!-- <button
-                          class="backbtn z-[100000] pointer-events-auto w-1/2 h-1/6 text-black back text-4xl"
-                          @click="previous"
-                          aria-label="Previous"
-                        >
-                          &lt; 
-                        </button> -->
-                        <button
-                            tabindex="0"
-                            class=" backbtn top-0 left-0 z-30 w-1/2 h-full text-black back text-4xl previous"
-                            @click="prev"
-                            autofocus
-                            aria-label="Previous"
-                          >
-                          &lt; </button>
+                   
                         <MediaImage
                           :src="image.image.asset._ref"
                           v-if="image.image"
@@ -483,14 +501,14 @@
                        
                           class="gallery-image relative object-cover object-center z-[10000000] w-full h-auto p-4 my-auto"
                         ></MediaVideo>
-                        <button
+                        <!-- <button
                         tabindex="0"
                         class="nextbtn z-[100000] pointer-events-auto w-1/2 h-full text-black next text-4xl"
                         @click="next"
                         aria-label="Next"
                       >
                         >
-                      </button>
+                      </button> -->
                       </figure>
   
                      
@@ -1365,6 +1383,9 @@ button {
     height: inherit;
     width: -moz-fit-content;
     width: fit-content;
+
+    position: absolute;
+    left: 65vw;
 }
 
 .backbtn {
@@ -1384,6 +1405,8 @@ button {
     height: inherit;
     width: -moz-fit-content;
     width: fit-content;
+    position: relative;
+    left: 18vw;
 }
 
 .gallery-images {
