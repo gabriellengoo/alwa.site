@@ -2,6 +2,8 @@
   <main class="min-h-full">
     <!-- <LenisComponent /> -->
     <TransitionComponent />
+    <!-- <ImagePlaceholder v-if="loading" /> -->
+    <!-- <NuxtLoadingIndicator />  -->
     <!-- <AboutPage /> -->
     <!-- <LayoutHeader
       :class="
@@ -39,6 +41,7 @@
           : 'hidden md:flex'
       "
     ></LayoutHeaderMin> -->
+    
     <Nuxt />
     <LayoutFooter
       class="fixed"
@@ -56,11 +59,18 @@ import { mapActions, mapMutations } from 'vuex'
 import TransitionComponent from '~/components/TransitionComponent.vue';
 // import Lenis from '@studio-freight/lenis'; 
 import AboutPage from '~/components/AboutPage.vue'
+// import ImagePlaceholder from '~/components/ImagePlaceholder.vue';
 
 export default {
   methods: {
     ...mapActions(['setTitle']),
     ...mapMutations(['SET_FOOTER', 'CLOSE_MENU']),
+  },
+  data() {
+    return {
+      // loading: true,
+      // ... other data properties
+    };
   },
   mounted() {
     // Create a new instance of Lenis
@@ -94,6 +104,7 @@ export default {
   components: {
     TransitionComponent,
     AboutPage,
+    // ImagePlaceholder,
   },
   watch: {
     $route: function (value) {

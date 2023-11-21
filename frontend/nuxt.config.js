@@ -23,6 +23,13 @@ export default {
     ]
   },
 
+  // loading: '~/components/LoadingBar.vue',
+
+  loadingIndicator: {
+    name: 'circle',
+    color: '#ffffff00',
+    background: 'white'
+  },
   // bridge : {},
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -59,7 +66,7 @@ export default {
     '@nuxtjs/sanity/module',
     '@nuxt/image'
   ],
-
+  // loading: '~/components/LoadingBar.vue',
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // '@nuxtjs/sanity'

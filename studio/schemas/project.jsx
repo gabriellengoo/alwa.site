@@ -220,33 +220,33 @@ export default {
                   ],
                   preview: {
                     select: {
+                      spacer: "spacer",
                       image: "image",
                       video: "video.asset.playbackId",
                     },
                     prepare(selection) {
-                      const { image, svg, video, block } = selection;
+                      const { image, spacer, video } = selection;
                       let media;
                       if (video) {
-                        // media = (
-                        //   <img
-                        //     src={`https://image.mux.com/${video}/animated.gif`}
-                        //     style={{
-                        //       objectFit: "cover",
-                        //       height: "100%",
-                        //       width: "100%",
-                        //     }}
-                        //   />
-                        // ); 
-                        media = document.createElement("img");
-                        media.src = `https://image.mux.com/${video}/animated.gif`;
-                        media.style.objectFit = "cover";
-                        media.style.height = "100%";
-                        media.style.width = "100%";
+                        media = (
+                          <img
+                            src={`https://image.mux.com/${video}/animated.gif`}
+                            style={{
+                              objectFit: "cover",
+                              height: "100%",
+                              width: "100%",
+                            }}
+                          />
+                        );
                       } else if (image) {
                         media = image;
                       }
                       return {
-                        media: media,
+                        media: video
+                          ? media
+                          : image
+                          ? media
+                          : spacer,
                       };
                     },
                   },
@@ -263,21 +263,21 @@ export default {
               const { image, video } = selection;
               let media;
               if (video) {
-                // media = (
-                //   <img
-                //     src={`https://image.mux.com/${video}/animated.gif`}
-                //     style={{
-                //       objectFit: "cover",
-                //       height: "100%",
-                //       width: "100%",
-                //     }}
-                //   />
-                // );
-                media = document.createElement("img");
-                media.src = `https://image.mux.com/${video}/animated.gif`;
-                media.style.objectFit = "cover";
-                media.style.height = "100%";
-                media.style.width = "100%";
+                media = (
+                  <img
+                    src={`https://image.mux.com/${video}/animated.gif`}
+                    style={{
+                      objectFit: "cover",
+                      height: "100%",
+                      width: "100%",
+                    }}
+                  />
+                );
+                // media = document.createElement("img");
+                // media.src = `https://image.mux.com/${video}/animated.gif`;
+                // media.style.objectFit = "cover";
+                // media.style.height = "100%";
+                // media.style.width = "100%";
               } else if (image) {
                 media = image;
               }

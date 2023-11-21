@@ -12,7 +12,7 @@ export default {
   fields: [
     {
       name: "title",
-      title: "Title",
+      title: "Title", 
       type: "string",
     },
     {

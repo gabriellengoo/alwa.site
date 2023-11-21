@@ -7,6 +7,7 @@ export const state = () => ({
   isGalleryOpen: false,
   // contact: false,
   menu: false,
+  aboutPage: null,
 })
 
 
@@ -29,6 +30,9 @@ export const mutations = {
   },
   SET_FOOTER(state, footer) {
     state.footer = footer
+  },
+  SET_ABOUT_PAGE(state, aboutPage) {
+    state.aboutPage = aboutPage
   },
   // SET_CONTACT(state, contact) {
   //   state.contact = contact
@@ -54,6 +58,11 @@ export const actions = {
     // const contactQuery = groq`*[_type == "about" ] {contactDetails} | order(_updatedAt desc)[0]`
     // const contact = await this.$sanity.fetch(contactQuery)
     // commit('SET_CONTACT', contact.contactDetails)
+  },
+  async fetchAboutPage({ commit }) {
+    const query = groq`*[_type == "about"]`;
+    const aboutPage = await this.$sanity.fetch(query);
+    commit('SET_ABOUT_PAGE', aboutPage);
   },
   setTitle({ commit }, title) {
     commit('SET_TITLE', title)

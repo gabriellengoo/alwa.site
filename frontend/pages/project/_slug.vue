@@ -313,6 +313,7 @@
         >
           <div class="titles mobiletitle fixed z-[10] justify-between w-full flex items-end ">
             <!-- text-[14.21px] -->
+            <About/>
             <div
               class="inner-div  pl-[1.5rem] textppad pb-5  top-[0vh]    w-[25vw] sm:w-screen projecttextmb"
               id="titleInnerDiv"
@@ -539,6 +540,7 @@
 import { groq } from "@nuxtjs/sanity";
 import { mapMutations } from "vuex";
 // import Header from "~/components/layout/Header.vue";
+import About from "~/components/Aboutpage.vue";
 // import Lenis from '@studio-freight/lenis';
 import Headerproject from "~/components/layout/Headerproject.vue";
 
@@ -546,6 +548,7 @@ import Headerproject from "~/components/layout/Headerproject.vue";
 export default {
   components: {
     Headerproject,
+    About,
   },
   async asyncData({ params, $sanity }) {
     const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {..., "archiveSlug": archive->slug.current, slider[] {fullWidth, imageWidth, overlayimageWidth, images[] 

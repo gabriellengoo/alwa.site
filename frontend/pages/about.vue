@@ -76,6 +76,13 @@ export default {
     const abouts = await $sanity.fetch(query);
     return { abouts };
   },
+  // async asyncData({ $store }) {
+  //   await $store.dispatch('fetchAboutPage');
+  //   // ... your existing asyncData logic
+  //   const query = groq`*[_type == "about"]`;
+  //   const abouts = await $sanity.fetch(query);
+  //   return { abouts };
+  // },
   methods: {
     // ...mapActions(['setTitle']),
     // ...mapMutations(['SET_FOOTER']),

@@ -306,7 +306,7 @@ reverse
               <div></div>
               <div></div>
             </div>
-            <div v-for="item in items">
+            <!-- <div v-for="item in items">
               <img
               :class="{ 'hidden': isHovered }"
                 class="listimg z-0 fixed block hidemobile"
@@ -315,7 +315,7 @@ reverse
                 :sizes="size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'"
               
                 />
-            </div>
+            </div> -->
 
             <div class="hoverarealist bg-[#f7f7f7]" @mouseover="toggleListImageOnHover"
             @mouseleave="toggleListImageOnLeave">
@@ -474,10 +474,22 @@ reverse
                         :aspect="item.image.aspect"
                         :src="item.image.image"
                         v-if="item.image.image"
-                        class="borderlist"
+                        
+                        :class="[
+                  activeTalent &&
+                  activeTalent != item.reference.talentId &&
+                  activeTalent != item.reference &&
+                  activeTalent != item.video.id
+                    ? 'image-opacity-0'
+                    : '',
+                  !displayGrid ? 'list-layout-item' : '',
+                ]"
+
+                        class="borderlist "
                         :sizes="
                           size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
                         "
+                 
                       ></MediaImage>
                     </span>
                     <!--   :class="{ 'image-opacity-0': !hoveredItem }" -->
@@ -489,6 +501,15 @@ reverse
                         :sizes="
                           size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
                         "
+                             :class="[
+                  activeTalent &&
+                  activeTalent != item.reference.talentId &&
+                  activeTalent != item.reference &&
+                  activeTalent != item.video.id
+                    ? 'image-opacity-0'
+                    : '',
+                  !displayGrid ? 'list-layout-item' : '',
+                ]"
                         class="borderlist"
                       ></MediaVideo>
                     </span>
@@ -528,7 +549,8 @@ import { SanityClient } from "@sanity/client";
 Vue.use(VueMarqueeSlider);
 
 export default {
-  props: ["items", "size"],
+  props: ["items", "size", "hoveredItem" ],
+  
   data() {
     return {
       project: false,
@@ -822,7 +844,7 @@ export default {
 }
 
 .image-opacity-0 {
-  opacity: 0 !important;
+  opacity: 0 ;
 }
 .scrollcost {
   flex: 0 0 calc(33.33% - 20px); /* 33.33% for three images in a row, adjust spacing as needed */
@@ -1040,38 +1062,36 @@ figure {
 /* Hide the images by default */
 
 .list-layout-item .contain-image {
-  display: none;
-  /* width: 60vh; */
-  /* width: 40vh; */
-  /* padding-left: 3vw; */
-  /* left: 3.5vw; */
-  /* left: calc(5vw - 20px); */
-  /* padding-left: calc(5vw - 20px);
-  padding-right: calc(5vw - 20px);
-  transition: none !important;
-  transition-duration: 0s !important;
-  animation: none !important; */
-  /* background-color: rgb(247 247 247); */
   position: fixed;
   display: none;
     pointer-events: none;
-    /* z-index: 1; */
     height: 100vh;
     width: 100vw;
+    /* display: flex; */
+    top: 0vh;
+  justify-content: center;
+  align-items: center;
+  transition: none !important;
+  transition-duration: 0s !important;
+  animation: none !important;
+  opacity: 0;
 }
 
-/* .list-layout-item:hover  .contain-image{
-  display: none;
-  }
 
-  .list-layout-item:nth-child(2) .contain-image{
-    display:block;
-    position: fixed;
-  } */
+/* Show the images on hover */
+.list-layout-item:hover .contain-image {
+  /* display: block; */
+  /* display: none; */
+  display: flex; 
+  opacity: 1;
+}
 
-/* .list-stuff:hover + .list-layout-item:nth-child(2) .contain-image {
-  display: none;
-} */
+.list-layout-item:nth-child(1) .contain-image {
+  display: flex ; 
+  opacity: 1;
+}
+
+
 
 .list-layout-item .contain-image img {
   /* width: calc(27.33vw - 20px); */
@@ -1084,6 +1104,21 @@ figure {
     pointer-events: none;
 }
 
+.list-layout-item .contain-image video {
+  /* width: calc(27.33vw - 20px); */
+  width: calc(28.33vw - 20px);
+    height: auto;
+    position: absolute;
+    left: 3vw;
+    /* top: 21vh; */
+    top: calc(20vh - 14px);
+    pointer-events: none;
+}
+
+.list-layout-item .contain-image video {
+  width: calc(27.33vw - 20px) !important;
+}
+
 .listText div .year{
   display: flex;
     /* justify-content: flex-end; */
@@ -1091,21 +1126,6 @@ figure {
     text-align: end;
 }
 
-.list-layout-item .contain-image video {
-  width: calc(27.33vw - 20px) !important;
-}
-
-/* calc(33.33% - 10px); */
-/* .list-layout-item  .contain-image video{
-  display: none;
-  width: 60vh;
-  width: 40vh;
-  padding-left: 3vw;
-  padding-left: 13vw;
-  transition: none  !important;
-  transition-duration: 0s !important;
-  animation: none !important;
-} */
 
 .videocont {
   aspect-ratio: unset !important;
@@ -1115,18 +1135,7 @@ figure {
   aspect-ratio: unset !important;
 }
 
-/* Show the images on hover */
-.list-layout-item:hover .contain-image {
-  /* display: block; */
-  position: fixed;
-  top: 0vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: none !important;
-  transition-duration: 0s !important;
-  animation: none !important;
-}
+
 
 .borderlist {
   /* border: 1px black solid; */
@@ -1472,6 +1481,10 @@ figure {
   .nomobile {
     display: none !important;
   }
+
+  .list-layout-item:nth-child(1) .contain-image {
+    display: none !important;
+}
 }
 
 .projectmobileyes {

@@ -1,10 +1,18 @@
 <template>
    <div>
-    <div v-for="about in abouts" :key="about._id">
+    <!-- <div v-for="about in abouts" :key="about._id">
       {{ about.title }}
-      <p>This is the AboutPage component yes.</p>
+      <p>This is the AboutPage component working.</p>
     </div>
-    <p>This is the AboutPage component no.</p>
+    <p>not working.</p> -->
+
+        <div>
+          <span v-for="about in abouts" :key="about._id">
+           {{ about.title }}
+            <p>This is the AboutPage component.</p>
+          </span>
+          <p>not working.</p>
+        </div>
   </div>
 </template>
 
@@ -16,13 +24,9 @@ export default {
   data() {
     return {
       project: false,
-      abouts: [],
-      about: [],
+      // abouts: [],
+      // about: [],
     }
-  },
-
-  props: {
-    abouts: Array,
   },
 
   async asyncData({ params, $sanity }) {
@@ -30,17 +34,12 @@ export default {
     const abouts = await $sanity.fetch(query);
     return { abouts };
   },
-  // methods: {
-  //   ...mapActions(['setTitle']),
-  //   ...mapMutations(['SET_FOOTER']),
-  //   setProject(reference) {
-  //     this.project = reference
-  //   },
+
+  // props: {
+  //   abouts: Array,
   // },
-  // created() {
-  //   this.setTitle(this.about.title)
-  //   this.SET_FOOTER(this.about.footer)
-  // },
+
+
 }
 </script>
 

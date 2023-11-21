@@ -138,20 +138,16 @@ export default {
           const { image, spacer, video } = selection;
           let media;
           if (video) {
-            // media = (
-            //   <img
-            //     src={`https://image.mux.com/${video}/animated.gif`}
-            //     style={{
-            //       objectFit: "cover",
-            //       height: "100%",
-            //       width: "100%",
-            //     }}/>
-            // );
-          media = document.createElement("img");
-          media.src = `https://image.mux.com/${video}/animated.gif`;
-          media.style.objectFit = "cover";
-          media.style.height = "100%";
-          media.style.width = "100%";
+            media = (
+              <img
+                src={`https://image.mux.com/${video}/animated.gif`}
+                style={{
+                  objectFit: "cover",
+                  height: "100%",
+                  width: "100%",
+                }}
+              />
+            );
           } else if (image) {
             media = image;
           }
@@ -160,21 +156,7 @@ export default {
               ? media
               : image
               ? media
-              : spacer == "1"
-              ? RiNumber1
-              : spacer == "2"
-              ? RiNumber2
-              : spacer == "3"
-              ? RiNumber3
-              : spacer == "4"
-              ? RiNumber4
-              : spacer == "5"
-              ? RiNumber5
-              : spacer == "6"
-              ? RiNumber6
-              : spacer == "7"
-              ? RiNumber7
-              : RiNumber0,
+              : spacer,
           };
         },
       },

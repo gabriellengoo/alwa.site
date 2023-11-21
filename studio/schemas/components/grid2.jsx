@@ -1,13 +1,13 @@
-import React from "react";
+// import React from "react";
 
-import { RiNumber0 } from "react-icons/Ri";
-import { RiNumber1 } from "react-icons/Ri";
-import { RiNumber2 } from "react-icons/Ri";
-import { RiNumber3 } from "react-icons/Ri";
-import { RiNumber4 } from "react-icons/Ri";
-import { RiNumber5 } from "react-icons/Ri";
-import { RiNumber6 } from "react-icons/Ri";
-import { RiNumber7 } from "react-icons/Ri";
+// import { RiNumber0 } from "react-icons/Ri";
+// import { RiNumber1 } from "react-icons/Ri";
+// import { RiNumber2 } from "react-icons/Ri";
+// import { RiNumber3 } from "react-icons/Ri";
+// import { RiNumber4 } from "react-icons/Ri";
+// import { RiNumber5 } from "react-icons/Ri";
+// import { RiNumber6 } from "react-icons/Ri";
+// import { RiNumber7 } from "react-icons/Ri";
 
 export default {
   name: "grid2",
@@ -49,12 +49,12 @@ export default {
           description: "Set the width of the image in viewport width",
           validation: (Rule) => Rule.min(0),
         },
-        {
-          name: 'listImage',
-          title: 'List Main Image',
-          description: "This will be the image you see first on the list, only set the first grid image url",
-          type: 'url',
-        },
+        // {
+        //   name: 'listImage',
+        //   title: 'List Main Image',
+        //   description: "This will be the image you see first on the list, only set the first grid image url",
+        //   type: 'url',
+        // },
         // {
         //   name: "imageWidth",
         //   title: "Image Width",
@@ -178,20 +178,16 @@ export default {
           const { image, spacer, video } = selection;
           let media;
           if (video) {
-            // media = (
-            //   <img
-            //     src={`https://image.mux.com/${video}/animated.gif`}
-            //     style={{
-            //       objectFit: "cover",
-            //       height: "100%",
-            //       width: "100%",
-            //     }}/>
-            // );
-          media = document.createElement("img");
-          media.src = `https://image.mux.com/${video}/animated.gif`;
-          media.style.objectFit = "cover";
-          media.style.height = "100%";
-          media.style.width = "100%";
+            media = (
+              <img
+                src={`https://image.mux.com/${video}/animated.gif`}
+                style={{
+                  objectFit: "cover",
+                  height: "100%",
+                  width: "100%",
+                }}
+              />
+            );
           } else if (image) {
             media = image;
           }
@@ -200,21 +196,7 @@ export default {
               ? media
               : image
               ? media
-              : spacer == "1"
-              ? RiNumber1
-              : spacer == "2"
-              ? RiNumber2
-              : spacer == "3"
-              ? RiNumber3
-              : spacer == "4"
-              ? RiNumber4
-              : spacer == "5"
-              ? RiNumber5
-              : spacer == "6"
-              ? RiNumber6
-              : spacer == "7"
-              ? RiNumber7
-              : RiNumber0,
+              : spacer,
           };
         },
       },
