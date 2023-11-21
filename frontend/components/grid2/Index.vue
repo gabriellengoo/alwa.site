@@ -1068,7 +1068,7 @@ figure {
     height: 100vh;
     width: 100vw;
     /* display: flex; */
-    top: 0vh;
+    top: 1.1vh;
   justify-content: center;
   align-items: center;
   transition: none !important;
