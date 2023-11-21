@@ -23,7 +23,8 @@ export default {
     },
        {
       name: "meta",
-      title: "Meta",
+      title: "About text first paragraph",
+      description: "This will be the paragraph inline with the logo",
       type: "array",
       options: {
         modal: "popover",
@@ -43,7 +44,7 @@ export default {
               name: "content",
               title: "Content",
               type: "string",
-            },
+            }, 
           ],
           preview: {
             select: {
@@ -55,8 +56,42 @@ export default {
       ],
     },
     {
+      name: "sections",
+      title: "Rest of about text",
+      type: "array",
+      of: [
+        {
+          name: "section",
+          title: "Section",
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              title: "Title",
+              type: "string",
+            },
+            {
+              name: "subtitle",
+              title: "Subtitle",
+              type: "string",
+            },
+            // {
+            //   name: "image",
+            //   title: "Logo",
+            //   type: "image",
+            // },
+            {
+              name: "content",
+              title: "Content",
+              type: "blockContent",
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: "metaemails",
-      title: "Meta Email",
+      title: "Meta Emails",
       type: "array",
       options: {
         modal: "popover",
