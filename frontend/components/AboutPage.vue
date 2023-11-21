@@ -3,7 +3,7 @@
     <!-- <div v-for="about in abouts" :key="about._id">
       {{ about.title }}
       <p>This is the AboutPage component working.</p>
-    </div>
+    </div> 
     <p>not working.</p> -->
 
         <div>

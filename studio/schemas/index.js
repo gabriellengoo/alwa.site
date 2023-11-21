@@ -6,7 +6,7 @@ import home from './home';
 // import talent from "./talent";
 import project from "./project";
 // import view from "./view"
-import about from "./about";
+// import about from "./about";
 // import talent from "./talent";
 
-export const schemaTypes = [home,project,blockContent,grid,grid2, about]
+export const schemaTypes = [home,project,blockContent,grid,grid2]

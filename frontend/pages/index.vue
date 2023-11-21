@@ -283,47 +283,98 @@ export default {
     }
   },
 
-  async asyncData({ params, $sanity }) {
+  async asyncData({ $sanity, store }) {
     const homeQuery = groq`*[_type == "home" ]  {..., listImage,} {..., 
      
-                     grid[] {_key, spacer, "video" : 
-                    {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
-                      "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
-                    title, photographer,year,hair,styleing, link, production, location,
-                      "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
-                     
-                      {..., grid2[] {_key, spacer, "video" : 
-                    {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
-                      "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
-                    title, photographer,year,imageWidth,hair,makeup,dop,set,styleing, link, production, location, listImage, draft,
-                      "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
-                     
-                    {...,meta[]{
-                      title,
-                      content,
-                    }}
+     grid[] {_key, spacer, "video" : 
+    {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
+      "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
+    title, photographer,year,hair,styleing, link, production, location,
+      "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
+     
+      {..., grid2[] {_key, spacer, "video" : 
+    {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
+      "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
+    title, photographer,year,imageWidth,hair,makeup,dop,set,styleing, link, production, location, listImage, draft,
+      "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
+     
+    {...,meta[]{
+      title,
+      content,
+    }}
 
-                    {...,metaemails[]{
-                      title,
-                      content,
-                      link,
-                     
-                    }}
+    {...,metaemails[]{
+      title,
+      content,
+      link,
+     
+    }}
 
-                      {...,
-                        sections[]{
-                          title,
-                          grid,
-                          grid2
-                        }
-                      }
-                      
-                      | order(_updatedAt desc)[0]
-                      `
+      {...,
+        sections[]{
+          title,
+          grid,
+          grid2
+        }
+      }
+      
+      | order(_updatedAt desc)[0]
+      `;
 
-    const home = await $sanity.fetch(homeQuery)
-    return { home }
+      const home = await $sanity.fetch(homeQuery);
+
+      // Commit meta and metaemails to the Vuex store
+      store.commit('setMeta', home.meta);
+      store.commit('setMetaEmails', home.metaemails);
+
+      return { home };
   },
+
+
+
+  // async asyncData({ params, $sanity }) {
+  //   const homeQuery = groq`*[_type == "home" ]  {..., listImage,} {..., 
+     
+  //                    grid[] {_key, spacer, "video" : 
+  //                   {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
+  //                     "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
+  //                   title, photographer,year,hair,styleing, link, production, location,
+  //                     "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
+                     
+  //                     {..., grid2[] {_key, spacer, "video" : 
+  //                   {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
+  //                     "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
+  //                   title, photographer,year,imageWidth,hair,makeup,dop,set,styleing, link, production, location, listImage, draft,
+  //                     "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
+                     
+  //                   {...,meta[]{
+  //                     title,
+  //                     content,
+  //                   }}
+
+  //                   {...,metaemails[]{
+  //                     title,
+  //                     content,
+  //                     link,
+                     
+  //                   }}
+
+  //                     {...,
+  //                       sections[]{
+  //                         title,
+  //                         grid,
+  //                         grid2
+  //                       }
+  //                     }
+                      
+  //                     | order(_updatedAt desc)[0]
+  //                     `
+
+  //   const home = await $sanity.fetch(homeQuery)
+  //   return { home }
+  // },
+
+ 
 
   methods: {
     ...mapActions(['setTitle']),

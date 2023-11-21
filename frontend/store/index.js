@@ -8,11 +8,16 @@ export const state = () => ({
   // contact: false,
   menu: false,
   aboutPage: null,
+  metaemailsData: null,
 })
 
 
 
 export const mutations = {
+  setMetaEmailsData(state, data) {
+    state.metaemailsData = data;
+  },
+
   setGalleryState(state, isOpen) {
     state.isGalleryOpen = isOpen;
   },
@@ -31,9 +36,9 @@ export const mutations = {
   SET_FOOTER(state, footer) {
     state.footer = footer
   },
-  SET_ABOUT_PAGE(state, aboutPage) {
-    state.aboutPage = aboutPage
-  },
+  // SET_ABOUT_PAGE(state, aboutPage) {
+  //   state.aboutPage = aboutPage
+  // },
   // SET_CONTACT(state, contact) {
   //   state.contact = contact
   // },

@@ -162,7 +162,7 @@
               
               <!-- <span class="icon baseline h-auto sm:pt-5"> -->
                      
-          <div v-if="project.metadis" class="md:pb-5 sm:pb-5">
+          <div v-if="project.homeMeta && project.homeMeta[0].meta" class="md:pb-5 sm:pb-5 lg:p-[.3rem] lg:pt-8" >
             <span class="icon baseline h-auto sm:pt-5">
             <img
                       class="   p-0"
@@ -174,11 +174,10 @@
           </span>
         <span
           class=""
-          v-for="metadis in project.metadis"
-          :key="metadis._key"
+          v-for="homeMeta in project.homeMeta[0].meta" :key="homeMeta._key"
         >
-          <span class="normal-case text-[1.25rem] headtextlg" v-if="metadis.title">
-            <span class="">{{ metadis.content }}</span>
+          <span class="normal-case text-[1.25rem] headtextlg" v-if="homeMeta.title">
+            <span class="">{{ homeMeta.content }} </span>
           </span>
         </span>
 
@@ -191,7 +190,7 @@
                 class="portable-text lg:hidden "
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
-                v-if="project.metaemails"
+                v-if="project.homeMeta && project.homeMeta[0].meta"
               >
              
               
@@ -200,10 +199,9 @@
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
        
-          v-for="metaemails in project.metaemails"
-          :key="metaemails._key"
+                v-for="homeMeta in project.homeMeta[0].metaemails" :key="homeMeta._key"
               >
-              <div  v-if="metaemails.title">
+              <div  v-if="homeMeta.title">
               <a
                   :href="metaemails.link"
                   target="_blank"
@@ -211,7 +209,7 @@
                   speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                   speechify-initial-font-size="16px"
                 >
-                  {{ metaemails.content }}
+                {{ homeMeta.content }} 
                 </a>
               </div>
               </div>
@@ -243,7 +241,7 @@
               
               </div>
               <button
-              v-if="project.metaemails"
+              v-if="project.homeMeta && project.homeMeta[0].meta"
                 title="Close Information Drawer"
                 class="hidden uppercase lg:flex pt-[3vh] lg:flex-col text-left"
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
@@ -255,10 +253,9 @@
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                 speechify-initial-font-size="16px"
        
-          v-for="metaemails in project.metaemails"
-          :key="metaemails._key"
+                v-for="homeMeta in project.homeMeta[0].metaemails" :key="homeMeta._key"
               >
-              <div  v-if="metaemails.title">
+              <div  v-if="homeMeta.title">
               <a
                   :href="metaemails.link"
                   target="_blank"
@@ -266,7 +263,7 @@
                   speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"
                   speechify-initial-font-size="16px"
                 >
-                  {{ metaemails.content }}
+                {{ homeMeta.content }} 
                 </a>
               </div>
               </div>
@@ -306,6 +303,26 @@
       <!-- pt-28 -->
       <div class="bottom-div  p-2 xl:pt-[14rem] 2xl:pt-[12rem] ">
         <!-- titles -->
+
+    <!-- Display 'metaemails' content -->
+    <!-- <div v-for="meta in meta" :key="meta._key">
+   {{ meta.content }}
+</div> -->
+
+
+    <!-- Display home meta data -->
+    <!-- <div v-if="project.homeMeta && project.homeMeta[0].meta">
+      <div v-for="homeMeta in project.homeMeta[0].meta" :key="homeMeta._key">
+        {{ homeMeta.content }} 
+      </div>
+      <div v-for="homeMeta in project.homeMeta[0].metaemails" :key="homeMeta._key">
+        {{ homeMeta.content }} 
+      </div>
+    </div> -->
+
+  
+
+
         <div
           v-if="project"
           
@@ -538,7 +555,7 @@
 </template>
 <script>
 import { groq } from "@nuxtjs/sanity";
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 // import Header from "~/components/layout/Header.vue";
 // import About from "~/components/Aboutpage.vue";
 // import Lenis from '@studio-freight/lenis';
@@ -548,17 +565,38 @@ import Headerproject from "~/components/layout/Headerproject.vue";
 export default {
   components: {
     Headerproject,
-    // About,
   },
-  async asyncData({ params, $sanity }) {
-    const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {..., "archiveSlug": archive->slug.current, slider[] {fullWidth, imageWidth, overlayimageWidth, images[] 
-      {..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}}}, 
-      "talent" : talent->title, "talentSlug" : talent->slug.current, "footer" : footer, "talentBio" : talent->shortBio, "nextProject" : nextProject->slug.current,
-    "related": *[_type=='project' && references(^.talent._ref) && _id != ^._id]{ _id, title, location, production, meta, metadis, "slug" : slug.current }{_id, title, production, meta, metadis, metaemails, "slug" : slug.current}
-     } 
-      | order(_updatedAt desc)[0]`;
-                    // && slug.current == "${params.slug}"
+  async asyncData({ params, $sanity, store }) {
+    const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {
+      ..., "archiveSlug": archive->slug.current,
+      slider[] {
+        fullWidth, imageWidth, overlayimageWidth, images[] {
+          ..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}
+        }
+      },
+      
+      "talent" : talent->title, "talentSlug" : talent->slug.current,
+      "footer" : footer,
+      "talentBio" : talent->shortBio,
+      "nextProject" : nextProject->slug.current,
+      "related": *[_type=='project' && references(^.talent._ref) && _id != ^._id]{
+        _id, title, location, production, meta, metadis, "slug" : slug.current
+      }{_id, title, production, meta, metadis, metaemails, "slug" : slug.current},
+      "homeMeta": *[_type == "home"] { meta[], metaemails[]},
+    }
+     | order(_updatedAt desc)[0]`;
+
     const project = await $sanity.fetch(query);
+
+    //    // Debugging: Log the fetched data
+    //    console.log('Fetched meta:', project.meta);
+    // console.log('Fetched metaemails:', project.metaemails);
+
+  
+    // // Commit meta and metaemails to the Vuex store
+    // store.commit('setMeta', project.meta);
+    // store.commit('setMetaEmails', project.metaemails);
+
     return { project };
   },
   data() {
@@ -581,6 +619,9 @@ export default {
       scrolled: false,
       back: false,
     };
+  },
+  computed: {
+    ...mapState(['meta', 'metaemails']), // Map Vuex state to local computed properties
   },
   created() {
     if (
@@ -881,7 +922,7 @@ button .circle:hover {
 .icon {
     display: inline-flex;
     align-self: center;
-    top: 1.5vh;
+    top: 1vh;
     position: relative;
 }
 

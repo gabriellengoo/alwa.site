@@ -6,6 +6,11 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  store: {
+    // Modules to include in the store
+    // (Make sure to include 'metaemails' here)
+    modules: ['metaemails'],
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'ALWA',
