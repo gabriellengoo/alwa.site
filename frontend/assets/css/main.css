@@ -22,8 +22,27 @@ html {
   background: #f7f7f7;
   /* overflow: hidden; */
   overflow-x: hidden;
-  cursor: crosshair;
+  /* cursor: crosshair; */
+  cursor: url('/CURSOR.svg'), auto !important;
 }
+
+a{
+  cursor: url('/CURSOR.svg'), auto !important;
+}
+
+/* button{
+  cursor: url('/CURSOR.svg'), auto !important;
+}
+
+figcaption{
+  cursor: url('/CURSOR.svg'), auto !important;
+} */
+
+svg{
+  cursor: url('/CURSOR.svg'), auto !important;
+}
+
+
 
 @media (min-width: 768px) {
   .pr-6 {
