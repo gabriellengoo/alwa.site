@@ -1,6 +1,7 @@
 <template>
   <div>
 
+
     <header class="sticky  top-0 left-0 z-20  p-0 pt-2 text-lg leading-snug uppercase  md:pb-2 md:pt-2 ">
 
       <!-- desk -->

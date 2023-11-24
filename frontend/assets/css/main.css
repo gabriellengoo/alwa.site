@@ -22,9 +22,13 @@ html {
   background: #f7f7f7;
   /* overflow: hidden; */
   overflow-x: hidden;
-  cursor: crosshair;
-  /* cursor: url('/CURSOR.svg'), auto !important; */
+  /* cursor: crosshair; */
+   /* cursor: default; */
+  cursor: url('/CURSOR.svg'), auto !important;
 }
+
+
+
 
 a{
   /* cursor: url('/CURSOR.svg'), auto !important; */
