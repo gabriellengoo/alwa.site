@@ -23,8 +23,8 @@ html {
   /* overflow: hidden; */
   overflow-x: hidden;
   /* cursor: crosshair; */
-   /* cursor: default; */
-  cursor: url('/CURSOR.svg'), auto !important;
+   cursor: default;
+  /* cursor: url('/CURSOR.svg'), auto !important; */
 }
 
 
