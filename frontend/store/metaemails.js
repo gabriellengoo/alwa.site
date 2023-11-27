@@ -2,6 +2,7 @@
 export const state = () => ({
     meta: [],
     metaemails: [],
+    // year: [],
   });
   
   export const mutations = {
@@ -11,5 +12,8 @@ export const state = () => ({
     setMetaEmails(state, data) {
       state.metaemails = data;
     },
+    // setYear(state, data) {
+    //   state.year = data;
+    // },
   };
   

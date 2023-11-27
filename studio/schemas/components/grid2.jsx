@@ -143,14 +143,14 @@ export default {
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),
         },
-        {
-          name: "year",
-          title: "Alwa Role",
-          description: " This is the footer on project pages",
-          type: "string",
-          hidden: ({ parent, value }) =>
-          !value && (parent?.spacer || parent?.reference),
-        },
+        // { 
+        //   name: "year",
+        //   title: "Alwa Role",
+        //   description: " This is the footer on project pages",
+        //   type: "string",
+        //   hidden: ({ parent, value }) =>
+        //   !value && (parent?.spacer || parent?.reference),
+        // },
         {
           name: "production",
           title: "Production or Casting",

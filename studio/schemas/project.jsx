@@ -133,11 +133,12 @@ export default {
         },
       ], 
     },
-    // {
-    //   name: "production",
-    //   title: "Production or Casting",
-    //   type: "string",
-    // },
+    {
+      name: "production",
+      title: "Project footer",
+      description: " This is the footer on project pages",
+      type: "string",
+    },
     {
       name: "location",
       title: "Location",

@@ -596,7 +596,7 @@ export default {
       "related": *[_type=='project' && references(^.talent._ref) && _id != ^._id]{
         _id, title, location, production, meta, metadis, "slug" : slug.current
       }{_id, title, production, meta, metadis, metaemails, "slug" : slug.current},
-      "homeMeta": *[_type == "home"] { meta[], metaemails[], sections[]},
+      "homeMeta": *[_type == "home"] { meta[], metaemails[], sections[], year},
     }
      | order(_updatedAt desc)[0]`;
 

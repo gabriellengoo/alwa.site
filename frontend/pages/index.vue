@@ -343,6 +343,7 @@ export default {
       // Commit meta and metaemails to the Vuex store
       store.commit('setMeta', home.meta);
       store.commit('setMetaEmails', home.metaemails);
+      // store.commit('setYear', home.year);
 
       return { home };
   },
