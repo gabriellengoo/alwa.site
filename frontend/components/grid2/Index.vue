@@ -46,7 +46,7 @@
               </g>
             </svg>
           </div>
-    <div class="flex justify-center">
+    <div class="btndiv flex justify-center" ref="btndiv">
       <div class="button-container">
         <button class="uppercase w-fit" @click="toggleListView">
           {{ displayGrid ? "overview" : "overview" }}
@@ -374,7 +374,7 @@ reverse
                 @mouseenter.native="hover(item)"
                 @mouseleave.native="leave()" -->
                     <span
-                      class="flex flex-col items-start h-full max-w-full"
+                      class="flex flex-col items-start h-full max-w-full relative"
                       :class="size == 'small' ? 'w-full' : 'w-auto'"
                     >
                       <figure
@@ -390,6 +390,54 @@ reverse
                             : ''
                         "
                       > 
+
+                  <div class="sticky contain-image " :style="{ position: fixedPosition, top: fixedTop }" ref="containImage">
+                    <span class="imgcont">
+                      <MediaImage
+                        :size="item.image.size"
+                        :aspect="item.image.aspect"
+                        :src="item.image.image"
+                        v-if="item.image.image"
+                        
+                        :class="[
+                  activeTalent &&
+                  activeTalent != item.reference.talentId &&
+                  activeTalent != item.reference &&
+                  activeTalent != item.video.id
+                    ? 'image-opacity-0'
+                    : '',
+                  !displayGrid ? 'list-layout-item' : '',
+                ]"
+
+                        class="borderlist listimg "
+                        :sizes="
+                          size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
+                        "
+                 
+                      ></MediaImage>
+                    </span>
+                    <!--   :class="{ 'image-opacity-0': !hoveredItem }" -->
+                    <span class="videocont">
+                      <MediaVideo
+                        :id="item.video.id"
+                        :src="item.video.id"
+                        v-if="item.video.id"
+                        :sizes="
+                          size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
+                        "
+                             :class="[
+                  activeTalent &&
+                  activeTalent != item.reference.talentId &&
+                  activeTalent != item.reference &&
+                  activeTalent != item.video.id
+                    ? 'image-opacity-0'
+                    : '',
+                  !displayGrid ? 'list-layout-item' : '',
+                ]"
+                        class="borderlist listimg"
+                      ></MediaVideo>
+                    </span>
+                  </div>
                         <!--   @mouseenter="hoveredItem = item"
                       @mouseleave="hoveredItem = null" -->
                         <figcaption
@@ -467,53 +515,6 @@ reverse
                     </span>
                   </NuxtLink>
 
-                  <div class="sticky contain-image">
-                    <span class="imgcont">
-                      <MediaImage
-                        :size="item.image.size"
-                        :aspect="item.image.aspect"
-                        :src="item.image.image"
-                        v-if="item.image.image"
-                        
-                        :class="[
-                  activeTalent &&
-                  activeTalent != item.reference.talentId &&
-                  activeTalent != item.reference &&
-                  activeTalent != item.video.id
-                    ? 'image-opacity-0'
-                    : '',
-                  !displayGrid ? 'list-layout-item' : '',
-                ]"
-
-                        class="borderlist "
-                        :sizes="
-                          size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
-                        "
-                 
-                      ></MediaImage>
-                    </span>
-                    <!--   :class="{ 'image-opacity-0': !hoveredItem }" -->
-                    <span class="videocont">
-                      <MediaVideo
-                        :id="item.video.id"
-                        :src="item.video.id"
-                        v-if="item.video.id"
-                        :sizes="
-                          size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
-                        "
-                             :class="[
-                  activeTalent &&
-                  activeTalent != item.reference.talentId &&
-                  activeTalent != item.reference &&
-                  activeTalent != item.video.id
-                    ? 'image-opacity-0'
-                    : '',
-                  !displayGrid ? 'list-layout-item' : '',
-                ]"
-                        class="borderlist"
-                      ></MediaVideo>
-                    </span>
-                  </div>
                 </figure>
               </div>
               <div class="bottom-0  left-0 w-full">
@@ -556,8 +557,6 @@ export default {
       project: false,
       isHovered: false,
       scrollLeft: 0,
-      containerClass: "flex flex-col w-full h-full",
-      imageClass: "contain-image",
       displayListImage: true,
       // displayRole: true,
       // displayThird: true, 
@@ -570,6 +569,9 @@ export default {
       imageOpacity: 1, // Add this property
       displayGrid: true, // Use displayGrid to track the layout state
       // isListView: true,
+
+      fixedPosition: 'relative', // Default position
+      fixedTop: 0, // Default top value
     };
   },
   computed: {
@@ -580,9 +582,16 @@ export default {
   },
   mounted() {
     this.redraw();
+
   },
+
   methods: {
+
     ...mapMutations(["SET_ACTIVE_PROJECT", "SET_ACTIVE_TALENT"]),
+
+
+
+
 
     toggleListImageOnHover() {
       this.isHovered = true; // Set the hover state to true
@@ -593,12 +602,31 @@ export default {
 
     toggleListImage() {
       this.displayListImage = !this.displayListImage;
+
+    
     },
+
 
     toggleListView() {
       this.displayGrid = !this.displayGrid;
       // You can also add logic to redraw the layout here if needed
+
+      // After toggling, update the styles
+      this.$nextTick(() => {
+        // After toggling, update the styles
+        this.updateStyles();
+      });
     },
+ 
+      updateStyles() {
+      // Get the height of the target element
+      const containImageHeight = this.$refs.btndiv.offsetHeight;
+
+      // Update the data properties to apply the styles
+      this.fixedPosition = 'fixed';
+      this.fixedTop = `${containImageHeight}px`;
+    },
+    
     togglePhotographerView() {
     this.displayPhotographer = !this.displayPhotographer;
     this.displayProduction = false;
@@ -640,6 +668,7 @@ export default {
         this.scrollLeft += 10; // Adjust the scroll speed as needed
         this.$refs.scrollContainer.scrollLeft = this.scrollLeft;
       }
+      
     },
     // Helper functions to control the animation
     pauseScrollAnimation() {
@@ -768,39 +797,7 @@ export default {
     opacity: 0;
   }
 
-.list-container:nth-child(2) .list-layout-item .contain-image {
-  /* display: none; */
-  /* display: block;
-    position: fixed; */
-}
 
-.list-container:nth-child(2) {
-  /* display: none; */
-  /* display: block;
-    position: fixed; */
-}
-.list-layout-item:nth-child(2) .contain-image {
-  /* display:block;
-    position: fixed; */
-  /* position: absolute; */
-  /* top: 8vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40vh; */
-  /* transform: scale(12); */
-}
-/* .list-layout-item:nth-child(2):hover .contain-image{
-    display:contents;
-    top: 6.3vh;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: none  !important;
-    transition-duration: 0s !important;
-    animation: none !important;
-  } */
 
 .listimg {
   /* left: 5vw;
@@ -1062,13 +1059,15 @@ figure {
 /* Hide the images by default */
 
 .list-layout-item .contain-image {
-  position: fixed;
-  display: none;
+  /* position: fixed; */
+  /* position: absolute; */
+  /* display: none; */
     pointer-events: none;
-    height: 100vh;
-    width: 100vw;
-    /* display: flex; */
-    top: 1.1vh;
+    /* height: 100vh;
+    width: 100vw; */
+    /* top: 1.1vh; */
+    /* top: 0; */
+    padding-top: 7.5rem;
   justify-content: center;
   align-items: center;
   transition: none !important;
@@ -1077,41 +1076,51 @@ figure {
   opacity: 0;
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+.list-layout-item .contain-image{
+  padding-top: 14.5rem;
+}
 
+}
+
+@media only screen and (min-width: 1440px) and (max-width: 1680px) {.list-layout-item .contain-image{
+  padding-top: 10.5rem;
+}
+}
+
+@media only screen and (min-width: 2560px) {
+  .list-layout-item .contain-image{
+    padding-top: 18rem;
+}
+}
 /* Show the images on hover */
 .list-layout-item:hover .contain-image {
-  /* display: block; */
-  /* display: none; */
-  display: flex; 
+  /* display: flex;  */
   opacity: 1;
 }
 
 .list-layout-item:nth-child(1) .contain-image {
-  display: flex ; 
+  /* display: flex ;  */
   opacity: 1;
 }
 
 
 
 .list-layout-item .contain-image img {
-  /* width: calc(27.33vw - 20px); */
   width: calc(28.33vw - 20px);
     height: auto;
     position: absolute;
     left: 3vw;
-    /* top: 21vh; */
-    top: calc(20vh - 14px);
+    /* top: calc(20vh - 14px); */
     pointer-events: none;
 }
 
 .list-layout-item .contain-image video {
-  /* width: calc(27.33vw - 20px); */
   width: calc(28.33vw - 20px);
     height: auto;
     position: absolute;
     left: 3vw;
-    /* top: 21vh; */
-    top: calc(20vh - 14px);
+    /* top: calc(20vh - 14px); */
     pointer-events: none;
 }
 
@@ -1121,7 +1130,6 @@ figure {
 
 .listText div .year{
   display: flex;
-    /* justify-content: flex-end; */
     width: 18vw;
     text-align: end;
 }
@@ -1210,6 +1218,7 @@ figure {
   .listText div {
     transition-duration: 0.3s;
     line-height: 17px;
+    padding-bottom: 0px  !important;
     cursor: pointer;
     display: flex;
     
@@ -1224,9 +1233,7 @@ figure {
     width: auto;
 }
 
-  /* .list-layout-item:nth-child(2) .contain-image{
-  display:none;
-} */
+ 
 
   .masonry .flex-item img {
     /* display: flex; */
@@ -1365,7 +1372,8 @@ figure {
 
 .listText div {
   transition-duration: 0.3s;
-  line-height: 17px;
+  /* line-height: 17px; */
+  padding-bottom: 2px;
   cursor: pointer;
   display: flex;
   width: 29vw;
