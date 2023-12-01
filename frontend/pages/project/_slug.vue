@@ -255,7 +255,7 @@
               
               </div>
               <button
-              v-if="project.homeMeta && project.homeMeta[0].meta"
+              v-if="project.homeMeta && project.homeMeta[0].meta" 
                 title="Close Information Drawer"
                 class="hidden uppercase lg:flex pt-[3vh] lg:flex-col text-left"
                 speechify-initial-font-family="__europaCondensed_11f9d1, __europaCondensed_Fallback_11f9d1"

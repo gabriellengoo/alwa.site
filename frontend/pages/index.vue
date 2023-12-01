@@ -308,7 +308,7 @@ export default {
     title, photographer,year,hair,styleing, link, production, location,
       "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
      
-      {..., grid2[] {_key, spacer, "video" : 
+      {..., grid2[] {_key, spacer, thumbnailTime, "video" : 
     {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
       "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
     title, photographer,year,imageWidth,hair,makeup,dop,set,styleing, link, production, location, listImage, draft,
@@ -343,6 +343,7 @@ export default {
       // Commit meta and metaemails to the Vuex store
       store.commit('setMeta', home.meta);
       store.commit('setMetaEmails', home.metaemails);
+      store.commit('setThumbnailTime', home.thumbnailTime);
       // store.commit('setYear', home.year);
 
       return { home };

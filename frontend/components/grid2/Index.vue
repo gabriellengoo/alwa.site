@@ -162,6 +162,7 @@ reverse
                         @mouseleave="handleMouseLeave"
                         :src="item.image.image"
                         v-if="item.image.image"
+                        :metadata="item.image.image"
                         class="scrollcost resize-animation hover"
                         :style="{
                           opacity: imageOpacity,
@@ -173,14 +174,16 @@ reverse
                         ref="scrollContainer"
                         :id="item.video.id"
                         v-if="item.video.id"
+                        :metadata="item.video.id"
                         :style="{
                           opacity: imageOpacity,
                           width: `calc(${item.imageWidth}vw - 10px)`,
                         }"
                         class="scrollcost resize-animation"
+                        :poster="`https://image.mux.com/${item.video.id}/thumbnail.jpg?time=${item.thumbnailTime}`"
                       ></MediaVideo>
                     </div>
-                    <!--  md:w-[auto] lg:w-[auto] md:w-[26vw] lg:w-[26vw] -->
+                    <!--  md:w-[auto] lg:w-[auto] md:w-[26vw] lg:w-[26vw]   :thumbnailTime="item.thumbnailTime" -->
                     <div
                       :style="{ width: `calc(${item.imageWidth}vw - 10px)` }"
                       class="lgsctext mobilesize resize-animation leading-[1.2] md:leading-[1] pt-2 overflow-hidden md:w-[26vw] lg:w-[26vw] w-[90vw] text-lg stroke-black stroke-1 flex flex-wrap  normal-case font-medium"
@@ -422,6 +425,7 @@ reverse
                         :id="item.video.id"
                         :src="item.video.id"
                         v-if="item.video.id"
+                        :thumbnailTime="item.video.thumbnailTime"
                         :sizes="
                           size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
                         "

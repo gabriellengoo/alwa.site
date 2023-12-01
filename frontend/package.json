@@ -13,6 +13,7 @@
     "node": "16.x"
   },
   "dependencies": {
+    "@mux/blurhash": "^0.1.2",
     "@nuxt/image": "^0.6.2",
     "@nuxtjs/sanity": "^0.10.0",
     "@sanity/client": "^6.4.11",

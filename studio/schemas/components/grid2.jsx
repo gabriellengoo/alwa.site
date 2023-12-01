@@ -8,8 +8,28 @@
 // import { RiNumber5 } from "react-icons/Ri";
 // import { RiNumber6 } from "react-icons/Ri";
 // import { RiNumber7 } from "react-icons/Ri";
+// import CustomThumbnailTimeInput from "./CustomThumbnailTimeInput";
+
+import React from "react";
+
+// Define the custom input component
+const CustomThumbnailTimeInput = ({ type, value, onChange }) => {
+  const handleChange = (e) => {
+    onChange(e.target.value);
+  };
+
+  // Render a button element
+  return (
+    <div>
+      <label>Thumbnail Time:</label>
+      <input type={type} value={value} onChange={handleChange} />
+      <button onClick={() => onChange(15)}>Set Thumbnail Time</button>
+    </div>
+  );
+};
 
 export default {
+  
   name: "grid2",
   title: "Grid",
   type: "array",
@@ -35,13 +55,7 @@ export default {
           type: "boolean",
           description: "Mark this item as a draft",
         },
-        // {
-        //   name: "imageWidth",
-        //   title: "Image Width",
-        //   type: "number",
-        //   description: "Set the width of the image in viewporth width",
-        //   validation: (Rule) => Rule.min(0).integer(),
-        // },
+    
         {
           name: "imageWidth",
           title: "Image Width",
@@ -49,20 +63,7 @@ export default {
           description: "Set the width of the image in viewport width",
           validation: (Rule) => Rule.min(0),
         },
-        // {
-        //   name: 'listImage',
-        //   title: 'List Main Image',
-        //   description: "This will be the image you see first on the list, only set the first grid image url",
-        //   type: 'url',
-        // },
-        // {
-        //   name: "imageWidth",
-        //   title: "Image Width",
-        //   type: "string",
-        //   hidden: ({ parent, value }) =>
-        //   !value && (parent?.spacer || parent?.link),
-        //   description: "Set the width of the image in pixels",
-        // },
+      
         {
           name: "image",
           title: "Image",
@@ -78,6 +79,15 @@ export default {
             (!value && parent?.spacer) || (!value && parent?.image),
         },
         {
+          name: "thumbnailTime",
+          title: "Thumbnail Time",
+          type: "number",
+          description: "Time in seconds for the selected thumbnail frame",
+          validation: (Rule) => Rule.min(0),
+          // inputComponent: CustomThumbnailTimeInput,
+        },
+      
+        {
           name: "reference",
           title: "Reference",
           type: "reference",
@@ -87,13 +97,7 @@ export default {
           hidden: ({ parent, value }) =>
             !value && (parent?.spacer || parent?.link),
         },
-        // {
-        //   name: "link",
-        //   title: "Link",
-        //   type: "url",
-        //   hidden: ({ parent, value }) =>
-        //     !value && (parent?.spacer || parent?.reference),
-        // },
+      
         {
           name: "title",
           title: "Title",
@@ -167,26 +171,29 @@ export default {
           hidden: ({ parent, value }) =>
           !value && (parent?.spacer || parent?.reference),
         },
+
       ],
       preview: {
         select: {
           spacer: "spacer",
           image: "image",
           video: "video.asset.playbackId",
+          thumbnailTime: "thumbnailTime",
         },
         prepare(selection) {
-          const { image, spacer, video } = selection;
+          const { image, spacer, video, thumbnailTime } = selection;
+          // const thumbnailTime = 15;
           let media;
           if (video) {
             media = (
               <img
-                src={`https://image.mux.com/${video}/animated.gif`}
-                style={{
-                  objectFit: "cover",
-                  height: "100%",
-                  width: "100%",
-                }}
-              />
+              src={`https://image.mux.com/${video}/animated.gif?start=${thumbnailTime || 0}`}
+              style={{
+                objectFit: "cover",
+                height: "100%",
+                width: "100%",
+              }}
+            />
             );
           } else if (image) {
             media = image;
@@ -203,3 +210,4 @@ export default {
     },
   ],
 };
+

@@ -2,6 +2,7 @@
 export const state = () => ({
     meta: [],
     metaemails: [],
+    // thumbnailTime,
     // year: [],
   });
   
@@ -12,6 +13,10 @@ export const state = () => ({
     setMetaEmails(state, data) {
       state.metaemails = data;
     },
+
+    // setThumbnailTime(state, data){
+    //   state.thumbnailTime = data;
+    // }
     // setYear(state, data) {
     //   state.year = data;
     // },

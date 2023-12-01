@@ -1,31 +1,43 @@
-<!-- :src="`https://stream.mux.com/${this.id}-low.m3u8`"   :poster="`https://image.mux.com/${this.id}/thumbnail.jpg?`" 
-    :poster="`https://image.mux.com/${this.id}/thumbnail.jpg?time=15`"-->
+<!-- rm   
 <template>
-  <video 
+  <video
     ref="video"
     @mouseenter="play"
     @mouseleave="pause"
     loop
     playsinline
     :autoplay="mobile"
-    :src="`https://stream.mux.com/${this.id}.m3u8?max_resolution=720p`"
+    muted
+    :src="`https://stream.mux.com/${this.id}.m3u8`"
   ></video>
+</template>
 
+
+-->
+
+<template>
+  <video
+    ref="video"
+    @mouseenter="play"
+    @mouseleave="pause"
+    loop
+    playsinline
+    :autoplay="mobile"
+    :src="`https://stream.mux.com/${this.id}-low.m3u8`"
+  ></video>
 </template>
 <script>
 import Hls from 'hls.js'
-// import { BlurHash } from '@mux/blurhash';
-
-
 export default {
   props: {
     id: { type: String },
     autoplay: { type: Boolean, default: false },
-    // thumbnailTime: { type: Number, default: 0 },
-    // blurhash: '',
-    // startTime: { type: Number, default: 0 },
+    //rm
+    //  muted: {
+    //   type: Boolean,
+    //   default: true,
+    // },
   },
-  
   data() {
     return {
       intersectionOptions: {
@@ -43,8 +55,6 @@ export default {
     play() {
       if (!this.autoplay) {
         let video = this.$refs['video']
-        // Set the start time (in seconds)
-        // video.currentTime = this.thumbnailTime; 
         video.play()
       }
     },
