@@ -18,12 +18,12 @@ import {visionTool} from '@sanity/vision'
 
 function getPreviewUrl(doc) {
   const protocol = 'https://'; // Assuming your local server is running on HTTP, adjust if needed
-  const host = 'www.alwaproduction.co.uk/?preview=true'; // Adjust the port if your server is running on a different port
-  const path = doc?.slug?.current ? `/${doc.slug.current}` : '';
+  const host = 'www.alwaproduction.co.uk'; // Adjust the port if your server is running on a different port
+  const path = doc?.slug?.current ? `/project/${doc.slug.current}` : '';
 
   return doc?.slug?.current
-    ? `${protocol}${host}${path}`
-    : `${protocol}${host}`;
+      ? `${protocol}${host}${path}?preview=true`
+      : `${protocol}${host}?preview=true`;
 }
 
 
