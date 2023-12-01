@@ -204,6 +204,14 @@ export default {
                       hidden: ({ parent, value }) =>
                         (!value && parent?.spacer) || (!value && parent?.image),
                     },
+                    {
+                      name: "thumbnailTime",
+                      title: "Thumbnail Time",
+                      type: "number",
+                      description: "Time in seconds for the selected thumbnail frame",
+                      validation: (Rule) => Rule.min(0),
+                      // inputComponent: CustomThumbnailTimeInput,
+                    },
 
                     // {
                     //   name: "padding",
@@ -224,14 +232,15 @@ export default {
                       spacer: "spacer",
                       image: "image",
                       video: "video.asset.playbackId",
+                      thumbnailTime: "thumbnailTime",
                     },
                     prepare(selection) {
-                      const { image, spacer, video } = selection;
+                      const { image, spacer, video, thumbnailTime } = selection;
                       let media;
                       if (video) {
                         media = (
                           <img
-                            src={`https://image.mux.com/${video}/animated.gif`}
+                            src={`https://image.mux.com/${video}/animated.gif?start=${thumbnailTime || 0}`}
                             style={{
                               objectFit: "cover",
                               height: "100%",
@@ -259,14 +268,15 @@ export default {
             select: {
               image: "images.0.image",
               video: "images.0.video.asset.playbackId",
+              thumbnailTime: "images.0.thumbnailTime",
             },
             prepare(selection) {
-              const { image, video } = selection;
+              const { image, video, thumbnailTime } = selection;
               let media;
               if (video) {
                 media = (
                   <img
-                    src={`https://image.mux.com/${video}/animated.gif`}
+                    src={`https://image.mux.com/${video}/animated.gif?start=${thumbnailTime || 0}`}
                     style={{
                       objectFit: "cover",
                       height: "100%",
@@ -298,26 +308,27 @@ export default {
       subtitle: "client.0.label",
       image: "slider.0.images.0.image",
       video: "slider.0.images.0.video.asset.playbackId",
+      thumbnailTime: "slider.0.images.0.thumbnailTime",
     },
     prepare(selection) {
-      const { image, title, video, subtitle } = selection;
+      const { image, title, video, subtitle, thumbnailTime } = selection;
       let media;
       if (video) {
-        // media = (
-        //   <img
-        //     src={`https://image.mux.com/${video}/animated.gif`}
-        //     style={{
-        //       objectFit: "cover",
-        //       height: "100%",
-        //       width: "100%",
-        //     }}
-        //   />
-        // );
-        media = document.createElement("img");
-        media.src = `https://image.mux.com/${video}/animated.gif`;
-        media.style.objectFit = "cover";
-        media.style.height = "100%";
-        media.style.width = "100%";
+        media = (
+          <img
+            src={`https://image.mux.com/${video}/animated.gif?start=${thumbnailTime || 0}`}
+            style={{
+              objectFit: "cover",
+              height: "100%",
+              width: "100%",
+            }}
+          />
+        );
+        // media = document.createElement("img");
+        // media.src = `https://image.mux.com/${video}/animated.gif`;
+        // media.style.objectFit = "cover";
+        // media.style.height = "100%";
+        // media.style.width = "100%";
       } else if (image) {
         media = image;
       }

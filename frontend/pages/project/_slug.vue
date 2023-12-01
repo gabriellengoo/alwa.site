@@ -411,7 +411,7 @@
                 :id="image.video.id"
                 :active="realIndex == index ? true : false"
                 v-else-if="image.video.id"
-                :thumbTime="image.video.thumbTime"
+                :poster="`https://image.mux.com/${image.video.id}/thumbnail.jpg?time=${image.thumbnailTime || 0}`"
                 :style="{ width: `calc(${image.imageWidth}vw - 20px)` }"
                 class="scrollcost resize-animation object-contain object-top w-auto h-full"
               ></MediaVideo>
@@ -527,7 +527,7 @@
                           :id="image.video.id"
                           :active="realIndex == index ? true : false"
                           v-else-if="image.video.id"
-                          :thumbTime="image.video.thumbTime"
+                          :poster="`https://image.mux.com/${image.video.id}/thumbnail.jpg?time=${image.thumbnailTime || 0}`"
                           :style="{ pointerEvents: 'auto' , width: `calc(${image.overlayimageWidth}vw - 20px)` }"
                           @click="handleVideoClick(image.video.id)"
                        
@@ -584,7 +584,7 @@ export default {
     const query = groq`*[_type == "project" && slug.current == "${params.slug}" ] {
       ..., "archiveSlug": archive->slug.current,
       slider[] {
-        fullWidth, imageWidth, overlayimageWidth, images[] {
+        fullWidth, imageWidth, overlayimageWidth,thumbnailTime, images[] {
           ..., "video" : {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio, "thumbTime" : video.asset->thumbTime}
         }
       },

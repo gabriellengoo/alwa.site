@@ -180,7 +180,7 @@ reverse
                           width: `calc(${item.imageWidth}vw - 10px)`,
                         }"
                         class="scrollcost resize-animation"
-                        :poster="`https://image.mux.com/${item.video.id}/thumbnail.jpg?time=${item.thumbnailTime}`"
+                        :poster="`https://image.mux.com/${item.video.id}/thumbnail.jpg?time=${item.thumbnailTime || 0}`"
                       ></MediaVideo>
                     </div>
                     <!--  md:w-[auto] lg:w-[auto] md:w-[26vw] lg:w-[26vw]   :thumbnailTime="item.thumbnailTime" -->
@@ -425,7 +425,7 @@ reverse
                         :id="item.video.id"
                         :src="item.video.id"
                         v-if="item.video.id"
-                        :thumbnailTime="item.video.thumbnailTime"
+                        :poster="`https://image.mux.com/${item.video.id}/thumbnail.jpg?time=${item.thumbnailTime || 0}`"
                         :sizes="
                           size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
                         "
