@@ -311,7 +311,7 @@ export default {
       {..., grid2[] {_key, spacer, thumbnailTime, "video" : 
     {"id" : video.asset->playbackId, "aspect" : video.asset->data.aspect_ratio},
       "image" : {"image" : image.asset._ref, "aspect" : image.asset->metadata.dimensions.aspectRatio, "position" : position}, 
-    title, photographer,year,imageWidth,hair,makeup,dop,set,styleing, link, production, location, listImage, draft,
+    title, photographer,year,imageWidth,hair,makeup,dop,set,styleing, link, production, location, listImage, draft,portrait,
       "reference" : {"key" : reference._ref, "title" : reference->title, "clients" : reference->client[].label, "slug" : reference->slug.current, "talent" : reference->talent->title, "team" : reference->team, "meta" : reference->meta}} } 
      
     {...,meta[]{

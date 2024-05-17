@@ -21,14 +21,10 @@
       img {
         /* max-w-full */
         /* @apply w-full h-auto ; */
-        /* @apply w-[30vw] h-auto ; */
-        /* @apply h-[350px] ; */
+        @apply w-[30vw] h-auto ;
 
       }
       figure {
-      }
-      video {
-        /* @apply h-[350px]; */
       }
     }
     &.large {

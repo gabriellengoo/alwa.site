@@ -65,7 +65,7 @@
     <!-- Masonry content here w-[99.3vw]-->
     <div
       ref="scrollContainer"
-      class="image-cont w-[100vw] flex flex-col fade-in-out"
+      class="image-cont w-[98vw] flex flex-col fade-in-out"
       :class="{ 'fade-in': displayGrid, 'fade-out': !displayGrid }"
     >
       <!-- scroll part -->
@@ -94,8 +94,7 @@
                   :style="{ minHeight: item.video.id ? (isDesktop ? (item.double ? '75vh' : '45vh') : '15vh') : 'auto' }"
        ? 'h-space-fit md:h-space-fit 2xl:h-space-fit' vid space height--> 
         <figure
-          class="flex flex-col " 
-          :style="{ minHeight: item.video.id ? (isDesktop ? 'autoh' : 'auto') : 'auto' }"
+          class="flex flex-col w-[20vw] " 
           :class="[
             item.spacer
               ? `h-space-${item.spacer + 1}  md:h-space-${item.spacer}`
@@ -109,6 +108,9 @@
               // mb-6
             size == 'small' ? '' : '',
           ]"
+              :style="{
+                     width: !item.portrait ? '42vw' : '20vw',
+                }"
         >
           <NuxtLink
           class="hover"
@@ -141,7 +143,7 @@
                 <div
               
                   :class="size == 'small' ? 'smaller-text' : ''"
-                  class="lgsctext mobilesize  max-w-[20vw] resize-animation flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw] pl-0"
+                  class="lgsctext mobilesize resize-animation flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw] pl-0"
                 >
                   {{ item.title ? item.title : item.reference.title }}
                 </div>
@@ -153,13 +155,11 @@
                   v-if="item.image.image"
                   class="contain-image hover"
                   :sizes="
-                    size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
+                    size == 'sm' ? 'sm:40vw md:15vw' : 'sm:150vw md:150vw'
                   "
-                  :style="{
-                      width: item.portrait ? '23.5vw' : '48.5vw',
-                      // width: !item.portrait ? '' : 'auto'
-                    }"
-
+                   :style="{
+                     width: !item.portrait ? '42vw' : '20vw',
+                }"
                 ></MediaImage>
                 <!-- :style="{ backgroundColor: item.double ? 'red' : 'blue', }"  -->
                 <MediaVideo 
@@ -168,14 +168,13 @@
      v-if="item.video.id"
                   class="dubvid vdpadoverview hoverobject-contain object-top w-auto h-full"
                   :style="{
-                      width: item.portrait ? '23.5vw' : '48.5vw',
-                      // width: !item.portrait ? '' : 'auto'
-                    }"
+                     width: !item.portrait ? '42vw' : '20vw',
+                }"
                 ></MediaVideo>
               </figure>
               <div
                
-               class="lgsctext mobilesize resize-animation max-w-[20vw]  leading-[1.2] md:leading-[1] pt-2 overflow-hidden text-lg stroke-black stroke-1 flex flex-wrap  normal-case font-medium"
+               class="lgsctext mobilesize resize-animation leading-[1.2] md:leading-[1] pt-2 overflow-hidden text-lg stroke-black stroke-1 flex flex-wrap  normal-case font-medium"
              >
                <p v-if="item.photographer">{{ item.photographer }}<span v-if="item.production">,&nbsp; </span></p>
                <p v-if="item.styleing">{{ item.styleing }}<span v-if="item.hair">,&nbsp; </span></p>
@@ -212,7 +211,7 @@
                 :src="item.image.image"
                 v-if="item.image.image"
                 class="contain-image"
-                :sizes="size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'"
+                :sizes="size == 'sm' ? 'sm:40vw md:15vw' : 'sm:150vw md:150vw'"
               ></MediaImage>
               <MediaVideo
                 :id="item.video.id"
@@ -248,7 +247,7 @@
                 :src="item.image.image"
                 v-if="item.image.image"
                 :class="imageClass"
-                :sizes="size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'"
+                :sizes="size == 'sm' ? 'sm:40vw md:15vw' : 'sm:150vw md:150vw'"
               ></MediaImage>
               <MediaVideo
                 :id="item.video.id"
@@ -377,7 +376,7 @@
                 class="listimg z-0 fixed block hidemobile"
                 :src="item.listImage"
                 v-if="item.listImage"
-                :sizes="size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'"
+                :sizes="size == 'sm' ? 'sm:40vw md:15vw' : 'sm:150vw md:150vw'"
               
                 />
             </div> -->
@@ -476,7 +475,7 @@
 
                         class="borderlist listimg "
                         :sizes="
-                          size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
+                          size == 'sm' ? 'sm:40vw md:15vw' : 'sm:150vw md:150vw'
                         "
                  
                       ></MediaImage>
@@ -489,7 +488,7 @@
                         v-if="item.video.id"
                         :poster="`https://image.mux.com/${item.video.id}/thumbnail.jpg?time=${item.thumbnailTime || 0}`"
                         :sizes="
-                          size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
+                          size == 'sm' ? 'sm:40vw md:15vw' : 'sm:150vw md:150vw'
                         "
                              :class="[
                   activeTalent &&
@@ -979,7 +978,7 @@ export default {
   /* grid-template-columns: 33% 33% 33%; */
   display: flex;
   flex-wrap: wrap;
-   /* justify-content: space-between; */
+  justify-content: space-between;
 }
 
 .insidescrollcont {
@@ -1409,7 +1408,7 @@ figure {
   justify-content: space-between;
   /* align-items: center; */
   /* margin-bottom: 40px; */
-  padding-left: 35vw;
+  padding-left: 42vw;
   width: 100%;
 }
 

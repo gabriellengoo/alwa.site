@@ -55,6 +55,12 @@ export default {
           type: "boolean",
           description: "Mark this item as a draft",
         },
+        {
+          name: "portrait",
+          title: "portrait img",
+          type: "boolean",
+          description: "Is the img portrait?",
+        },
     
         {
           name: "imageWidth",
