@@ -812,9 +812,46 @@ export default {
 }
 } */
 
+.portrait {
+    height: 550px;
+    width: 430.50px;
+  }
+  .landscape {
+    height: 550px;
+    width: 880px;
+  }
+
+  .portraittext {
+    /* height: 55vh; */
+    width: 400.50px;
+  }
+
+  .landscapetext {
+    /* height: 55vh; */
+    width: 800px;
+  }
+
+
 /* Define your breakpoints */
 @media (max-width: 768px){
+  .portrait {
+    height: 550px;
+    width: 430.50px;
+  }
+  .landscape {
+    height: 550px;
+    width: 880px;
+  }
 
+  .portraittext {
+    /* height: 55vh; */
+    width: 400.50px;
+  }
+
+  .landscapetext {
+    /* height: 55vh; */
+    width: 800px;
+  }
 }
 
 
@@ -830,12 +867,56 @@ export default {
 
   .portraittext {
     /* height: 55vh; */
+    width: 330.50px !important;
+  }
+
+  .landscapetext {
+    /* height: 55vh; */
+    width: 650.50px !important;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .portrait {
+    height: 320px !important;
+        width: 240px !important;
+  }
+  .landscape {
+    height: 320px !important;
+        width: 490px !important;
+  }
+
+  .portraittext {
+    /* height: 55vh; */
     width: 230.50px !important;
   }
 
   .landscapetext {
     /* height: 55vh; */
-    width: 250.50px !important;
+    width: 350.50px !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .portrait {
+    height: auto !important;
+        width: 90vw !important;
+  }
+  .landscape {
+    height: auto !important;
+        width: 90vw !important;
+  }
+
+  .portraittext {
+    /* height: 55vh; */
+    width: 90vw !important;
+  }
+
+  .landscapetext {
+    /* height: 55vh; */
+    width: 90vw !important;
   }
 }
 
@@ -863,35 +944,28 @@ export default {
 
 
 /* Define styles for screens larger than 2560px */
-/* @media (min-width: 2561px) {
+@media (min-width: 2560px) {
   .portrait {
-    height: 70vh;
-    width: 30vw;
+    height: 840px !important;
+        width: 590px !important;
   }
   .landscape {
-    height: 70vh;
-    width: 60vw;
-  }
-} */
-
-  .portrait {
-    height: 550px;
-    width: 430.50px;
-  }
-  .landscape {
-    height: 550px;
-    width: 880px;
+    height: 840px !important;
+        width: 1190px !important;
   }
 
   .portraittext {
     /* height: 55vh; */
-    width: 400.50px;
+    width: 500px !important;
   }
 
   .landscapetext {
     /* height: 55vh; */
-    width: 800px;
+    width: 1090px !important;
   }
+} 
+
+ 
 
 
 
@@ -1591,7 +1665,7 @@ figure {
   }
 
   .mobilesize {
-    width: calc(99.33vw - 15px) !important;
+    /* width: calc(99.33vw - 15px) !important; */
   }
 
   .button-container {
