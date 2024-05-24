@@ -857,27 +857,34 @@ export default {
 
 @media (max-width: 1440px) {
   .portrait {
-    height: 440px !important;
-        width: 340px !important;
+    /* height: 440px !important;
+        width: 340px !important; */
+
+        height: 440px !important;
+        width: 23.5vw !important;
+    
   }
   .landscape {
     height: 440px !important;
-        width: 690px !important;
+        /* width: 690px !important; */
+        width: 48vw !important;
   }
 
   .portraittext {
     /* height: 55vh; */
-    width: 330.50px !important;
+    /* width: 330.50px !important; */
+    width: 20vw !important;
   }
 
   .landscapetext {
     /* height: 55vh; */
-    width: 650.50px !important;
+    /* width: 650.50px !important; */
+    width: 45vw !important;
   }
 }
 
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .portrait {
     height: 320px !important;
         width: 240px !important;
@@ -888,15 +895,13 @@ export default {
   }
 
   .portraittext {
-    /* height: 55vh; */
     width: 230.50px !important;
   }
 
   .landscapetext {
-    /* height: 55vh; */
     width: 350.50px !important;
   }
-}
+} */
 
 
 @media (max-width: 768px) {
