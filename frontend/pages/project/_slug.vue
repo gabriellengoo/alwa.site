@@ -383,7 +383,7 @@
 
         <!-- non scroll copy -->
 <!-- pt-48 -->
-        <div class="md:pr-6 md:w-7/16 scroll-container  resize-animation" ref="scrollContainer">
+        <div class="md:pr-6 md:w-7/16 scroll-container  resize-animation" ref="scrollContainer"> 
           <!-- md:p-5 -->
          
           <div
@@ -418,6 +418,10 @@
             </figure>
             
           </div>
+
+
+
+          
           <div class="bottom-0  left-0 w-full">
     <div class="flex justify-center mbcopyr text-3xl md:text-5xl  w-9/16">
       <!-- <img

@@ -120,7 +120,7 @@
                 ? 'items-center'
                 : 'items-start',
             ]"
-            v-if="item.reference.slug"
+              v-if="item && item.reference && item.reference.slug"
             :to="`/project/${item.reference.slug}`"
             @mouseenter.native="hover(item)"
             @mouseleave.native="leave()"
@@ -139,9 +139,15 @@
               >
               <figcaption :class="{ 'text-left ': !displayGrid }">
                 <div
-              
-                  :class="size == 'small' ? 'smaller-text' : ''"
-                  class="lgsctext mobilesize  max-w-[20vw] resize-animation flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw] pl-0"
+                :class="[
+      size == 'small' ? 'smaller-text' : '',
+      { 
+        portraittext: item.portrait,
+        landscapetext: !item.portrait
+      }
+    ]"
+             
+                  class="lgsctext mobilesize resize-animation flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw] pl-0"
                 >
                   {{ item.title ? item.title : item.reference.title }}
                 </div>
@@ -155,10 +161,10 @@
                   :sizes="
                     size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
                   "
-                  :style="{
-                      width: item.portrait ? '23.5vw' : '48.5vw',
-                      // width: !item.portrait ? '' : 'auto'
-                    }"
+                    :class="{
+      portrait: item.portrait,
+      landscape: !item.portrait
+    }"
 
                 ></MediaImage>
                 <!-- :style="{ backgroundColor: item.double ? 'red' : 'blue', }"  -->
@@ -167,15 +173,19 @@
                   :thumbTime="item.video.thumbTime"                 
      v-if="item.video.id"
                   class="dubvid vdpadoverview hoverobject-contain object-top w-auto h-full"
-                  :style="{
-                      width: item.portrait ? '23.5vw' : '48.5vw',
-                      // width: !item.portrait ? '' : 'auto'
-                    }"
+                  :class="{
+      portrait: item.portrait,
+      landscape: !item.portrait
+    }"
                 ></MediaVideo>
               </figure>
               <div
                
-               class="lgsctext mobilesize resize-animation max-w-[20vw]  leading-[1.2] md:leading-[1] pt-2 overflow-hidden text-lg stroke-black stroke-1 flex flex-wrap  normal-case font-medium"
+               class="lgsctext mobilesize resize-animation  leading-[1.2] md:leading-[1] pt-2 overflow-hidden text-lg stroke-black stroke-1 flex flex-wrap  normal-case font-medium"
+               :class="{
+      portraittext: item.portrait,
+      landscapetext: !item.portrait
+    }"
              >
                <p v-if="item.photographer">{{ item.photographer }}<span v-if="item.production">,&nbsp; </span></p>
                <p v-if="item.styleing">{{ item.styleing }}<span v-if="item.hair">,&nbsp; </span></p>
@@ -802,6 +812,99 @@ export default {
 }
 } */
 
+/* Define your breakpoints */
+@media (max-width: 768px){
+
+}
+
+
+@media (max-width: 1440px) {
+  .portrait {
+    height: 440px !important;
+        width: 340px !important;
+  }
+  .landscape {
+    height: 440px !important;
+        width: 690px !important;
+  }
+
+  .portraittext {
+    /* height: 55vh; */
+    width: 230.50px !important;
+  }
+
+  .landscapetext {
+    /* height: 55vh; */
+    width: 250.50px !important;
+  }
+}
+
+
+/* @media (min-width: 1441px) and (max-width: 2560px) {
+  .portrait {
+    height: 25vh !important;
+    width: 23.5vw !important;
+  }
+  .landscape {
+    height: 25vh !important;
+    width: 48vw !important;
+  }
+
+  .portraittext {
+
+    width: 23.5vw !important;
+  }
+
+  .landscapetext {
+
+    width: 45.5vw !important;
+  }
+} */
+
+
+/* Define styles for screens larger than 2560px */
+/* @media (min-width: 2561px) {
+  .portrait {
+    height: 70vh;
+    width: 30vw;
+  }
+  .landscape {
+    height: 70vh;
+    width: 60vw;
+  }
+} */
+
+  .portrait {
+    height: 550px;
+    width: 430.50px;
+  }
+  .landscape {
+    height: 550px;
+    width: 880px;
+  }
+
+  .portraittext {
+    /* height: 55vh; */
+    width: 400.50px;
+  }
+
+  .landscapetext {
+    /* height: 55vh; */
+    width: 800px;
+  }
+
+
+
+
+
+.masonry .item img {
+  object-fit: cover !important;
+}
+
+.masonry .item video {
+    object-fit: cover !important;
+}
+
 .listset{
   /* height: 100vh; */
     /* overflow: scroll; */
@@ -888,20 +991,7 @@ export default {
 }
 }
 
-.portrait {
-  /* Add your portrait styles here */
-  /* height: calc(45.55vh - 20px); */
-  width: calc(25.33vw - 20px);
-  /* Example: 50% width for portrait images */
-}
 
-/* Landscape Styles */
-.landscape {
-  /* Add your landscape styles here */
-  width: calc(45.33vw - 20px);
-
-  /* width: 33.33%; Example: 33.33% width for landscape images */
-}
 .text-opacity-25 {
   opacity: 0.25;
 }

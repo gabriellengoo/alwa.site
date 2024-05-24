@@ -65,7 +65,7 @@
     <!-- Masonry content here w-[99.3vw]-->
     <div
       ref="scrollContainer"
-      class="image-cont w-[98vw] flex flex-col fade-in-out"
+      class="image-cont w-[100vw] flex flex-col fade-in-out"
       :class="{ 'fade-in': displayGrid, 'fade-out': !displayGrid }"
     >
       <!-- scroll part -->
@@ -73,65 +73,201 @@
         <div class="scroll-container" @wheel="handleScroll">
 
           <div
-            v-for="item in items"
-            :key="item._key"
-            class="insidescrollcont"
-            :style="{
-                     width: item.portrait ? 'calc(32.33vw - 20px)' : 'calc(-15px + 60.9vw)',
-                     maxWidth: item.portrait ? 'calc(45vw - 20px)' : '    calc(-15px + 60.9vw)',
-                    //  width: !item.portrait ? 'min-content' : 'min-content',
-                }"
+        v-masonry-tile
+        class="relative transition-opacity duration-300 item"
+        v-for="item in items"
+        :key="item._key"
+        :class="[
+          item.double ? 'double h-fit' : '',
+          item.spacer != 0 ? 'p-2' : '',
+          item.image.image || item.video.id ? '' : 'hidden md:block',
+          // mobile test?
+          item.double && size == 'small' ? '' : '',
+          activeTalent &&
+          activeTalent != item.reference.talentId &&
+          activeTalent != item.reference
+            ? ''
+            : '', 
+        ]"
+      > 
+      <!--  :style="{ backgroundColor: item.double ? 'red' : 'blue', }" 
+                  :style="{ minHeight: item.video.id ? (isDesktop ? (item.double ? '75vh' : '45vh') : '15vh') : 'auto' }"
+       ? 'h-space-fit md:h-space-fit 2xl:h-space-fit' vid space height--> 
+        <figure
+          class="flex flex-col " 
+          :style="{ minHeight: item.video.id ? (isDesktop ? 'autoh' : 'auto') : 'auto' }"
+          :class="[
+            item.spacer
+              ? `h-space-${item.spacer + 1}  md:h-space-${item.spacer}`
+              : item.image.aspect >= 1
+              ? item.double
+                 ? 'h-space-10 md:h-space-10 2xl:h-space-10'
+                : 'h-space-5 md:h-space-3 2xl:h-space-2'
+              : item.double
+              ? 'h-space-fit md:h-space-fit 2xl:h-space-fit'
+              : 'h-space-12 md:h-space-6 2xl:h-space-4',
+              // mb-6
+            size == 'small' ? '' : '',
+          ]"
+        >
+          <NuxtLink
+          class="hover"
+            :class="[
+              containerClass,
+              item.image.position == 'right'
+                ? 'items-end'
+                : item.image.position == 'center'
+                ? 'items-center'
+                : 'items-start',
+            ]"
+            v-if="item.reference.slug"
+            :to="`/project/${item.reference.slug}`"
+            @mouseenter.native="hover(item)"
+            @mouseleave.native="leave()"
           >
-            <NuxtLink
-              class="ani uppercase hover"
-              v-if="!item.draft && item.reference.slug"
-              :to="`/project/${item.reference.slug}`"
+            <span
+              class="flex flex-col items-start h-full max-w-full"
+              :class="size == 'small' ? 'w-full' : 'w-auto'"
             >
+              <figure
+                :class="size == 'small' ? 'block w-full' : 'h-full w-auto'"
+                :style="
+                  item.video && item.video.aspect && size == 'small'
+                    ? `aspect-ratio: ${item.video.aspect.replace(':', '/')}`
+                    : ''
+                "
+              >
               <figcaption :class="{ 'text-left ': !displayGrid }">
                 <div
               
                   :class="size == 'small' ? 'smaller-text' : ''"
-                  class="lgsctext mobilesize resize-animation flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw] pl-0"
+                  class="lgsctext mobilesize  max-w-[20vw] resize-animation flex flex-col pb-[1.5vw] md:pb-[.2vw] p-[.2vw] pl-0"
                 >
                   {{ item.title ? item.title : item.reference.title }}
                 </div>
               </figcaption>
-
-              <div class="   ">
                 <MediaImage
-                  ref="scrollContainer"
-                  @mouseenter="handleMouseEnter"
-                  @mouseleave="handleMouseLeave"
+                  :size="item.image.size"
+                  :aspect="item.image.aspect"
                   :src="item.image.image"
                   v-if="item.image.image"
-                  :metadata="item.image.image"
-                  class="scrollcost resize-animation hover"
-                
-                ></MediaImage>
-                <MediaVideo
-                  ref="scrollContainer"
-                  :id="item.video.id"
-                  v-if="item.video.id"
-                  :metadata="item.video.id"
-                
-                  class="scrollcost resize-animation"
-                  :poster="`https://image.mux.com/${item.video.id}/thumbnail.jpg?time=${item.thumbnailTime || 0}`"
-                ></MediaVideo>
-              </div>
+                  class="contain-image hover"
+                  :sizes="
+                    size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'
+                  "
+                  :style="{
+                      width: item.portrait ? '23.5vw' : '48.5vw',
+                      // width: !item.portrait ? '' : 'auto'
+                    }"
 
+                ></MediaImage>
+                <!-- :style="{ backgroundColor: item.double ? 'red' : 'blue', }"  -->
+                <MediaVideo 
+                  :id="item.video.id"
+                  :thumbTime="item.video.thumbTime"                 
+     v-if="item.video.id"
+                  class="dubvid vdpadoverview hoverobject-contain object-top w-auto h-full"
+                  :style="{
+                      width: item.portrait ? '23.5vw' : '48.5vw',
+                      // width: !item.portrait ? '' : 'auto'
+                    }"
+                ></MediaVideo>
+              </figure>
               <div
                
-                class="lgsctext mobilesize resize-animation leading-[1.2] md:leading-[1] pt-2 overflow-hidden text-lg stroke-black stroke-1 flex flex-wrap  normal-case font-medium"
+               class="lgsctext mobilesize resize-animation max-w-[20vw]  leading-[1.2] md:leading-[1] pt-2 overflow-hidden text-lg stroke-black stroke-1 flex flex-wrap  normal-case font-medium"
+             >
+               <p v-if="item.photographer">{{ item.photographer }}<span v-if="item.production">,&nbsp; </span></p>
+               <p v-if="item.styleing">{{ item.styleing }}<span v-if="item.hair">,&nbsp; </span></p>
+               <p v-if="item.hair">{{ item.hair }}<span v-if="item.makeup">,&nbsp; </span></p> 
+               <p v-if="item.makeup">{{ item.makeup }}<span v-if="item.dop">,&nbsp; </span></p>
+               <p v-if="item.dop">{{ item.dop }}<span v-if="item.set">,&nbsp; </span></p>
+               <p v-if="item.set">{{ item.set }}</p>
+             </div>
+            </span>
+          </NuxtLink>
+          <a
+            v-else-if="item.link"
+            :href="item.link"
+            target="_blank"
+            :class="[
+              containerClass,
+              item.image.position == 'right'
+                ? 'items-end'
+                : item.image.position == 'center'
+                ? 'items-center'
+                : 'items-start',
+            ]"
+            @mouseenter="
+              item.reference.title
+                ? SET_ACTIVE_PROJECT(item.reference)
+                : SET_ACTIVE_PROJECT(item._key)
+            "
+            @mouseleave="SET_ACTIVE_PROJECT(false)"
+          >
+            <span class="flex flex-col items-start w-auto h-full max-w-full">
+              <MediaImage
+                :size="item.image.size"
+                :aspect="item.image.aspect"
+                :src="item.image.image"
+                v-if="item.image.image"
+                class="contain-image"
+                :sizes="size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'"
+              ></MediaImage>
+              <MediaVideo
+                :id="item.video.id"
+                :style="`aspect-ratio: ${item.video.aspect.replace(':', '/')}`"
+                v-if="item.video.id"
+                :thumbTime="item.video.thumbTime"
+                class="object-contain vdpadoverview object-top w-auto h-full"
+              ></MediaVideo>
+              <figcaption
+                class="block py-2 px-2 mr-auto text-xs"
+                v-if="size == 'small'"
               >
-                <p v-if="item.photographer">{{ item.photographer }}<span v-if="item.production">,&nbsp; </span></p>
-                <p v-if="item.styleing">{{ item.styleing }}<span v-if="item.hair">,&nbsp; </span></p>
-                <p v-if="item.hair">{{ item.hair }}<span v-if="item.makeup">,&nbsp; </span></p> 
-                <p v-if="item.makeup">{{ item.makeup }}<span v-if="item.dop">,&nbsp; </span></p>
-                <p v-if="item.dop">{{ item.dop }}<span v-if="item.set">,&nbsp; </span></p>
-                <p v-if="item.set">{{ item.set }}</p>
-              </div>
-            </NuxtLink>
-          </div>
+                <span v-if="item.title">{{ item.title }}</span>
+                <span v-else>{{ item.reference.title }}</span>
+              </figcaption>
+            </span>
+          </a>
+          <figure
+            v-else
+            :class="[
+              containerClass,
+              item.image.position == 'right'
+                ? 'items-end'
+                : item.image.position == 'center'
+                ? 'items-center'
+                : 'items-start',
+            ]"
+          >
+            <span class="flex flex-col items-start w-auto h-full max-w-full">
+              <MediaImage
+                :size="item.image.size"
+                :aspect="item.image.aspect"
+                :src="item.image.image"
+                v-if="item.image.image"
+                :class="imageClass"
+                :sizes="size == 'sm' ? 'sm:60vw md:15vw' : 'sm:150vw md:150vw'"
+              ></MediaImage>
+              <MediaVideo
+                :id="item.video.id"
+                :style="`aspect-ratio: ${item.video.aspect.replace(':', '/')}`"
+                v-if="item.video.id"
+                :thumbTime="item.video.thumbTime"
+                class="object-contain vdpadoverview object-top w-auto h-full"
+              ></MediaVideo>
+              <figcaption
+                class="block py-2 px-2 mr-auto text-xs"
+                v-if="size == 'small'"
+              >
+                <span v-if="item.title">{{ item.title }}</span>
+                <span v-else>{{ item.reference.title }}</span>
+              </figcaption>
+            </span>
+          </figure>
+        </figure>
+      </div>
       
       
                 <div class="bottom-0  left-0 w-full">
@@ -843,7 +979,7 @@ export default {
   /* grid-template-columns: 33% 33% 33%; */
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
+   /* justify-content: space-between; */
 }
 
 .insidescrollcont {
