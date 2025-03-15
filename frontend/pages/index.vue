@@ -1,4 +1,4 @@
-export default function Maintenance() {
+<!-- export default function Maintenance() {
   return (
     <div style={{
       textAlign: 'center',
@@ -9,4 +9,4 @@ export default function Maintenance() {
       <p>We’ll be back soon. Thank you for your patience!</p>
     </div>
   );
-}
+} -->
