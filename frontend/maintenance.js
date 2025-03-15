@@ -8,6 +8,6 @@ export default function Maintenance() {
       <h1>🚧 Site Under Construction 🚧</h1>
       <p>We’ll be back soon. Thank you for your patience!</p>
     </div>
-  );
+  ); 
 }
 
